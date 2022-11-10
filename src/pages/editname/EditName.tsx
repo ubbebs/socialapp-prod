@@ -1,38 +1,21 @@
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getAuth, updateProfile } from 'firebase/auth'
-import { getStorage, ref, uploadBytes } from 'firebase/storage'
 import { HiOutlineUserCircle } from 'react-icons/hi'
 
-function EditAvatar() {
+function EditName() {
   const auth = getAuth()
-  const storage = getStorage()
-  const avatarRef = useRef<HTMLInputElement>(null)
+  const displayNameRef = useRef<HTMLInputElement>(null)
   const navigate = useNavigate()
-  const [editError, setEditError] = useState(false)
 
   const handlePostForm = (e: React.FormEvent) => {
     e.preventDefault()
-    if (
-      auth.currentUser &&
-      avatarRef.current?.files?.length !== 0 &&
-      avatarRef.current?.files
-    ) {
-      const avatarImageRef = ref(storage, `avatar/${auth.currentUser.uid}.jpg`)
-      uploadBytes(avatarImageRef, avatarRef.current?.files[0])
-        .then((snapshot) => {
-          if (auth.currentUser) {
-            updateProfile(auth.currentUser, {
-              photoURL: `https://firebasestorage.googleapis.com/v0/b/socialapp-c3f3f.appspot.com/o/avatar%2F${auth.currentUser.uid}.jpg?alt=media`,
-            })
-              .then(() => {
-                navigate('/')
-              })
-              .catch((error) => {
-                const errorCode = error.code
-                const errorMessage = error.message
-              })
-          }
+    if (auth.currentUser) {
+      updateProfile(auth.currentUser, {
+        displayName: displayNameRef.current?.value,
+      })
+        .then(() => {
+          navigate('/editavatar')
         })
         .catch((error) => {
           const errorCode = error.code
@@ -58,12 +41,11 @@ function EditAvatar() {
               Your name
             </label>
             <input
-              className="flex-1 focus:outline-none"
-              type="file"
-              name="file"
-              id="File"
-              accept="image/jpeg"
-              ref={avatarRef}
+              className="border-b-[1px] border-zinc-400 pb-1 flex-1 focus:outline-none"
+              type="text"
+              name="nickname"
+              id="Nickname"
+              ref={displayNameRef}
             />
             <button
               className="rounded-full w-full gradient-linear text-white hover:tracking-[4px] duration-300 text-sm font-bold p-2 uppercase mt-10 mb-5"
@@ -81,4 +63,4 @@ function EditAvatar() {
   )
 }
 
-export { EditAvatar }
+export { EditName }

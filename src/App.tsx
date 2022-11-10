@@ -1,14 +1,12 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { initializeApp } from 'firebase/app'
-import { config } from '../config'
+import { app } from '../config'
 import { AuthRoute } from './components/AuthRoute'
 import { HomePage } from './pages/homepage/HomePage'
 import { Signin } from './pages/signin/Signin'
 import { Signup } from './pages/signup/Signup'
-import { EditProfile } from './pages/editprofile/EditProfile'
+import { EditName } from './pages/editname/EditName'
 import { EditAvatar } from './pages/editavatar/EditAvatar'
-
-initializeApp(config.firebaseConfig)
+import { PersonalInfo } from './pages/personalinfo/PersonalInfo'
 
 function App() {
   return (
@@ -27,7 +25,7 @@ function App() {
           path="/editprofile"
           element={
             <AuthRoute>
-              <EditProfile />
+              <EditName />
             </AuthRoute>
           }
         />
@@ -36,6 +34,14 @@ function App() {
           element={
             <AuthRoute>
               <EditAvatar />
+            </AuthRoute>
+          }
+        />
+        <Route
+          path="/personalinfo"
+          element={
+            <AuthRoute>
+              <PersonalInfo />
             </AuthRoute>
           }
         />

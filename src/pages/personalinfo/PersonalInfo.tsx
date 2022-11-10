@@ -1,30 +1,25 @@
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getAuth, updateProfile } from 'firebase/auth'
+import { getAuth } from 'firebase/auth'
 import { HiOutlineUserCircle } from 'react-icons/hi'
+import { personalInfoHandlePostForm } from './personalInfoHandle'
 
-function EditProfile() {
+function PersonalInfo() {
   const auth = getAuth()
-  const displayNameRef = useRef<HTMLInputElement>(null)
+  const nameRef = useRef<HTMLInputElement>(null)
+  const descriptionRef = useRef<HTMLInputElement>(null)
   const navigate = useNavigate()
-  const [editError, setEditError] = useState(false)
+  const uid = auth.currentUser?.uid
 
   const handlePostForm = (e: React.FormEvent) => {
     e.preventDefault()
-    if (auth.currentUser) {
-      updateProfile(auth.currentUser, {
-        displayName: displayNameRef.current?.value,
-      })
-        .then(() => {
-          console.log('Success')
-          navigate('/editavatar')
-        })
-        .catch((error) => {
-          const errorCode = error.code
-          const errorMessage = error.message
-          setEditError(true)
-          // ..
-        })
+    if (nameRef.current && descriptionRef.current && uid) {
+      personalInfoHandlePostForm(
+        nameRef.current.value,
+        descriptionRef.current.value,
+        uid,
+        navigate
+      )
     }
   }
 
@@ -49,7 +44,17 @@ function EditProfile() {
               type="text"
               name="nickname"
               id="Nickname"
-              ref={displayNameRef}
+              ref={nameRef}
+            />
+            <label className="pl-1 text-xs" htmlFor="Login">
+              Description
+            </label>
+            <input
+              className="border-b-[1px] border-zinc-400 pb-1 flex-1 focus:outline-none"
+              type="text"
+              name="nickname"
+              id="Nickname"
+              ref={descriptionRef}
             />
             <button
               className="rounded-full w-full gradient-linear text-white hover:tracking-[4px] duration-300 text-sm font-bold p-2 uppercase mt-10 mb-5"
@@ -67,4 +72,4 @@ function EditProfile() {
   )
 }
 
-export { EditProfile }
+export { PersonalInfo }

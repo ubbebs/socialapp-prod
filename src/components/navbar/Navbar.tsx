@@ -1,9 +1,12 @@
 import { getAuth, signOut, onAuthStateChanged } from 'firebase/auth'
 import { useEffect, useState } from 'react'
+import { Oval } from 'react-loader-spinner'
+import { Link } from 'react-router-dom'
 import mainLogo from '../../assets/logo.png'
+import { Loader } from '../loader/Loader'
 
 const Navbar = () => {
-  const [userData, setUserData] = useState<any>()
+  const [userData, setUserData] = useState<any>(null)
   const auth = getAuth()
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -30,7 +33,9 @@ const Navbar = () => {
     })`,
   }
 
-  return (
+  return !userData ? (
+    <Loader />
+  ) : (
     <div className="flex flex-col min-h-screen items-center pt-[20px] gap-[30px]">
       <img src={mainLogo} alt="Logo" className="w-[100px]" />
       <div className="flex flex-col items-center gap-2">
@@ -40,6 +45,7 @@ const Navbar = () => {
         />
         <p className="font-semibold text-xl">{userData?.displayName}</p>
       </div>
+      <Link to="/personalinfo">Edit profile</Link>
       <button type="button" onClick={logout}>
         Logout
       </button>
