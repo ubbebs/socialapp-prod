@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.gradient-cross {
+    background-image: linear-gradient(to top right, #63D5E1 15%, #8567EA, #EA39F9 90%);
+}
+
+.gradient-linear {
+    background-image: linear-gradient(to right, #63D5E1 10%, #8567EA, #EA39F9 95%);
+}
