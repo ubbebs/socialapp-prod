@@ -23,8 +23,22 @@ function App() {
           }
         />
         <Route path="/signin" element={<Signin />} />
-        <Route path="/editprofile" element={<EditProfile />} />
-        <Route path="/editavatar" element={<EditAvatar />} />
+        <Route
+          path="/editprofile"
+          element={
+            <AuthRoute>
+              <EditProfile />
+            </AuthRoute>
+          }
+        />
+        <Route
+          path="/editavatar"
+          element={
+            <AuthRoute>
+              <EditAvatar />
+            </AuthRoute>
+          }
+        />
         <Route path="/signup" element={<Signup />} />
       </Routes>
     </BrowserRouter>

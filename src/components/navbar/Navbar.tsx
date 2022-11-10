@@ -1,10 +1,17 @@
-import { getAuth, signOut } from 'firebase/auth'
-import { useEffect } from 'react'
+import { getAuth, signOut, onAuthStateChanged } from 'firebase/auth'
+import { useEffect, useState } from 'react'
 import mainLogo from '../../assets/logo.png'
 
 const Navbar = () => {
+  const [userData, setUserData] = useState<any>()
   const auth = getAuth()
-  const user = auth.currentUser
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUserData(user)
+      }
+    })
+  }, [auth])
   const logout = (e: React.FormEvent) => {
     e.preventDefault()
     signOut(getAuth())
@@ -17,8 +24,8 @@ const Navbar = () => {
   }
   const divStyle = {
     backgroundImage: `url(${
-      user?.photoURL
-        ? user.photoURL
+      userData?.photoURL
+        ? userData.photoURL
         : 'https://firebasestorage.googleapis.com/v0/b/socialapp-c3f3f.appspot.com/o/avatar%2Fdefault.png?alt=media'
     })`,
   }
@@ -31,7 +38,7 @@ const Navbar = () => {
           className="w-[150px] h-[150px] bg-no-repeat bg-center bg-cover rounded-full"
           style={divStyle}
         />
-        <p className="font-semibold text-xl">{user?.displayName}</p>
+        <p className="font-semibold text-xl">{userData?.displayName}</p>
       </div>
       <button type="button" onClick={logout}>
         Logout
