@@ -1,15 +1,15 @@
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getAuth, updateProfile } from 'firebase/auth'
-import { getStorage, ref, uploadBytes } from 'firebase/storage'
+import { getAuth } from 'firebase/auth'
+import { getStorage } from 'firebase/storage'
 import { HiOutlineUserCircle } from 'react-icons/hi'
+import { editAvatarHandle } from './editAvatarHandle'
 
 function EditAvatar() {
   const auth = getAuth()
   const storage = getStorage()
   const avatarRef = useRef<HTMLInputElement>(null)
   const navigate = useNavigate()
-  const [editError, setEditError] = useState(false)
 
   const handlePostForm = (e: React.FormEvent) => {
     e.preventDefault()
@@ -18,26 +18,12 @@ function EditAvatar() {
       avatarRef.current?.files?.length !== 0 &&
       avatarRef.current?.files
     ) {
-      const avatarImageRef = ref(storage, `avatar/${auth.currentUser.uid}.jpg`)
-      uploadBytes(avatarImageRef, avatarRef.current?.files[0])
-        .then((snapshot) => {
-          if (auth.currentUser) {
-            updateProfile(auth.currentUser, {
-              photoURL: `https://firebasestorage.googleapis.com/v0/b/socialapp-c3f3f.appspot.com/o/avatar%2F${auth.currentUser.uid}.jpg?alt=media`,
-            })
-              .then(() => {
-                navigate('/')
-              })
-              .catch((error) => {
-                const errorCode = error.code
-                const errorMessage = error.message
-              })
-          }
-        })
-        .catch((error) => {
-          const errorCode = error.code
-          const errorMessage = error.message
-        })
+      editAvatarHandle(
+        storage,
+        auth.currentUser,
+        avatarRef.current.files,
+        navigate
+      )
     }
   }
 

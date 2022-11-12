@@ -1,25 +1,48 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getAuth } from 'firebase/auth'
 import { HiOutlineUserCircle } from 'react-icons/hi'
+import { child, get, getDatabase, ref } from 'firebase/database'
+import { validate } from './personalInfoValidate'
 import { personalInfoHandlePostForm } from './personalInfoHandle'
+import { app } from '../../../config'
 
 function PersonalInfo() {
-  const auth = getAuth()
+  const [nameError, setNameError] = useState(false)
+  const [descError, setDescError] = useState(false)
+  const [personalInfo, setPersonalInfo] = useState<any>()
+  const auth = getAuth(app)
+  const db = getDatabase()
   const nameRef = useRef<HTMLInputElement>(null)
   const descriptionRef = useRef<HTMLInputElement>(null)
   const navigate = useNavigate()
   const uid = auth.currentUser?.uid
 
+  get(child(ref(db), `personalInfo/${uid}`))
+    .then((snapshot) => {
+      setPersonalInfo(snapshot.val())
+    })
+    .catch((error) => {
+      console.error(error)
+    })
+
   const handlePostForm = (e: React.FormEvent) => {
     e.preventDefault()
-    if (nameRef.current && descriptionRef.current && uid) {
-      personalInfoHandlePostForm(
-        nameRef.current.value,
-        descriptionRef.current.value,
-        uid,
-        navigate
+    if (nameRef.current?.value && nameRef.current?.value.length < 3) {
+      setNameError(true)
+    } else if (
+      descriptionRef.current?.value &&
+      descriptionRef.current?.value.length < 3
+    ) {
+      setDescError(true)
+    } else {
+      const { name, desc } = validate(
+        nameRef.current?.value,
+        descriptionRef.current?.value,
+        personalInfo.name,
+        personalInfo.description
       )
+      personalInfoHandlePostForm(name, desc, uid, navigate)
     }
   }
 
@@ -46,6 +69,11 @@ function PersonalInfo() {
               id="Nickname"
               ref={nameRef}
             />
+            {nameError && (
+              <p className="text-center p-1 text-red-500 font-semibold">
+                Your name is too short
+              </p>
+            )}
             <label className="pl-1 text-xs" htmlFor="Login">
               Description
             </label>
@@ -56,6 +84,11 @@ function PersonalInfo() {
               id="Nickname"
               ref={descriptionRef}
             />
+            {descError && (
+              <p className="text-center p-1 text-red-500 font-semibold">
+                Your description is too short
+              </p>
+            )}
             <button
               className="rounded-full w-full gradient-linear text-white hover:tracking-[4px] duration-300 text-sm font-bold p-2 uppercase mt-10 mb-5"
               type="submit"

@@ -1,7 +1,8 @@
 import { useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getAuth, updateProfile } from 'firebase/auth'
+import { getAuth } from 'firebase/auth'
 import { HiOutlineUserCircle } from 'react-icons/hi'
+import { editNameHandle } from './editNameHandle'
 
 function EditName() {
   const auth = getAuth()
@@ -10,17 +11,8 @@ function EditName() {
 
   const handlePostForm = (e: React.FormEvent) => {
     e.preventDefault()
-    if (auth.currentUser) {
-      updateProfile(auth.currentUser, {
-        displayName: displayNameRef.current?.value,
-      })
-        .then(() => {
-          navigate('/editavatar')
-        })
-        .catch((error) => {
-          const errorCode = error.code
-          const errorMessage = error.message
-        })
+    if (auth.currentUser && displayNameRef.current) {
+      editNameHandle(auth.currentUser, displayNameRef.current?.value, navigate)
     }
   }
 

@@ -5,7 +5,7 @@ import { db } from '../../../config'
 const personalInfoHandlePostForm = (
   name: string,
   description: string,
-  userId: string,
+  userId: string | undefined,
   navigate: NavigateFunction
 ) => {
   set(ref(db, `/personalInfo/${userId}`), {
