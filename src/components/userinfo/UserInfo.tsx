@@ -42,9 +42,7 @@ const UserInfo = (props: UserInfoType) => {
       })
   }, [auth, db, uid])
 
-  console.log('rerender')
-
-  return !userData || !personalInfo || posts === null ? (
+  return !userData || posts === null ? (
     <Loader />
   ) : (
     <div

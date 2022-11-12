@@ -39,8 +39,8 @@ function PersonalInfo() {
       const { name, desc } = validate(
         nameRef.current?.value,
         descriptionRef.current?.value,
-        personalInfo.name,
-        personalInfo.description
+        personalInfo ? personalInfo.name : '',
+        personalInfo ? personalInfo.description : ''
       )
       personalInfoHandlePostForm(name, desc, uid, navigate)
     }
