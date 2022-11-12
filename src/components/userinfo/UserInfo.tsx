@@ -48,12 +48,12 @@ const UserInfo = (props: UserInfoType) => {
   ) : (
     <div
       className={`${
-        hidden ? 'translate-x-0 opacity-100' : 'translate-x-[100%] opacity-0'
-      } flex flex-col min-h-screen w-full items-center gap-[30px] absolute mt-[100px] bg-white duration-500 lg:relative`}
+        hidden ? 'left-0 opacity-100' : 'left-[100%] opacity-0'
+      } flex flex-col min-h-screen lg:min-h-0 w-full items-center gap-[30px] fixed  mt-[100px] lg:m-0 bg-white z-10 duration-500 lg:duration-[0ms] lg:left-0 lg:opacity-100 lg:relative`}
     >
       <div className="flex flex-col items-center gap-2 w-full">
         <div
-          className="w-[150px] h-[150px] bg-no-repeat bg-center bg-cover rounded-full"
+          className="w-[150px] lg:w-[90px] h-[150px] lg:h-[90px] bg-no-repeat bg-center bg-cover rounded-full"
           style={divStyle(userData)}
         />
         <p className="font-semibold text-xl">{personalInfo?.name}</p>
