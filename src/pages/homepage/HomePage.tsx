@@ -15,9 +15,6 @@ const HomePage = (props: HomePageType) => {
   const navigate = useNavigate()
   const [toggleUserInfo, setToggleUserInfo] = useState<boolean>(false)
   const localstorageValidate = () => {
-    if (!localStorage.getItem('userid') && !stateStore.userid) {
-      navigate('/')
-    }
     if (localStorage.getItem('userid') && !stateStore.userid) {
       stateStore.userid = localStorage.getItem('userid')
     }
@@ -44,6 +41,11 @@ const HomePage = (props: HomePageType) => {
     return res.data
   }
 
+  const queryPosts = async (uid: string) => {
+    const res = await axios.get(`http://localhost:8383/getPosts?uid=${uid}`)
+    return res.data
+  }
+
   const { data: dataUserData, isLoading: isLoadingUserData } = useQuery(
     ['userData'],
     () => getUserData(userid || ''),
@@ -60,8 +62,16 @@ const HomePage = (props: HomePageType) => {
     }
   )
 
+  const { data: dataPosts, isLoading: isLoadingPosts } = useQuery(
+    ['posts'],
+    () => queryPosts(stateStore.userid || ''),
+    {
+      enabled: !!stateStore.userid,
+    }
+  )
+
   useEffect(() => {
-    if (!isLoadingUserData && !isLoadingPersonalInfo) {
+    if (!isLoadingUserData && !isLoadingPersonalInfo && !isLoadingPosts) {
       stateStore.userData = {
         displayName: dataUserData.displayName,
         email: dataUserData.email,
@@ -71,8 +81,23 @@ const HomePage = (props: HomePageType) => {
         description: dataPersonalInfo.description,
         name: dataPersonalInfo.name,
       }
+      stateStore.posts = dataPosts
     }
-  }, [dataPersonalInfo, dataUserData, isLoadingPersonalInfo, isLoadingUserData])
+
+    return () => {
+      stateStore.userData = null
+      stateStore.personalInfo = null
+      stateStore.posts = null
+    }
+  }, [
+    dataPersonalInfo,
+    dataPosts,
+    dataUserData,
+    isLoadingPersonalInfo,
+    isLoadingPosts,
+    isLoadingUserData,
+    navigate,
+  ])
 
   return (
     <div className="w-full min-h-screen flex flex-col lg:h-screen lg:flex-row">

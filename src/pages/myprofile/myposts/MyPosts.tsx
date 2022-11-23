@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { useEffect } from 'react'
+import { useSnapshot } from 'valtio'
 import { stateStore } from '../../../stateStore'
 
 type ElemType = {
@@ -9,33 +10,13 @@ type ElemType = {
 }
 
 const MyPosts = () => {
-  const queryPosts = async (uid: string) => {
-    const res = await axios.get(`http://localhost:8383/getPosts?uid=${uid}`)
-    return res.data
-  }
-
-  const { data: dataPosts, isLoading: isLoadingPosts } = useQuery(
-    ['posts'],
-    () => queryPosts(stateStore.userid || ''),
-    {
-      enabled: !!stateStore.userid,
-    }
-  )
-
-  useEffect(() => {
-    if (!isLoadingPosts) {
-      stateStore.posts = dataPosts
-      console.log(stateStore.posts)
-      console.log(dataPosts)
-    }
-  }, [dataPosts, isLoadingPosts])
-
+  const state = useSnapshot(stateStore)
   return (
     <>
-      {!dataPosts ? (
+      {!state.posts ? (
         <p>No posts :C</p>
       ) : (
-        Object.values(dataPosts).map((elem: any, index) => {
+        Object.values(state.posts).map((elem: any, index) => {
           return (
             <div key={index}>
               <p>{elem.description}</p>

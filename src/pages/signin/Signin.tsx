@@ -24,6 +24,7 @@ function Signin() {
           // Signed in
           const { user } = userCredential
           stateStore.userid = user.uid
+          console.log(user.uid, stateStore.userid)
           navigate('/')
           // ...
         })

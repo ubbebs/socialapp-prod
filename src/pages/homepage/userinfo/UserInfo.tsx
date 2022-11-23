@@ -1,5 +1,7 @@
 import { useSnapshot } from 'valtio'
 import { Link } from 'react-router-dom'
+import { getAuth } from 'firebase/auth'
+import { useEffect } from 'react'
 import { Loader } from '../../../components/loader/Loader'
 import { divStyle } from './utils/divstyle'
 import { NavLinks } from './navlinks/NavLinks'
@@ -12,10 +14,15 @@ type UserInfoType = {
 }
 
 const UserInfo = (props: UserInfoType) => {
+  const auth = getAuth()
   const state = useSnapshot(stateStore)
   const { hidden } = props
 
-  return stateStore.userData && stateStore.personalInfo ? (
+  useEffect(() => {}, [auth])
+
+  return stateStore.userData &&
+    stateStore.personalInfo &&
+    auth.currentUser?.email === state.userData?.email ? (
     <div
       className={`${
         hidden ? 'left-0 opacity-100' : 'left-[100%] opacity-0'
@@ -34,7 +41,7 @@ const UserInfo = (props: UserInfoType) => {
         <p className="font-normal text-sm">
           @{state.userData?.displayName || ''}
         </p>
-        {/* <Stats posts={state.posts} /> */}
+        <Stats />
       </div>
       {state.personalInfo ? (
         <Description

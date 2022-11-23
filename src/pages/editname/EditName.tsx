@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { getAuth } from 'firebase/auth'
 import { HiOutlineUserCircle } from 'react-icons/hi'
 import { editNameHandle } from './editNameHandle'
+import { stateStore } from '../../stateStore'
 
 function EditName() {
   const auth = getAuth()
@@ -12,6 +13,7 @@ function EditName() {
   const handlePostForm = (e: React.FormEvent) => {
     e.preventDefault()
     if (auth.currentUser && displayNameRef.current) {
+      stateStore.userid = auth.currentUser.uid
       editNameHandle(auth.currentUser, displayNameRef.current?.value, navigate)
     }
   }
