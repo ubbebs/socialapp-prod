@@ -15,8 +15,8 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
+    project: './tsconfig.json',
     sourceType: 'module',
-    project: './social-app/tsconfig.json',
   },
   plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
@@ -25,6 +25,7 @@ module.exports = {
     'jsx-a11y/label-has-associated-control': 0,
     'react/function-component-definition': 0,
     'react/jsx-no-useless-fragment': 0,
+    'react/no-array-index-key': 0,
     'prettier/prettier': [
       'error',
       {

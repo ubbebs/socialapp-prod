@@ -47,9 +47,7 @@ function EditName() {
             </button>
           </form>
         </div>
-        <div>
-          <p className="text-center">strusiub</p>
-        </div>
+        <p className="text-center">strusiub</p>
       </div>
     </div>
   )

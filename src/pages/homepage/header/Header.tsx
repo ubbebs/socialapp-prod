@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import mainLogo from '../../assets/logo.png'
+import mainLogo from '../../../assets/logo.png'
 
 type HeaderType = {
   func: () => void

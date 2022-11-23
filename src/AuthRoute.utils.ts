@@ -9,7 +9,6 @@ const AuthCheck = (
     if (user) {
       setState(false)
     } else {
-      console.log('unauthorized')
       navigate('/signin')
     }
   })

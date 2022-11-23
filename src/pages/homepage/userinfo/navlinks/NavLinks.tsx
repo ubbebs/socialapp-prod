@@ -3,7 +3,7 @@ import { CiSearch, CiSettings } from 'react-icons/ci'
 import { BiMoviePlay } from 'react-icons/bi'
 import { FiLogOut } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
-import { logout } from '../logout'
+import { logout } from '../utils/logout'
 
 const NavLinks = () => {
   return (

@@ -40,8 +40,8 @@ function EditAvatar() {
               className="text-zinc-400 w-[100px] text-center"
               size="100px"
             />
-            <label className="pl-1 text-xs" htmlFor="Login">
-              Your name
+            <label className="pl-1 text-xs" htmlFor="File">
+              Your avatar
             </label>
             <input
               className="flex-1 focus:outline-none"

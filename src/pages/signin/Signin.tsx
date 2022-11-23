@@ -23,9 +23,7 @@ function Signin() {
         .then((userCredential) => {
           // Signed in
           const { user } = userCredential
-          console.log('Succes!')
-          console.log(userCredential)
-          console.log(user)
+          stateStore.userid = user.uid
           navigate('/')
           // ...
         })
