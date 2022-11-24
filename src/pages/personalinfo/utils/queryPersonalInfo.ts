@@ -3,7 +3,7 @@ import axios from 'axios'
 type QueryPersonalInfoType = {
   name: string | undefined
   description: string | undefined
-  userid: string | undefined
+  userid: string | null
 }
 
 const queryPersonalInfo = async (data: QueryPersonalInfoType) => {

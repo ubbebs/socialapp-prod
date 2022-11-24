@@ -6,29 +6,29 @@ import { useMutation } from '@tanstack/react-query'
 import { useSnapshot } from 'valtio'
 import { validatePersonalInfo } from './utils/validatePersonalInfo'
 import { queryPersonalInfo } from './utils/queryPersonalInfo'
-import { app } from '../../../config'
 import { stateStore } from '../../stateStore'
+import { useGetPersonalInfo } from '../homepage/utils/getPersonalInfo'
 
 function PersonalInfo() {
   const state = useSnapshot(stateStore)
-  const auth = getAuth(app)
   const navigate = useNavigate()
   const nameRef = useRef<HTMLInputElement>(null)
   const descriptionRef = useRef<HTMLInputElement>(null)
   const { mutate } = useMutation(queryPersonalInfo)
+  const { data: dataPersonalInfo } = useGetPersonalInfo(stateStore.userid || '')
 
   const handlePostPersonalInfo = (e: React.FormEvent) => {
     e.preventDefault()
     const { validatedName, validatedDesc } = validatePersonalInfo(
       nameRef.current?.value,
       descriptionRef.current?.value,
-      state.personalInfo?.name,
-      state.personalInfo?.description
+      dataPersonalInfo.name,
+      dataPersonalInfo.description
     )
     mutate({
       name: validatedName,
       description: validatedDesc,
-      userid: auth.currentUser?.uid,
+      userid: state.userid,
     })
     navigate('/')
   }
