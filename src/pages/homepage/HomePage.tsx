@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react'
-import { useQuery } from '@tanstack/react-query'
-import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
-import { Header } from './header/Header'
-import { UserInfo } from './userinfo/UserInfo'
+import { useState } from 'react'
+import { Header } from './components/header/Header'
+import { UserInfo } from './components/userinfo/UserInfo'
+import { useGetUserData } from './utils/getUserData'
+import { useGetPosts } from './utils/getPosts'
+import { useGetPersonalInfo } from './utils/getPersonalInfo'
+import { Loader } from '../../components/loader/Loader'
 import { stateStore } from '../../stateStore'
 
 type HomePageType = {
@@ -12,94 +13,19 @@ type HomePageType = {
 
 const HomePage = (props: HomePageType) => {
   const { subpage } = props
-  const navigate = useNavigate()
   const [toggleUserInfo, setToggleUserInfo] = useState<boolean>(false)
-  const localstorageValidate = () => {
-    if (localStorage.getItem('userid') && !stateStore.userid) {
-      stateStore.userid = localStorage.getItem('userid')
-    }
-    if (stateStore.userid) {
-      localStorage.setItem('userid', stateStore.userid)
-    }
-  }
-  localstorageValidate()
-  const { userid } = stateStore
+  const { isLoading: isLoadingUserData } = useGetUserData(
+    stateStore.userid || ''
+  )
+  const { isLoading: isLoadingPersonalInfo } = useGetPersonalInfo(
+    stateStore.userid || ''
+  )
 
   const handleClick = () => {
     setToggleUserInfo((prev) => !prev)
   }
 
-  const getUserData = async (uid: string) => {
-    const res = await axios.get(`http://localhost:8383/getUserData?uid=${uid}`)
-    return res.data
-  }
-
-  const getPersonalInfo = async (uid: string) => {
-    const res = await axios.get(
-      `http://localhost:8383/getPersonalInfo?uid=${uid}`
-    )
-    return res.data
-  }
-
-  const queryPosts = async (uid: string) => {
-    const res = await axios.get(`http://localhost:8383/getPosts?uid=${uid}`)
-    return res.data
-  }
-
-  const { data: dataUserData, isLoading: isLoadingUserData } = useQuery(
-    ['userData'],
-    () => getUserData(userid || ''),
-    {
-      enabled: !!userid,
-    }
-  )
-
-  const { data: dataPersonalInfo, isLoading: isLoadingPersonalInfo } = useQuery(
-    ['personalInfo'],
-    () => getPersonalInfo(userid || ''),
-    {
-      enabled: !!userid,
-    }
-  )
-
-  const { data: dataPosts, isLoading: isLoadingPosts } = useQuery(
-    ['posts'],
-    () => queryPosts(stateStore.userid || ''),
-    {
-      enabled: !!stateStore.userid,
-    }
-  )
-
-  useEffect(() => {
-    if (!isLoadingUserData && !isLoadingPersonalInfo && !isLoadingPosts) {
-      stateStore.userData = {
-        displayName: dataUserData.displayName,
-        email: dataUserData.email,
-        photoURL: dataUserData.photoURL,
-      }
-      stateStore.personalInfo = {
-        description: dataPersonalInfo.description,
-        name: dataPersonalInfo.name,
-      }
-      stateStore.posts = dataPosts
-    }
-
-    return () => {
-      stateStore.userData = null
-      stateStore.personalInfo = null
-      stateStore.posts = null
-    }
-  }, [
-    dataPersonalInfo,
-    dataPosts,
-    dataUserData,
-    isLoadingPersonalInfo,
-    isLoadingPosts,
-    isLoadingUserData,
-    navigate,
-  ])
-
-  return (
+  return !isLoadingPersonalInfo && !isLoadingUserData ? (
     <div className="w-full min-h-screen flex flex-col lg:h-screen lg:flex-row">
       <div className="w-full flex flex-col lg:w-[300px] lg:gap-5 lg:shrink-0">
         <Header func={handleClick} />
@@ -111,6 +37,8 @@ const HomePage = (props: HomePageType) => {
         </div>
       </div>
     </div>
+  ) : (
+    <Loader />
   )
 }
 

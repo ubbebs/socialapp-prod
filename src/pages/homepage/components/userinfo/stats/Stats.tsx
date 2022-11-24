@@ -1,5 +1,5 @@
 import { useSnapshot } from 'valtio'
-import { stateStore } from '../../../../stateStore'
+import { stateStore } from '../../../../../stateStore'
 
 const Stats = () => {
   const state = useSnapshot(stateStore)

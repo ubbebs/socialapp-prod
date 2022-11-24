@@ -1,28 +1,21 @@
-import { useSnapshot } from 'valtio'
 import { Link } from 'react-router-dom'
-import { getAuth } from 'firebase/auth'
-import { useEffect } from 'react'
-import { Loader } from '../../../components/loader/Loader'
 import { divStyle } from './utils/divstyle'
 import { NavLinks } from './navlinks/NavLinks'
 import { Stats } from './stats/Stats'
 import { Description } from './description/Description'
-import { stateStore } from '../../../stateStore'
+import { useGetUserData } from '../../utils/getUserData'
+import { useGetPersonalInfo } from '../../utils/getPersonalInfo'
 
 type UserInfoType = {
   hidden: boolean
 }
 
 const UserInfo = (props: UserInfoType) => {
-  const auth = getAuth()
-  const state = useSnapshot(stateStore)
   const { hidden } = props
+  const { data: dataUserData } = useGetUserData('')
+  const { data: dataPersonalInfo } = useGetPersonalInfo('')
 
-  useEffect(() => {}, [auth])
-
-  return stateStore.userData &&
-    stateStore.personalInfo &&
-    auth.currentUser?.email === state.userData?.email ? (
+  return (
     <div
       className={`${
         hidden ? 'left-0 opacity-100' : 'left-[100%] opacity-0'
@@ -32,27 +25,23 @@ const UserInfo = (props: UserInfoType) => {
         <Link to="/myprofile" className="flex flex-col items-center gap-2">
           <div
             className="w-[150px] lg:w-[90px] h-[150px] lg:h-[90px] bg-no-repeat bg-center bg-cover rounded-full"
-            style={divStyle(state.userData?.photoURL || '')}
+            style={divStyle(dataUserData.photoURL || '')}
           />
           <p className="font-semibold text-xl">
-            {state.personalInfo ? state.personalInfo.name : null}
+            {dataPersonalInfo ? dataPersonalInfo.name : null}
           </p>
         </Link>
-        <p className="font-normal text-sm">
-          @{state.userData?.displayName || ''}
-        </p>
+        <p className="font-normal text-sm">@{dataUserData.displayName || ''}</p>
         <Stats />
       </div>
-      {state.personalInfo ? (
+      {dataPersonalInfo ? (
         <Description
-          name={state.personalInfo.name}
-          description={state.personalInfo.description}
+          name={dataPersonalInfo.name}
+          description={dataPersonalInfo.description}
         />
       ) : null}
       <NavLinks />
     </div>
-  ) : (
-    <Loader />
   )
 }
 

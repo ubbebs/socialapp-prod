@@ -2,7 +2,7 @@ import { FirebaseStorage, ref as refS, uploadBytes } from 'firebase/storage'
 
 type AddPostHandleType = {
   storage: FirebaseStorage
-  userid: string | undefined
+  userid: string | null
   elem: File
   time: number
 }

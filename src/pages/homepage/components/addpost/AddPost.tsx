@@ -5,19 +5,21 @@ import { useSnapshot } from 'valtio'
 import { BiTrashAlt } from 'react-icons/bi'
 import { useNavigate } from 'react-router-dom'
 import { useMutation } from '@tanstack/react-query'
-import { stateStore } from '../../../stateStore'
 import { divStyle } from '../userinfo/utils/divstyle'
 import { addPostHandle } from './addPostHandle'
 import { queryAddPost } from './utils/queryAddPost'
+import { stateStore } from '../../../../stateStore'
+import { useGetUserData } from '../../utils/getUserData'
 
 const AddPost = () => {
-  const auth = getAuth()
   const storage = getStorage()
+  const state = useSnapshot(stateStore)
   const [postImg, setPostImg] = useState<File | null>()
   const descriptionRef = useRef<HTMLTextAreaElement>(null)
-  const state = useSnapshot(stateStore)
   const navigate = useNavigate()
   const { mutate } = useMutation(queryAddPost)
+  const { data: dataUserData, isLoading: isLoadingUserData } =
+    useGetUserData('')
 
   const handleSelectFile = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) setPostImg(e.target.files[0])
@@ -32,20 +34,20 @@ const AddPost = () => {
     if (postImg) {
       addPostHandle({
         storage,
-        userid: auth.currentUser?.uid,
+        userid: state.userid,
         elem: postImg,
         time,
       })
     }
     mutate({
       description: descriptionRef.current?.value,
-      userid: auth.currentUser?.uid,
+      userid: state.userid,
       time,
     })
     navigate('/')
   }
 
-  return (
+  return !isLoadingUserData ? (
     <div className="w-full h-full flex flex-col justify-center items-center gap-4 xl:flex-row">
       <div className="w-[400px] h-[400px] relative xl:w-[500px] xl:h-[500px]">
         {postImg ? (
@@ -88,9 +90,9 @@ const AddPost = () => {
         <div className="w-full flex items-center gap-4">
           <div
             className="w-[50px] lg:w-[50px] h-[50px] lg:h-[50px] bg-no-repeat bg-center bg-cover rounded-full"
-            style={divStyle(state.userData?.photoURL ?? '')}
+            style={divStyle(dataUserData.photoURL ?? '')}
           />
-          <p className="font-semibold text-xl">{state.personalInfo?.name}</p>
+          <p className="font-semibold text-xl">{dataUserData.name}</p>
         </div>
         <label>Description</label>
         <textarea
@@ -107,6 +109,8 @@ const AddPost = () => {
         </button>
       </div>
     </div>
+  ) : (
+    <p>Loading...</p>
   )
 }
 

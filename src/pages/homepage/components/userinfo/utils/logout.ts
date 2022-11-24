@@ -1,5 +1,5 @@
 import { getAuth, signOut } from 'firebase/auth'
-import { stateStore } from '../../../../stateStore'
+import { stateStore } from '../../../../../stateStore'
 
 const logout = (e: React.FormEvent) => {
   e.preventDefault()

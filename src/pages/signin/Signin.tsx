@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 import { FaRegUserCircle } from 'react-icons/fa'
 import { MdLockOutline } from 'react-icons/md'
-import { stateStore } from '../../stateStore'
 
 function Signin() {
   const auth = getAuth()
@@ -20,19 +19,12 @@ function Signin() {
         emailRef.current.value,
         passwordRef.current.value
       )
-        .then((userCredential) => {
-          // Signed in
-          const { user } = userCredential
-          stateStore.userid = user.uid
-          console.log(user.uid, stateStore.userid)
+        .then(() => {
           navigate('/')
-          // ...
         })
         .catch((error) => {
-          const errorCode = error.code
-          const errorMessage = error.message
+          console.log(error)
           setLoginError(true)
-          // ..
         })
     }
   }

@@ -2,7 +2,7 @@ import axios from 'axios'
 
 type QueryAddPostType = {
   description: string | undefined | null
-  userid: string | undefined
+  userid: string | null
   time: number
 }
 

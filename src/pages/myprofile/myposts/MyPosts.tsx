@@ -1,31 +1,24 @@
-import { useQuery } from '@tanstack/react-query'
-import axios from 'axios'
-import { useEffect } from 'react'
-import { useSnapshot } from 'valtio'
 import { stateStore } from '../../../stateStore'
-
-type ElemType = {
-  description: string | null
-  imageURL: string
-}
+import { useGetPosts } from '../../homepage/utils/getPosts'
 
 const MyPosts = () => {
-  const state = useSnapshot(stateStore)
-  return (
+  const { data: dataPosts, isLoading: isLoadingPosts } = useGetPosts(
+    stateStore.userid || ''
+  )
+
+  return !isLoadingPosts ? (
     <>
-      {!state.posts ? (
-        <p>No posts :C</p>
-      ) : (
-        Object.values(state.posts).map((elem: any, index) => {
-          return (
-            <div key={index}>
-              <p>{elem.description}</p>
-              <img src={elem.imageURL} alt="siema" className="w-[100px]" />
-            </div>
-          )
-        })
-      )}
+      {Object.values(dataPosts).map((elem: any, index) => {
+        return (
+          <div key={index}>
+            <p>{elem.description}</p>
+            <img src={elem.imageURL} alt="siema" className="w-[100px]" />
+          </div>
+        )
+      })}
     </>
+  ) : (
+    <p>Loading</p>
   )
 }
 

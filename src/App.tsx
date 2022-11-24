@@ -7,8 +7,8 @@ import { Signup } from './pages/signup/Signup'
 import { EditName } from './pages/editname/EditName'
 import { EditAvatar } from './pages/editavatar/EditAvatar'
 import { PersonalInfo } from './pages/personalinfo/PersonalInfo'
-import { Main } from './pages/homepage/main/Main'
-import { AddPost } from './pages/homepage/addpost/AddPost'
+import { Main } from './pages/homepage/components/main/Main'
+import { AddPost } from './pages/homepage/components/addpost/AddPost'
 import { MyProfile } from './pages/myprofile/MyProfile'
 
 const queryClient = new QueryClient({

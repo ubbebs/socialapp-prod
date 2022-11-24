@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { getAuth } from 'firebase/auth'
 import { getStorage } from 'firebase/storage'
 import { HiOutlineUserCircle } from 'react-icons/hi'
-import { editAvatarHandle } from './editAvatarHandle'
+import { editAvatarHandle } from './utils/uploadAvatar'
 
 function EditAvatar() {
   const auth = getAuth()
