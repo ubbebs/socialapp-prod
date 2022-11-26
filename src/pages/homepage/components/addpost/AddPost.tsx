@@ -1,4 +1,3 @@
-import { getAuth } from 'firebase/auth'
 import { getStorage } from 'firebase/storage'
 import { ChangeEvent, useRef, useState } from 'react'
 import { useSnapshot } from 'valtio'
@@ -15,6 +14,7 @@ const AddPost = () => {
   const storage = getStorage()
   const state = useSnapshot(stateStore)
   const [postImg, setPostImg] = useState<File | null>()
+  const [errorImg, setErrorImg] = useState<boolean>(false)
   const descriptionRef = useRef<HTMLTextAreaElement>(null)
   const navigate = useNavigate()
   const { mutate } = useMutation(queryAddPost)
@@ -30,22 +30,28 @@ const AddPost = () => {
   }
 
   const handleAddPostSubmit = () => {
-    const time = Date.now()
-    if (postImg) {
-      addPostHandle({
-        storage,
+    if (!postImg) {
+      setErrorImg(true)
+    } else {
+      const time = Date.now()
+      if (postImg) {
+        addPostHandle({
+          storage,
+          userid: state.userid,
+          elem: postImg,
+          time,
+        })
+      }
+      mutate({
+        description: descriptionRef.current?.value,
         userid: state.userid,
-        elem: postImg,
         time,
       })
+      navigate('/refetchPost')
     }
-    mutate({
-      description: descriptionRef.current?.value,
-      userid: state.userid,
-      time,
-    })
-    navigate('/')
   }
+
+  console.log(dataUserData)
 
   return !isLoadingUserData ? (
     <div className="w-full h-full flex flex-col justify-center items-center gap-4 xl:flex-row">
@@ -92,7 +98,7 @@ const AddPost = () => {
             className="w-[50px] lg:w-[50px] h-[50px] lg:h-[50px] bg-no-repeat bg-center bg-cover rounded-full"
             style={divStyle(dataUserData.photoURL ?? '')}
           />
-          <p className="font-semibold text-xl">{dataUserData.name}</p>
+          <p className="font-semibold text-xl">{dataUserData.displayName}</p>
         </div>
         <label>Description</label>
         <textarea
@@ -101,12 +107,17 @@ const AddPost = () => {
           ref={descriptionRef}
         />
         <button
-          className="rounded-full gradient-linear text-white hover:tracking-[4px] duration-300 text-sm font-bold p-2 uppercase my-5"
+          className="rounded-full gradient-linear text-white hover:tracking-[4px] duration-300 text-sm font-bold p-2 uppercase mt-5"
           type="submit"
           onClick={handleAddPostSubmit}
         >
           Add post
         </button>
+        {errorImg ? (
+          <p className="font-semibold text-sm bg-red-400 text-white rounded-full text-center p-2">
+            No image loaded
+          </p>
+        ) : null}
       </div>
     </div>
   ) : (

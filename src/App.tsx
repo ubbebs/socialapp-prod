@@ -10,6 +10,7 @@ import { PersonalInfo } from './pages/personalinfo/PersonalInfo'
 import { Main } from './pages/homepage/components/main/Main'
 import { AddPost } from './pages/homepage/components/addpost/AddPost'
 import { MyProfile } from './pages/myprofile/MyProfile'
+import { RefetchPosts } from './pages/refetch/RefetchPosts'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -72,6 +73,14 @@ function App() {
             element={
               <AuthRoute>
                 <PersonalInfo />
+              </AuthRoute>
+            }
+          />
+          <Route
+            path="/refetchPost"
+            element={
+              <AuthRoute>
+                <RefetchPosts />
               </AuthRoute>
             }
           />

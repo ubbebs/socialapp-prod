@@ -1,6 +1,5 @@
 import { useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getAuth } from 'firebase/auth'
 import { HiOutlineUserCircle } from 'react-icons/hi'
 import { useMutation } from '@tanstack/react-query'
 import { useSnapshot } from 'valtio'
