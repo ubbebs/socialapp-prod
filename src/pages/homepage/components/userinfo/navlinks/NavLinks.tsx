@@ -5,10 +5,15 @@ import { FiLogOut } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 import { logout } from '../utils/logout'
 
-const NavLinks = () => {
+type NavLinksType = {
+  func: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const NavLinks = (props: NavLinksType) => {
+  const { func } = props
   return (
     <div className="flex flex-col gap-5 w-full px-6">
-      <Link to="/">
+      <Link to="/" onClick={() => func(false)}>
         <button type="button" className="flex justify-start items-center gap-3">
           <AiFillHome />
           <p>Home</p>
@@ -22,7 +27,7 @@ const NavLinks = () => {
         <BiMoviePlay />
         <p>Reels</p>
       </button>
-      <Link to="/personalInfo">
+      <Link to="/personalInfo" onClick={() => func(false)}>
         <button type="button" className="flex justify-start items-center gap-3">
           <CiSettings />
           Edit profile

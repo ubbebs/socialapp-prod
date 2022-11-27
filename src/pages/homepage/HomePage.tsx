@@ -29,11 +29,11 @@ const HomePage = (props: HomePageType) => {
   return !isLoadingPersonalInfo && !isLoadingPosts && !isLoadingUserData ? (
     <div className="w-full min-h-screen flex flex-col lg:h-screen lg:flex-row">
       <div className="w-full flex flex-col lg:w-[300px] lg:gap-5 lg:shrink-0">
-        <Header func={handleClick} />
-        <UserInfo hidden={toggleUserInfo} />
+        <Header func={handleClick} stateFunc={setToggleUserInfo} />
+        <UserInfo hidden={toggleUserInfo} func={setToggleUserInfo} />
       </div>
-      <div className="grow mt-[100px] lg:mt-0 lg:py-[20px] lg:pr-[20px]">
-        <div className="flex flex-col gap-4 w-full rounded-[50px] p-3 lg:p-7 lg:h-full lg:bg-zinc-100 relative scrollbar">
+      <div className="grow mt-[100px] lg:my-[20px] lg:mr-[20px] flex flex-col relative">
+        <div className="grow flex flex-col gap-4 w-full h-full rounded-3xl p-3 lg:p-7 lg:h-full lg:bg-zinc-100 relative scrollbar">
           {subpage}
         </div>
       </div>

@@ -3,13 +3,14 @@ import mainLogo from '../../../../assets/logo.png'
 
 type HeaderType = {
   func: () => void
+  stateFunc: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const Header = (props: HeaderType) => {
-  const { func } = props
+  const { func, stateFunc } = props
   return (
     <div className="fixed lg:relative z-10 flex w-full bg-white h-[100px] lg:pl-[30px] justify-center lg:justify-start items-center">
-      <Link to="/">
+      <Link to="/" onClick={() => stateFunc(false)}>
         <img src={mainLogo} alt="Logo" className="w-[100px]" />
       </Link>
       <button

@@ -8,10 +8,11 @@ import { useGetPersonalInfo } from '../../utils/getPersonalInfo'
 
 type UserInfoType = {
   hidden: boolean
+  func: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const UserInfo = (props: UserInfoType) => {
-  const { hidden } = props
+  const { hidden, func } = props
   const { data: dataUserData } = useGetUserData('')
   const { data: dataPersonalInfo } = useGetPersonalInfo('')
 
@@ -22,7 +23,11 @@ const UserInfo = (props: UserInfoType) => {
       } flex flex-col min-h-screen lg:min-h-0 w-full items-center gap-[30px] fixed mt-[100px] lg:m-0 bg-white z-10 duration-500 lg:duration-[0ms] lg:left-0 lg:opacity-100 lg:relative`}
     >
       <div className="flex flex-col items-center gap-2 w-full">
-        <Link to="/myprofile" className="flex flex-col items-center gap-2">
+        <Link
+          to="/myprofile"
+          className="flex flex-col items-center gap-2"
+          onClick={() => func(false)}
+        >
           <div
             className="w-[150px] lg:w-[90px] h-[150px] lg:h-[90px] bg-no-repeat bg-center bg-cover rounded-full"
             style={divStyle(dataUserData.photoURL || '')}
@@ -40,7 +45,7 @@ const UserInfo = (props: UserInfoType) => {
           description={dataPersonalInfo.description}
         />
       ) : null}
-      <NavLinks />
+      <NavLinks func={func} />
     </div>
   )
 }
