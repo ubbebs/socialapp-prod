@@ -19,10 +19,12 @@ const NavLinks = (props: NavLinksType) => {
           <p>Home</p>
         </button>
       </Link>
-      <button type="button" className="flex justify-start items-center gap-3">
-        <CiSearch />
-        <p>Explore</p>
-      </button>
+      <Link to="/explore" onClick={() => func(false)}>
+        <button type="button" className="flex justify-start items-center gap-3">
+          <CiSearch />
+          <p>Explore</p>
+        </button>
+      </Link>
       <button type="button" className="flex justify-start items-center gap-3">
         <BiMoviePlay />
         <p>Reels</p>

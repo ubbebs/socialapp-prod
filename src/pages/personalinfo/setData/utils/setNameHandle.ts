@@ -1,7 +1,7 @@
 import { updateProfile, User } from 'firebase/auth'
 import { NavigateFunction } from 'react-router-dom'
 
-const editNameHandle = (
+const setNameHandle = (
   user: User,
   name: string,
   navigate: NavigateFunction
@@ -9,12 +9,10 @@ const editNameHandle = (
   updateProfile(user, {
     displayName: name,
   })
-    .then(() => {
-      navigate('/editavatar')
-    })
+    .then()
     .catch((error) => {
       console.log(error)
     })
 }
 
-export { editNameHandle }
+export { setNameHandle }

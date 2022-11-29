@@ -11,33 +11,39 @@ const MyPosts = () => {
   )
 
   return !isLoadingPosts ? (
-    <ul className="overflow-auto flex gap-4 flex-col px-3">
-      {Object.values(dataPosts).map((elem: any, index) => {
-        const backgroundImage = {
-          backgroundImage: `url('${elem.imageURL}')`,
-        }
-        return (
-          <>
-            <li
-              key={index}
-              className="h-[150px] w-full bg-zinc-100 lg:bg-white flex rounded-lg"
-              onClick={() => setView(elem.timestamp)}
-              onKeyDown={() => setView(elem.timestamp)}
-            >
-              <div
-                className="w-[130px] h-[130px] m-[10px] flex-shrink rounded-lg bg-no-repeat bg-center bg-cover"
-                style={backgroundImage}
-              />
-              <div className="p-3 flex-grow">
-                <p>{elem.description}</p>
-                <p>{moment.unix(elem.timestamp / 1000).format('DD/MM/YYYY')}</p>
-              </div>
-            </li>
-            {view ? <ViewPost trigger={view} setTrigger={setView} /> : null}
-          </>
-        )
-      })}
-    </ul>
+    dataPosts !== '' ? (
+      <ul className="overflow-auto flex gap-4 flex-col px-3">
+        {Object.values(dataPosts).map((elem: any, index) => {
+          const backgroundImage = {
+            backgroundImage: `url('${elem.imageURL}')`,
+          }
+          return (
+            <>
+              <li
+                key={index}
+                className="h-[150px] w-full bg-zinc-100 lg:bg-white flex rounded-lg"
+                onClick={() => setView(elem.timestamp)}
+                onKeyDown={() => setView(elem.timestamp)}
+              >
+                <div
+                  className="w-[130px] h-[130px] m-[10px] flex-shrink rounded-lg bg-no-repeat bg-center bg-cover"
+                  style={backgroundImage}
+                />
+                <div className="p-3 flex-grow">
+                  <p>{elem.description}</p>
+                  <p>
+                    {moment.unix(elem.timestamp / 1000).format('DD/MM/YYYY')}
+                  </p>
+                </div>
+              </li>
+              {view ? <ViewPost trigger={view} setTrigger={setView} /> : null}
+            </>
+          )
+        })}
+      </ul>
+    ) : (
+      <p>No posts... yet. Wanna add some post?</p>
+    )
   ) : (
     <p>Loading</p>
   )

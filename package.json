@@ -18,6 +18,9 @@
     "react-icons": "^4.6.0",
     "react-loader-spinner": "^5.3.4",
     "react-router-dom": "^6.4.3",
+    "react-select": "^5.6.1",
+    "react-select-async-paginate": "^0.7.0",
+    "use-debounce": "^8.0.4",
     "valtio": "^1.7.5"
   },
   "devDependencies": {

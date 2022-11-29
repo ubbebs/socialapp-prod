@@ -6,12 +6,12 @@ import { Description } from './description/Description'
 import { useGetUserData } from '../../utils/getUserData'
 import { useGetPersonalInfo } from '../../utils/getPersonalInfo'
 
-type UserInfoType = {
+type SidebarType = {
   hidden: boolean
   func: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const UserInfo = (props: UserInfoType) => {
+const Sidebar = (props: SidebarType) => {
   const { hidden, func } = props
   const { data: dataUserData } = useGetUserData('')
   const { data: dataPersonalInfo } = useGetPersonalInfo('')
@@ -30,18 +30,18 @@ const UserInfo = (props: UserInfoType) => {
         >
           <div
             className="w-[150px] lg:w-[90px] h-[150px] lg:h-[90px] bg-no-repeat bg-center bg-cover rounded-full"
-            style={divStyle(dataUserData.photoURL || '')}
+            style={divStyle(dataUserData.photoURL)}
           />
           <p className="font-semibold text-xl">
-            {dataPersonalInfo ? dataPersonalInfo.name : null}
+            {dataPersonalInfo.displayName}
           </p>
         </Link>
-        <p className="font-normal text-sm">@{dataUserData.displayName || ''}</p>
+        <p className="font-normal text-sm">@{dataPersonalInfo.accountName}</p>
         <Stats />
       </div>
       {dataPersonalInfo ? (
         <Description
-          name={dataPersonalInfo.name}
+          name={dataPersonalInfo.displayName}
           description={dataPersonalInfo.description}
         />
       ) : null}
@@ -50,4 +50,4 @@ const UserInfo = (props: UserInfoType) => {
   )
 }
 
-export { UserInfo }
+export { Sidebar }

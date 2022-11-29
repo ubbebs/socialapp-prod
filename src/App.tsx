@@ -4,13 +4,12 @@ import { AuthRoute } from './AuthRoute'
 import { HomePage } from './pages/homepage/HomePage'
 import { Signin } from './pages/signin/Signin'
 import { Signup } from './pages/signup/Signup'
-import { EditName } from './pages/editname/EditName'
-import { EditAvatar } from './pages/editavatar/EditAvatar'
-import { PersonalInfo } from './pages/personalinfo/PersonalInfo'
 import { Main } from './pages/homepage/components/main/Main'
 import { AddPost } from './pages/homepage/components/addpost/AddPost'
 import { MyProfile } from './pages/myprofile/MyProfile'
 import { RefetchPosts } from './pages/refetch/RefetchPosts'
+import { Explore } from './pages/homepage/components/explore/Explore'
+import { FirstData } from './pages/personalinfo/setData/FirstData'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -51,28 +50,20 @@ function App() {
               </AuthRoute>
             }
           />
+          <Route
+            path="/explore"
+            element={
+              <AuthRoute>
+                <HomePage subpage={<Explore />} />
+              </AuthRoute>
+            }
+          />
           <Route path="/signin" element={<Signin />} />
           <Route
-            path="/editprofile"
+            path="/firstdata"
             element={
               <AuthRoute>
-                <EditName />
-              </AuthRoute>
-            }
-          />
-          <Route
-            path="/editavatar"
-            element={
-              <AuthRoute>
-                <EditAvatar />
-              </AuthRoute>
-            }
-          />
-          <Route
-            path="/personalinfo"
-            element={
-              <AuthRoute>
-                <PersonalInfo />
+                <FirstData />
               </AuthRoute>
             }
           />

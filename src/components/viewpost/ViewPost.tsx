@@ -1,6 +1,6 @@
 import moment from 'moment'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
-import { divStyle } from '../../pages/homepage/components/userinfo/utils/divstyle'
+import { divStyle } from '../../pages/homepage/components/sidebar/utils/divstyle'
 import { useGetPost } from '../../pages/homepage/utils/getPost'
 import { useGetUserData } from '../../pages/homepage/utils/getUserData'
 import { stateStore } from '../../stateStore'
@@ -31,7 +31,7 @@ const ViewPost = (props: ViewPostType) => {
         <button
           onClick={() => setTrigger(false)}
           type="button"
-          className="w-[300px] lg:w-auto flex justify-start items-center p-2"
+          className="w-full flex justify-start items-center p-2"
         >
           <AiOutlineArrowLeft size={13} />
           <p>Back</p>

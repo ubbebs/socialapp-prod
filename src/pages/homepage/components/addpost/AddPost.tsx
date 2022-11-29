@@ -4,11 +4,11 @@ import { useSnapshot } from 'valtio'
 import { BiTrashAlt } from 'react-icons/bi'
 import { useNavigate } from 'react-router-dom'
 import { useMutation } from '@tanstack/react-query'
-import { divStyle } from '../userinfo/utils/divstyle'
 import { addPostHandle } from './addPostHandle'
 import { queryAddPost } from './utils/queryAddPost'
 import { stateStore } from '../../../../stateStore'
 import { useGetUserData } from '../../utils/getUserData'
+import { divStyle } from '../sidebar/utils/divstyle'
 
 const AddPost = () => {
   const storage = getStorage()

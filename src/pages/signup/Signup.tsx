@@ -25,7 +25,7 @@ function Signup() {
         passwordRef.current.value
       )
         .then(() => {
-          navigate('/editprofile')
+          navigate('/firstdata')
           // ...
         })
         .catch((error) => {

@@ -2,14 +2,14 @@ import { updateProfile, User } from 'firebase/auth'
 import { FirebaseStorage, ref, uploadBytes } from 'firebase/storage'
 import { NavigateFunction } from 'react-router-dom'
 
-const editAvatarHandle = (
+const setAvatarHandle = (
   storage: FirebaseStorage,
   user: User,
-  elem: FileList,
+  elem: File,
   navigate: NavigateFunction
 ) => {
   const avatarImageRef = ref(storage, `avatar/${user.uid}.jpg`)
-  uploadBytes(avatarImageRef, elem[0])
+  uploadBytes(avatarImageRef, elem)
     .then(() => {
       if (user) {
         updateProfile(user, {
@@ -28,4 +28,4 @@ const editAvatarHandle = (
     })
 }
 
-export { editAvatarHandle }
+export { setAvatarHandle }
