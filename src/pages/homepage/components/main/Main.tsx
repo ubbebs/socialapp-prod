@@ -12,7 +12,7 @@ const Main = () => {
         </div>
       </div>
       <div className="bg-blue-500">
-        <p>stories</p>
+        <p>PSST MORDO CHCESZ OBSTAWIĆ MUNDIAL?</p>
       </div>
       <div className="grow overflow-auto">
         <p>content</p>

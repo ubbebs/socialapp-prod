@@ -1,7 +1,13 @@
 import { MyPosts } from './myposts/MyPosts'
+import { ProfileDetails } from './profiledetails/ProfileDetails'
 
 const MyProfile = () => {
-  return <MyPosts />
+  return (
+    <>
+      <ProfileDetails />
+      <MyPosts />
+    </>
+  )
 }
 
 export { MyProfile }

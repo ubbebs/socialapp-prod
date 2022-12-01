@@ -3,7 +3,6 @@ import { divStyle } from './utils/divstyle'
 import { NavLinks } from './navlinks/NavLinks'
 import { Stats } from './stats/Stats'
 import { Description } from './description/Description'
-import { useGetUserData } from '../../utils/getUserData'
 import { useGetPersonalInfo } from '../../utils/getPersonalInfo'
 
 type SidebarType = {
@@ -13,7 +12,6 @@ type SidebarType = {
 
 const Sidebar = (props: SidebarType) => {
   const { hidden, func } = props
-  const { data: dataUserData } = useGetUserData('')
   const { data: dataPersonalInfo } = useGetPersonalInfo('')
 
   return (
@@ -30,7 +28,7 @@ const Sidebar = (props: SidebarType) => {
         >
           <div
             className="w-[150px] lg:w-[90px] h-[150px] lg:h-[90px] bg-no-repeat bg-center bg-cover rounded-full"
-            style={divStyle(dataUserData.photoURL)}
+            style={divStyle(dataPersonalInfo.photoURL)}
           />
           <p className="font-semibold text-xl">
             {dataPersonalInfo.displayName}

@@ -1,19 +1,24 @@
-import { ChangeEvent, useRef, useState } from 'react'
+import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useMutation } from '@tanstack/react-query'
 import { getAuth } from 'firebase/auth'
 import { getStorage } from 'firebase/storage'
 import { stateStore } from '../../../stateStore'
 import { app } from '../../../../config'
-import { setNameHandle } from './utils/setNameHandle'
 import { setAvatarHandle } from './utils/setAvatarHandle'
 import { setPersonalInfo } from './utils/setPersonalInfoHandle'
+import { useGetPersonalInfo } from '../../homepage/utils/getPersonalInfo'
+import { Loader } from '../../../components/loader/Loader'
 
 function FirstData() {
   const auth = getAuth(app)
   const navigate = useNavigate()
   const storage = getStorage()
+
   const { mutate } = useMutation(setPersonalInfo)
+  const [successMutation, setSuccessMutation] = useState<boolean>(false)
+  const [successAvatar, setSuccessAvatar] = useState<boolean>(false)
+
   const accountNameRef = useRef<HTMLInputElement>(null)
   const descriptionRef = useRef<HTMLInputElement>(null)
   const displayNameRef = useRef<HTMLInputElement>(null)
@@ -21,6 +26,20 @@ function FirstData() {
   const [accountNameError, setAccountNameError] = useState<boolean>(false)
   const [displayNameError, setDisplayNameError] = useState<boolean>(false)
   const [postImgError, setPostImgError] = useState<boolean>(false)
+
+  const { data: dataPersonalInfo, isLoading: isLoadingPersonalInfo } =
+    useGetPersonalInfo(stateStore.userid || '')
+
+  useEffect(() => {
+    if (!isLoadingPersonalInfo && dataPersonalInfo.accountName) navigate('/')
+    if (successAvatar && successMutation) navigate('/')
+  }, [
+    dataPersonalInfo,
+    isLoadingPersonalInfo,
+    navigate,
+    successAvatar,
+    successMutation,
+  ])
 
   const handleSelectFile = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) setPostImg(e.target.files[0])
@@ -36,41 +55,56 @@ function FirstData() {
       /^(\w\s?){4,24}$/g.test(displayNameRef.current.value) &&
       postImg
     ) {
+      const timestamp = (Date.now() / 1000).toString()
       stateStore.userid = auth.currentUser.uid
-      setNameHandle(auth.currentUser, accountNameRef.current?.value, navigate)
-      setAvatarHandle(storage, auth.currentUser, postImg, navigate)
-      mutate({
-        accountName: accountNameRef.current.value,
-        displayName: displayNameRef.current.value,
-        description: descriptionRef.current?.value || '',
-        userid: auth.currentUser.uid,
+      setAvatarHandle(
+        storage,
+        auth.currentUser,
+        postImg,
+        navigate,
+        timestamp
+      ).then(() => {
+        setSuccessAvatar(true)
       })
+      mutate(
+        {
+          accountName: accountNameRef.current.value,
+          displayName: displayNameRef.current.value,
+          description: descriptionRef.current?.value || '',
+          timestamp,
+          userid: auth.currentUser.uid,
+        },
+        {
+          onSuccess: () => {
+            setSuccessMutation(true)
+          },
+        }
+      )
+    }
+    if (
+      !accountNameRef.current ||
+      !/^\w{4,16}$/g.test(accountNameRef.current.value)
+    ) {
+      setAccountNameError(true)
     } else {
-      if (
-        !accountNameRef.current ||
-        !/^\w{4,16}$/g.test(accountNameRef.current.value)
-      ) {
-        setAccountNameError(true)
-      } else {
-        setAccountNameError(false)
-      }
-      if (
-        !displayNameRef.current ||
-        !/^(\w\s?){4,24}$/gs.test(displayNameRef.current.value)
-      ) {
-        setDisplayNameError(true)
-      } else {
-        setDisplayNameError(false)
-      }
-      if (!postImg) {
-        setPostImgError(true)
-      } else {
-        setPostImgError(false)
-      }
+      setAccountNameError(false)
+    }
+    if (
+      !displayNameRef.current ||
+      !/^(\w\s?){4,24}$/gs.test(displayNameRef.current.value)
+    ) {
+      setDisplayNameError(true)
+    } else {
+      setDisplayNameError(false)
+    }
+    if (!postImg) {
+      setPostImgError(true)
+    } else {
+      setPostImgError(false)
     }
   }
 
-  return (
+  return !isLoadingPersonalInfo ? (
     <div className="w-screen h-screen flex justify-center items-center gradient-cross">
       <div className="w-full md:w-[400px] min-h-full md:min-h-[600px] bg-white box-border p-8 flex flex-col justify-between md:rounded-xl">
         <div className="flex flex-col gap-5 p-5">
@@ -146,6 +180,8 @@ function FirstData() {
         </div>
       </div>
     </div>
+  ) : (
+    <Loader />
   )
 }
 
