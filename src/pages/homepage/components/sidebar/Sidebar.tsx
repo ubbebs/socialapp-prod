@@ -26,10 +26,12 @@ const Sidebar = (props: SidebarType) => {
           className="flex flex-col items-center gap-2"
           onClick={() => func(false)}
         >
-          <div
-            className="w-[150px] lg:w-[90px] h-[150px] lg:h-[90px] bg-no-repeat bg-center bg-cover rounded-full"
-            style={divStyle(dataPersonalInfo.photoURL)}
-          />
+          <div className="w-[154px] lg:w-[106px] h-[154px] lg:h-[106px] gradient-cross flex items-center justify-center rounded-full">
+            <div
+              className="w-[150px] lg:w-[100px] h-[150px] lg:h-[100px] bg-no-repeat bg-center bg-cover rounded-full gradient-border"
+              style={divStyle(dataPersonalInfo.photoURL)}
+            />
+          </div>
           <p className="font-semibold text-xl">
             {dataPersonalInfo.displayName}
           </p>

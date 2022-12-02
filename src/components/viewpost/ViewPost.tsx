@@ -1,8 +1,7 @@
 import moment from 'moment'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
-import { divStyle } from '../../pages/homepage/components/sidebar/utils/divstyle'
+import { useGetPersonalInfo } from '../../pages/homepage/utils/getPersonalInfo'
 import { useGetPost } from '../../pages/homepage/utils/getPost'
-import { useGetUserData } from '../../pages/homepage/utils/getUserData'
 import { stateStore } from '../../stateStore'
 import { SmallLoader } from '../smallLoader/SmallLoader'
 
@@ -17,15 +16,14 @@ const ViewPost = (props: ViewPostType) => {
     stateStore.userid || '',
     trigger
   )
-
-  const { data: dataUserData, isLoading: isLoadingUserData } =
-    useGetUserData('')
+  const { data: dataPersonalInfo, isLoading: isLoadingPersonalInfo } =
+    useGetPersonalInfo('')
 
   return trigger &&
     dataPost &&
     trigger === dataPost.timestamp &&
     !isLoadingPost &&
-    !isLoadingUserData ? (
+    !isLoadingPersonalInfo ? (
     <>
       <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center rounded-t-3xl p-3 bg-zinc-100 lg:p-10 lg:rounded-3xl">
         <button
@@ -47,10 +45,12 @@ const ViewPost = (props: ViewPostType) => {
             <div className="w-full flex items-center gap-4 mb-2">
               <div
                 className="w-[50px] lg:w-[50px] h-[50px] lg:h-[50px] bg-no-repeat bg-center bg-cover rounded-full"
-                style={divStyle(dataPost.imageURL ?? '')}
+                style={{
+                  backgroundImage: `url('${dataPersonalInfo.photoURL}')`,
+                }}
               />
               <p className="font-semibold text-xl">
-                {dataUserData.displayName}
+                {dataPersonalInfo.displayName}
               </p>
             </div>
             <p>{dataPost.description}</p>

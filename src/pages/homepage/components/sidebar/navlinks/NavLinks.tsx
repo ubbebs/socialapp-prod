@@ -12,32 +12,56 @@ type NavLinksType = {
 const NavLinks = (props: NavLinksType) => {
   const { func } = props
   return (
-    <div className="flex flex-col gap-5 w-full px-6">
-      <Link to="/" onClick={() => func(false)}>
-        <button type="button" className="flex justify-start items-center gap-3">
+    <div className="flex flex-col gap-2 w-full px-3">
+      <Link
+        to="/"
+        onClick={() => func(false)}
+        className="bg-white duration-500 hover:bg-indigo-600 hover:text-white rounded-2xl"
+      >
+        <button
+          type="button"
+          className="flex justify-start items-center gap-3 px-3 py-1"
+        >
           <AiFillHome />
           <p>Home</p>
         </button>
       </Link>
-      <Link to="/explore" onClick={() => func(false)}>
-        <button type="button" className="flex justify-start items-center gap-3">
+      <Link
+        to="/explore"
+        onClick={() => func(false)}
+        className="bg-white duration-500 hover:bg-indigo-600 hover:text-white rounded-2xl"
+      >
+        <button
+          type="button"
+          className="flex justify-start items-center gap-3 px-3 py-1"
+        >
           <CiSearch />
           <p>Explore</p>
         </button>
       </Link>
-      <button type="button" className="flex justify-start items-center gap-3">
+      <button
+        type="button"
+        className="flex justify-start items-center gap-3 px-3 py-1 bg-white duration-500 hover:bg-indigo-600 hover:text-white rounded-2xl"
+      >
         <BiMoviePlay />
         <p>Reels</p>
       </button>
-      <Link to="/personalInfo" onClick={() => func(false)}>
-        <button type="button" className="flex justify-start items-center gap-3">
+      <Link
+        to="/personalInfo"
+        onClick={() => func(false)}
+        className="bg-white duration-500 hover:bg-indigo-600 hover:text-white rounded-2xl"
+      >
+        <button
+          type="button"
+          className="flex justify-start items-center gap-3 px-3 py-1"
+        >
           <CiSettings />
           Edit profile
         </button>
       </Link>
       <button
         type="button"
-        className="flex justify-start items-center gap-3"
+        className="flex justify-start items-center gap-3 px-3 py-1 bg-white duration-500 hover:bg-indigo-600 hover:text-white rounded-2xl"
         onClick={logout}
       >
         <FiLogOut />

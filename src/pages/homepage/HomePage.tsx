@@ -32,8 +32,8 @@ const HomePage = (props: HomePageType) => {
         <Header func={handleClick} stateFunc={setToggleUserInfo} />
         <Sidebar hidden={toggleUserInfo} func={setToggleUserInfo} />
       </div>
-      <div className="grow mt-[100px] lg:my-[20px] lg:mr-[20px] flex flex-col relative">
-        <div className="grow flex flex-col gap-4 w-full h-full rounded-3xl p-3 lg:p-7 lg:h-full lg:bg-zinc-100 relative scrollbar">
+      <div className="grow mt-[100px] lg:my-[20px] lg:mr-[20px] flex flex-col items-center relative">
+        <div className="grow flex flex-col gap-4 max-w-[640px] lg:max-w-none w-full h-full rounded-3xl p-3 lg:p-7 lg:h-full lg:bg-zinc-100 relative scrollbar">
           {subpage}
         </div>
       </div>

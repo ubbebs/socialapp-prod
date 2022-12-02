@@ -12,7 +12,7 @@ const MyPosts = () => {
 
   return !isLoadingPosts ? (
     dataPosts !== '' ? (
-      <ul className="overflow-auto flex gap-4 flex-col px-3">
+      <ul className="overflow-auto flex gap-4 flex-col px-3 my-3">
         {Object.values(dataPosts).map((elem: any, index) => {
           const backgroundImage = {
             backgroundImage: `url('${elem.imageURL}')`,

@@ -5,20 +5,18 @@ import { getAuth } from 'firebase/auth'
 import { getStorage } from 'firebase/storage'
 import { stateStore } from '../../../stateStore'
 import { app } from '../../../../config'
-import { setAvatarHandle } from './utils/setAvatarHandle'
-import { setPersonalInfo } from './utils/setPersonalInfoHandle'
+import { setAvatarHandle } from '../utils/setAvatarHandle'
 import { useGetPersonalInfo } from '../../homepage/utils/getPersonalInfo'
 import { Loader } from '../../../components/loader/Loader'
+import { setPersonalInfo } from '../utils/setPersonalInfoHandle'
 
 function FirstData() {
   const auth = getAuth(app)
   const navigate = useNavigate()
   const storage = getStorage()
-
   const { mutate } = useMutation(setPersonalInfo)
   const [successMutation, setSuccessMutation] = useState<boolean>(false)
   const [successAvatar, setSuccessAvatar] = useState<boolean>(false)
-
   const accountNameRef = useRef<HTMLInputElement>(null)
   const descriptionRef = useRef<HTMLInputElement>(null)
   const displayNameRef = useRef<HTMLInputElement>(null)
