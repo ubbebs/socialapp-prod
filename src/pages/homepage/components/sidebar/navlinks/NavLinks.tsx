@@ -3,7 +3,9 @@ import { CiSearch, CiSettings } from 'react-icons/ci'
 import { BiMoviePlay } from 'react-icons/bi'
 import { FiLogOut } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
+import React from 'react'
 import { logout } from '../utils/logout'
+import { useGetPersonalInfo } from '../../../utils/getPersonalInfo'
 
 type NavLinksType = {
   func: React.Dispatch<React.SetStateAction<boolean>>
@@ -11,6 +13,13 @@ type NavLinksType = {
 
 const NavLinks = (props: NavLinksType) => {
   const { func } = props
+  const { remove } = useGetPersonalInfo('')
+
+  const logoutWithClearData = (e: React.FormEvent) => {
+    e.preventDefault()
+    remove()
+    logout()
+  }
   return (
     <div className="flex flex-col gap-2 w-full px-3">
       <Link
@@ -62,7 +71,7 @@ const NavLinks = (props: NavLinksType) => {
       <button
         type="button"
         className="flex justify-start items-center gap-3 px-3 py-1 bg-white duration-500 hover:bg-indigo-600 hover:text-white rounded-2xl"
-        onClick={logout}
+        onClick={logoutWithClearData}
       >
         <FiLogOut />
         Logout

@@ -9,7 +9,7 @@ const setAvatarHandle = async (
   navigate: NavigateFunction,
   timestamp: string
 ) => {
-  const avatarImageRef = ref(storage, `avatar/${user.uid}_${timestamp}.jpg`)
+  const avatarImageRef = ref(storage, `avatar/${user.uid}_${timestamp}`)
   await uploadBytes(avatarImageRef, elem).catch((error) => {
     console.log(error)
   })

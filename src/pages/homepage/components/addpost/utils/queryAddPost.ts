@@ -7,14 +7,12 @@ type QueryAddPostType = {
 }
 
 const queryAddPost = async (data: QueryAddPostType) => {
-  const time = data.time.toString()
-  const sendDescription =
-    data.description !== undefined ? `desc=${data.description}` : ''
-  const sendKey = `key=${time}`
-  const sendUserID = `uid=${data.userid}`
-  await axios.post(
-    `http://localhost:8383/addPost?${sendKey}&${sendUserID}&${sendDescription}`
-  )
+  const { description, userid, time } = data
+  await axios.post(`http://localhost:8383/addPost`, {
+    description,
+    userid,
+    time,
+  })
 }
 
 export { queryAddPost }

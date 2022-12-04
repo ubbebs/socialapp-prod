@@ -1,9 +1,15 @@
+import { Dispatch, SetStateAction } from 'react'
 import { IoMdSettings } from 'react-icons/io'
-import { stateStore } from '../../../stateStore'
-import { useGetPersonalInfo } from '../../homepage/utils/getPersonalInfo'
+import { stateStore } from '../../../../../stateStore'
+import { useGetPersonalInfo } from '../../../utils/getPersonalInfo'
 import { ProfileStats } from './stats/Stats'
 
-const ProfileDetails = () => {
+type ProfileDetailsType = {
+  func: Dispatch<SetStateAction<boolean>>
+}
+
+const ProfileDetails = (props: ProfileDetailsType) => {
+  const { func } = props
   const { data: dataPersonalInfo, isLoading: isLoadingPersonalInfo } =
     useGetPersonalInfo(stateStore.userid || '')
   const backgroundImage = {
@@ -24,6 +30,7 @@ const ProfileDetails = () => {
           <button
             type="button"
             className="shrink-0 bg-zinc-100 p-2 rounded-3xl"
+            onClick={() => func(true)}
           >
             <IoMdSettings />
           </button>

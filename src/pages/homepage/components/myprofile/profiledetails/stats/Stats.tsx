@@ -1,4 +1,4 @@
-import { useGetPosts } from '../../../homepage/utils/getPosts'
+import { useGetPosts } from '../../../../utils/getPosts'
 
 const ProfileStats = () => {
   const { data: dataPosts } = useGetPosts('')

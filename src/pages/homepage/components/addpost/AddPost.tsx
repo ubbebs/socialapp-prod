@@ -1,14 +1,15 @@
 import { getStorage } from 'firebase/storage'
-import { ChangeEvent, useRef, useState } from 'react'
+import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import { useSnapshot } from 'valtio'
 import { BiTrashAlt } from 'react-icons/bi'
 import { useNavigate } from 'react-router-dom'
 import { useMutation } from '@tanstack/react-query'
-import { addPostHandle } from './addPostHandle'
+import { addPostHandle } from './utils/addPostHandle'
 import { queryAddPost } from './utils/queryAddPost'
 import { stateStore } from '../../../../stateStore'
 import { divStyle } from '../sidebar/utils/divstyle'
 import { useGetPersonalInfo } from '../../utils/getPersonalInfo'
+import { useGetPosts } from '../../utils/getPosts'
 
 const AddPost = () => {
   const storage = getStorage()
@@ -16,14 +17,25 @@ const AddPost = () => {
   const [postImg, setPostImg] = useState<File | null>()
   const [errorImg, setErrorImg] = useState<boolean>(false)
   const descriptionRef = useRef<HTMLTextAreaElement>(null)
+  const [successImage, setSuccessImage] = useState<boolean>(false)
+  const [successMutation, setSuccessMutation] = useState<boolean>(false)
   const navigate = useNavigate()
   const { mutate } = useMutation(queryAddPost)
   const { data: dataPersonalInfo, isLoading: isLoadingPersonalInfo } =
     useGetPersonalInfo('')
-
+  const { refetch: refetchPosts } = useGetPosts(stateStore.userid || '')
   const handleSelectFile = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) setPostImg(e.target.files[0])
   }
+
+  useEffect(() => {
+    console.log(successImage)
+    console.log(successMutation)
+    if (successImage && successMutation) {
+      refetchPosts()
+      navigate('/myprofile')
+    }
+  }, [navigate, refetchPosts, successImage, successMutation])
 
   const handleDeleteImage = () => {
     setPostImg(null)
@@ -35,19 +47,28 @@ const AddPost = () => {
     } else {
       const time = Date.now()
       if (postImg) {
+        console.log('click')
         addPostHandle({
           storage,
           userid: state.userid,
           elem: postImg,
           time,
+        }).then(() => {
+          setSuccessImage(true)
         })
       }
-      mutate({
-        description: descriptionRef.current?.value,
-        userid: state.userid,
-        time,
-      })
-      navigate('/refetchPost')
+      mutate(
+        {
+          description: descriptionRef.current?.value,
+          userid: state.userid,
+          time,
+        },
+        {
+          onSuccess: () => {
+            setSuccessMutation(true)
+          },
+        }
+      )
     }
   }
 

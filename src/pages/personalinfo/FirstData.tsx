@@ -3,12 +3,12 @@ import { useNavigate } from 'react-router-dom'
 import { useMutation } from '@tanstack/react-query'
 import { getAuth } from 'firebase/auth'
 import { getStorage } from 'firebase/storage'
-import { stateStore } from '../../../stateStore'
-import { app } from '../../../../config'
-import { setAvatarHandle } from '../utils/setAvatarHandle'
-import { useGetPersonalInfo } from '../../homepage/utils/getPersonalInfo'
-import { Loader } from '../../../components/loader/Loader'
-import { setPersonalInfo } from '../utils/setPersonalInfoHandle'
+import { stateStore } from '../../stateStore'
+import { app } from '../../../config'
+import { setAvatarHandle } from './utils/setAvatarHandle'
+import { useGetPersonalInfo } from '../homepage/utils/getPersonalInfo'
+import { Loader } from '../../components/loader/Loader'
+import { setPersonalInfo } from './utils/setPersonalInfoHandle'
 
 function FirstData() {
   const auth = getAuth(app)
@@ -54,7 +54,6 @@ function FirstData() {
       postImg
     ) {
       const timestamp = (Date.now() / 1000).toString()
-      stateStore.userid = auth.currentUser.uid
       setAvatarHandle(
         storage,
         auth.currentUser,
@@ -70,7 +69,7 @@ function FirstData() {
           displayName: displayNameRef.current.value,
           description: descriptionRef.current?.value || '',
           timestamp,
-          userid: auth.currentUser.uid,
+          uid: auth.currentUser.uid,
         },
         {
           onSuccess: () => {

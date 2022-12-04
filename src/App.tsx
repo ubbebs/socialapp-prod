@@ -6,10 +6,9 @@ import { Signin } from './pages/signin/Signin'
 import { Signup } from './pages/signup/Signup'
 import { Main } from './pages/homepage/components/main/Main'
 import { AddPost } from './pages/homepage/components/addpost/AddPost'
-import { MyProfile } from './pages/myprofile/MyProfile'
-import { RefetchPosts } from './pages/refetch/RefetchPosts'
+import { MyProfile } from './pages/homepage/components/myprofile/MyProfile'
 import { Explore } from './pages/homepage/components/explore/Explore'
-import { FirstData } from './pages/personalinfo/setData/FirstData'
+import { FirstData } from './pages/personalinfo/FirstData'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -64,14 +63,6 @@ function App() {
             element={
               <AuthRoute>
                 <FirstData />
-              </AuthRoute>
-            }
-          />
-          <Route
-            path="/refetchPost"
-            element={
-              <AuthRoute>
-                <RefetchPosts />
               </AuthRoute>
             }
           />
