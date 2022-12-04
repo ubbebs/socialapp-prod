@@ -1,15 +1,12 @@
-import { User } from 'firebase/auth'
 import { FirebaseStorage, ref, uploadBytes } from 'firebase/storage'
-import { NavigateFunction } from 'react-router-dom'
 
 const setAvatarHandle = async (
   storage: FirebaseStorage,
-  user: User,
+  userid: string,
   elem: File,
-  navigate: NavigateFunction,
   timestamp: string
 ) => {
-  const avatarImageRef = ref(storage, `avatar/${user.uid}_${timestamp}`)
+  const avatarImageRef = ref(storage, `avatar/${userid}_${timestamp}`)
   await uploadBytes(avatarImageRef, elem).catch((error) => {
     console.log(error)
   })

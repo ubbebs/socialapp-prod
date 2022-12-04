@@ -8,15 +8,13 @@ import { app } from '../../../config'
 import { setAvatarHandle } from './utils/setAvatarHandle'
 import { useGetPersonalInfo } from '../homepage/utils/getPersonalInfo'
 import { Loader } from '../../components/loader/Loader'
-import { setPersonalInfo } from './utils/setPersonalInfoHandle'
+import { setPersonalInfoHandle } from './utils/setPersonalInfoHandle'
 
-function FirstData() {
+function SetPersonalInfo() {
   const auth = getAuth(app)
   const navigate = useNavigate()
   const storage = getStorage()
-  const { mutate } = useMutation(setPersonalInfo)
-  const [successMutation, setSuccessMutation] = useState<boolean>(false)
-  const [successAvatar, setSuccessAvatar] = useState<boolean>(false)
+  const { mutate } = useMutation(setPersonalInfoHandle)
   const accountNameRef = useRef<HTMLInputElement>(null)
   const descriptionRef = useRef<HTMLInputElement>(null)
   const displayNameRef = useRef<HTMLInputElement>(null)
@@ -30,14 +28,7 @@ function FirstData() {
 
   useEffect(() => {
     if (!isLoadingPersonalInfo && dataPersonalInfo.accountName) navigate('/')
-    if (successAvatar && successMutation) navigate('/')
-  }, [
-    dataPersonalInfo,
-    isLoadingPersonalInfo,
-    navigate,
-    successAvatar,
-    successMutation,
-  ])
+  }, [dataPersonalInfo, isLoadingPersonalInfo, navigate])
 
   const handleSelectFile = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) setPostImg(e.target.files[0])
@@ -54,27 +45,22 @@ function FirstData() {
       postImg
     ) {
       const timestamp = (Date.now() / 1000).toString()
-      setAvatarHandle(
-        storage,
-        auth.currentUser,
-        postImg,
-        navigate,
-        timestamp
-      ).then(() => {
-        setSuccessAvatar(true)
-      })
-      mutate(
-        {
-          accountName: accountNameRef.current.value,
-          displayName: displayNameRef.current.value,
-          description: descriptionRef.current?.value || '',
-          timestamp,
-          uid: auth.currentUser.uid,
-        },
-        {
-          onSuccess: () => {
-            setSuccessMutation(true)
-          },
+      setAvatarHandle(storage, auth.currentUser.uid, postImg, timestamp).then(
+        () => {
+          mutate(
+            {
+              accountName: accountNameRef.current?.value || '',
+              displayName: displayNameRef.current?.value || '',
+              description: descriptionRef.current?.value || '',
+              timestamp,
+              uid: auth.currentUser?.uid || '',
+            },
+            {
+              onSuccess: () => {
+                navigate('/')
+              },
+            }
+          )
         }
       )
     }
@@ -164,7 +150,7 @@ function FirstData() {
               ref={descriptionRef}
             />
             <button
-              className="rounded-full w-full gradient-linear text-white hover:tracking-[4px] duration-300 text-sm font-bold p-2 uppercase mt-10 mb-5"
+              className="rounded-full w-full gradient-linear text-white hover:tracking-[1px] duration-300 text-sm font-bold p-2 uppercase mt-10 mb-5"
               type="submit"
               onClick={handlePostPersonalInfo}
             >
@@ -182,4 +168,4 @@ function FirstData() {
   )
 }
 
-export { FirstData }
+export { SetPersonalInfo }

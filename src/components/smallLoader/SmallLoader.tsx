@@ -9,7 +9,7 @@ const SmallLoader = () => {
         width={100}
         strokeWidth={0}
         strokeWidthSecondary={3}
-        color="white"
+        color="black"
       />
     </div>
   )

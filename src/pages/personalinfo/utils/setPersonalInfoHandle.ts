@@ -8,7 +8,7 @@ type SetPersonalInfoType = {
   uid: string
 }
 
-const setPersonalInfo = async (data: SetPersonalInfoType) => {
+const setPersonalInfoHandle = async (data: SetPersonalInfoType) => {
   const { accountName, displayName, description, timestamp, uid } = data
   await axios
     .post(`http://localhost:8383/setPersonalInfo`, {
@@ -23,4 +23,4 @@ const setPersonalInfo = async (data: SetPersonalInfoType) => {
     })
 }
 
-export { setPersonalInfo }
+export { setPersonalInfoHandle }

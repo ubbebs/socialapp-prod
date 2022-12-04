@@ -1,15 +1,10 @@
-import { Dispatch, SetStateAction } from 'react'
 import { IoMdSettings } from 'react-icons/io'
+import { Link } from 'react-router-dom'
 import { stateStore } from '../../../../../stateStore'
 import { useGetPersonalInfo } from '../../../utils/getPersonalInfo'
 import { ProfileStats } from './stats/Stats'
 
-type ProfileDetailsType = {
-  func: Dispatch<SetStateAction<boolean>>
-}
-
-const ProfileDetails = (props: ProfileDetailsType) => {
-  const { func } = props
+const ProfileDetails = () => {
   const { data: dataPersonalInfo, isLoading: isLoadingPersonalInfo } =
     useGetPersonalInfo(stateStore.userid || '')
   const backgroundImage = {
@@ -27,13 +22,14 @@ const ProfileDetails = (props: ProfileDetailsType) => {
           <p className="font-semibold text-xl">
             {dataPersonalInfo.displayName}
           </p>
-          <button
-            type="button"
-            className="shrink-0 bg-zinc-100 p-2 rounded-3xl"
-            onClick={() => func(true)}
-          >
-            <IoMdSettings />
-          </button>
+          <Link to="/editprofile">
+            <button
+              type="button"
+              className="shrink-0 bg-zinc-100 p-2 rounded-3xl"
+            >
+              <IoMdSettings />
+            </button>
+          </Link>
         </div>
         <p className="font-normal text-sm">@{dataPersonalInfo.accountName}</p>
         <p>{dataPersonalInfo.description}</p>

@@ -1,35 +1,34 @@
 import moment from 'moment'
+import { useEffect } from 'react'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useGetPersonalInfo } from '../../pages/homepage/utils/getPersonalInfo'
 import { useGetPost } from '../../pages/homepage/utils/getPost'
 import { stateStore } from '../../stateStore'
 import { SmallLoader } from '../smallLoader/SmallLoader'
 
-type ViewPostType = {
-  trigger: boolean | string
-  setTrigger: React.Dispatch<React.SetStateAction<boolean | string>>
-}
-
-const ViewPost = (props: ViewPostType) => {
-  const { trigger, setTrigger } = props
-  const { data: dataPost, isLoading: isLoadingPost } = useGetPost(
-    stateStore.userid || '',
-    trigger
-  )
+const ViewPost = () => {
+  const { key } = useParams()
+  const navigate = useNavigate()
+  const {
+    remove,
+    data: dataPost,
+    isLoading: isLoadingPost,
+  } = useGetPost(stateStore.userid || '', key || '')
   const { data: dataPersonalInfo, isLoading: isLoadingPersonalInfo } =
     useGetPersonalInfo('')
 
-  return trigger &&
-    dataPost &&
-    trigger === dataPost.timestamp &&
-    !isLoadingPost &&
-    !isLoadingPersonalInfo ? (
+  useEffect(() => {
+    return remove
+  }, [remove])
+
+  return dataPost && !isLoadingPost && !isLoadingPersonalInfo ? (
     <>
       <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center rounded-t-3xl p-3 bg-zinc-100 lg:p-10 lg:rounded-3xl">
         <button
-          onClick={() => setTrigger(false)}
           type="button"
           className="w-full flex justify-start items-center p-2"
+          onClick={() => navigate(-1)}
         >
           <AiOutlineArrowLeft size={13} />
           <p>Back</p>

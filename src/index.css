@@ -19,5 +19,9 @@
 }
 
 .shadow-huge {
-    box-shadow: 0px 0px 100px 100px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 100px 100px rgba(0, 0, 0, 0.1);
+}
+
+.aspect-auto11 {
+    aspect-ratio: auto 1/1;
 }

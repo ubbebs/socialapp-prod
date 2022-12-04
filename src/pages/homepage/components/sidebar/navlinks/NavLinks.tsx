@@ -56,7 +56,7 @@ const NavLinks = (props: NavLinksType) => {
         <p>Reels</p>
       </button>
       <Link
-        to="/personalInfo"
+        to="/editprofile"
         onClick={() => func(false)}
         className="bg-white duration-500 hover:bg-indigo-600 hover:text-white rounded-2xl"
       >

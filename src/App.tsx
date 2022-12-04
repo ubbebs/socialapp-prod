@@ -8,7 +8,9 @@ import { Main } from './pages/homepage/components/main/Main'
 import { AddPost } from './pages/homepage/components/addpost/AddPost'
 import { MyProfile } from './pages/homepage/components/myprofile/MyProfile'
 import { Explore } from './pages/homepage/components/explore/Explore'
-import { FirstData } from './pages/personalinfo/FirstData'
+import { SetPersonalInfo } from './pages/personalinfo/SetPersonalInfo'
+import { ViewPost } from './components/viewpost/ViewPost'
+import { EditProfile } from './pages/editprofile/EditProfile'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -50,6 +52,22 @@ function App() {
             }
           />
           <Route
+            path="/post/:key"
+            element={
+              <AuthRoute>
+                <HomePage subpage={<ViewPost />} />
+              </AuthRoute>
+            }
+          />
+          <Route
+            path="/editprofile"
+            element={
+              <AuthRoute>
+                <EditProfile />
+              </AuthRoute>
+            }
+          />
+          <Route
             path="/explore"
             element={
               <AuthRoute>
@@ -59,10 +77,10 @@ function App() {
           />
           <Route path="/signin" element={<Signin />} />
           <Route
-            path="/firstdata"
+            path="/personalinfo"
             element={
               <AuthRoute>
-                <FirstData />
+                <SetPersonalInfo />
               </AuthRoute>
             }
           />
