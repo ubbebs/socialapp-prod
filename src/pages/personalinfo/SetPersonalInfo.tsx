@@ -31,7 +31,7 @@ function SetPersonalInfo() {
   }, [dataPersonalInfo, isLoadingPersonalInfo, navigate])
 
   const handleSelectFile = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) setPostImg(e.target.files[0])
+    return e.target.files && setPostImg(e.target.files[0])
   }
 
   const handlePostPersonalInfo = (e: React.FormEvent) => {
@@ -104,11 +104,11 @@ function SetPersonalInfo() {
               accept="image/jpeg"
               onChange={handleSelectFile}
             />
-            {postImgError ? (
+            {postImgError && (
               <p className="text-xs text-red-500">
                 No files uploaded. Upload profile picture
               </p>
-            ) : null}
+            )}
             <label className="w-full pl-1 text-xs" htmlFor="Login">
               Display name:
             </label>
@@ -119,11 +119,11 @@ function SetPersonalInfo() {
               id="DisplayNickname"
               ref={displayNameRef}
             />
-            {displayNameError ? (
+            {displayNameError && (
               <p className="text-xs text-red-500">
                 Invalid display name (4-24 chars)
               </p>
-            ) : null}
+            )}
             <label className="w-full pl-1 text-xs" htmlFor="Login">
               Account name:
             </label>
@@ -134,11 +134,11 @@ function SetPersonalInfo() {
               id="Accountname"
               ref={accountNameRef}
             />
-            {accountNameError ? (
+            {accountNameError && (
               <p className="text-xs text-red-500">
                 Invalid account name (4-16 chars, no spaces)
               </p>
-            ) : null}
+            )}
             <label className="w-full pl-1 text-xs" htmlFor="Login">
               Description:
             </label>

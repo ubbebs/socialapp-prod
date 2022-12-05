@@ -32,7 +32,7 @@ function EditProfile() {
   const [successDescription, setSuccessDescription] = useState<boolean>(false)
   const [postImg, setPostImg] = useState<File | null>()
   const handleSelectFile = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) setPostImg(e.target.files[0])
+    return e.target.files && setPostImg(e.target.files[0])
   }
   const handleChangeAvatar = (e: React.FormEvent) => {
     e.preventDefault()
@@ -72,9 +72,7 @@ function EditProfile() {
     e.preventDefault()
     if (auth.currentUser) {
       changeDescriptionHandler({
-        description: descriptionRef.current
-          ? descriptionRef.current.value
-          : null,
+        description: descriptionRef.current && descriptionRef.current.value,
         userid: auth.currentUser.uid,
         mutateDescription,
         setSuccessDescription,
@@ -140,8 +138,8 @@ function EditProfile() {
             )}
           </div>
           <SubmitButton func={handleChangeAvatar}>Change image</SubmitButton>
-          {successAvatar ? <p>Done!</p> : null}
-          {avatarError ? <p>Image error</p> : null}
+          {successAvatar && <p>Done!</p>}
+          {avatarError && <p>Image error</p>}
           <label className="pl-1 text-xs mt-4" htmlFor="Password">
             Display name
           </label>
@@ -161,10 +159,10 @@ function EditProfile() {
           <SubmitButton func={handleChangeDisplayName}>
             Change your name
           </SubmitButton>
-          {successDisplayName ? (
+          {successDisplayName && (
             <p>Done! Nick changed to {successDisplayName}</p>
-          ) : null}
-          {displayNameError ? <p>Name error</p> : null}
+          )}
+          {displayNameError && <p>Name error</p>}
           <label className="pl-1 text-xs mt-4" htmlFor="Password">
             Description
           </label>
@@ -176,7 +174,7 @@ function EditProfile() {
           <SubmitButton func={handleChangeDescritpion}>
             Change description
           </SubmitButton>
-          {successDescription ? <p>Description changed</p> : null}
+          {successDescription && <p>Description changed</p>}
         </div>
         <p className="text-center mt-5x">strusiub</p>
       </div>
