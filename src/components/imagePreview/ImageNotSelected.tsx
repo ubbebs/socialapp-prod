@@ -1,10 +1,10 @@
 import { ChangeEvent } from 'react'
 
-type AvatarNotSelectedType = {
+type ImageNotSelectedType = {
   func: (e: ChangeEvent<HTMLInputElement>) => void | null
 }
 
-const AvatarNotSelected = (args: AvatarNotSelectedType) => {
+const ImageNotSelected = (args: ImageNotSelectedType) => {
   const { func } = args
   return (
     <>
@@ -25,4 +25,4 @@ const AvatarNotSelected = (args: AvatarNotSelectedType) => {
   )
 }
 
-export default AvatarNotSelected
+export { ImageNotSelected }

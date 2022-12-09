@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react'
-import AvatarNotSelected from './AvatarNotSelected'
-import AvatarSelected from './AvatarSelected'
+import { ImageNotSelected } from '../../imagePreview/ImageNotSelected'
+import { ImageSelected } from '../../imagePreview/ImageSelected'
 
 type AvatarSelectType = {
   AvatarState: File | null
@@ -23,9 +23,9 @@ const AvatarPersonalInfo = (args: AvatarSelectType) => {
       </label>
       <div className="relative w-[150px] aspect-square">
         {AvatarState ? (
-          <AvatarSelected func={handleDeleteFile} AvatarState={AvatarState} />
+          <ImageSelected func={handleDeleteFile} AvatarState={AvatarState} />
         ) : (
-          <AvatarNotSelected func={handleSelectFile} />
+          <ImageNotSelected func={handleSelectFile} />
         )}
       </div>
     </>

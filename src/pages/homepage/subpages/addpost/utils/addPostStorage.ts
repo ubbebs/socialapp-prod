@@ -7,7 +7,7 @@ type AddPostHandleType = {
   time: number
 }
 
-const addPostHandle = async (data: AddPostHandleType) => {
+const addPostStorage = async (data: AddPostHandleType) => {
   const time = data.time.toString()
   const postImageRef = ref(data.storage, `posts/${data.userid}/${time}`)
   await uploadBytes(postImageRef, data.elem).catch((error) => {
@@ -15,4 +15,4 @@ const addPostHandle = async (data: AddPostHandleType) => {
   })
 }
 
-export { addPostHandle }
+export { addPostStorage }

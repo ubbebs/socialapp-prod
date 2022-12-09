@@ -11,12 +11,12 @@ import { Loader } from '../../components/loader/Loader'
 import { postPersonalInfo } from './utils/postPersonalInfo'
 import { personalInfoExecute } from './utils/personalInfoExecute'
 import { SubmitButton } from '../../components/outerpage/components/SubmitButton'
-import { TextArea } from '../../components/outerpage/components/TextArea'
+import { TextArea } from '../../components/text/TextArea'
 import { InputDiv } from '../../components/outerpage/components/InputDiv'
 import { OuterPage } from '../../components/outerpage/OuterPage'
-import { ErrorText } from '../../components/outerpage/components/ErrorText'
 import { AvatarPersonalInfo } from '../../components/outerpage/components/AvatarPersonalInfo'
 import { Title } from '../../components/outerpage/components/Title'
+import { ErrorText } from '../../components/text/ErrorText'
 
 function PersonalInfo() {
   const auth = getAuth(app)

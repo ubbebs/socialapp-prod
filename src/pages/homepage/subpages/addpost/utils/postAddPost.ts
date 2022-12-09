@@ -1,12 +1,12 @@
 import axios from 'axios'
 
-type QueryAddPostType = {
+export type PostAddPostType = {
   description: string | undefined | null
   userid: string | null
   time: number
 }
 
-const queryAddPost = async (data: QueryAddPostType) => {
+const postAddPost = async (data: PostAddPostType) => {
   const { description, userid, time } = data
   await axios.post(`http://localhost:8383/addPost`, {
     description,
@@ -15,4 +15,4 @@ const queryAddPost = async (data: QueryAddPostType) => {
   })
 }
 
-export { queryAddPost }
+export { postAddPost }

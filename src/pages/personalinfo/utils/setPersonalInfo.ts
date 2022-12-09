@@ -2,7 +2,7 @@ import { UseMutateFunction } from '@tanstack/react-query'
 import { Auth } from 'firebase/auth'
 import { FirebaseStorage } from 'firebase/storage'
 import { NavigateFunction } from 'react-router-dom'
-import { setAvatarHandle } from '../../../utils/setAvatarHandle'
+import { avatarStorage } from '../../../utils/avatarStorage'
 import { PostPersonalInfoType } from './postPersonalInfo'
 
 type SetPersonalInfoType = {
@@ -28,27 +28,24 @@ const setPersonalInfo = (args: SetPersonalInfoType) => {
     navigate,
   } = args
   const timestamp = (Date.now() / 1000).toString()
-  setAvatarHandle(
-    storage,
-    auth.currentUser?.uid || '',
-    postImg,
-    timestamp
-  ).then(() => {
-    mutate(
-      {
-        accountName: accountNameRef.current?.value || '',
-        displayName: displayNameRef.current?.value || '',
-        description: descriptionRef.current?.value || '',
-        timestamp,
-        uid: auth.currentUser?.uid || '',
-      },
-      {
-        onSuccess: () => {
-          navigate('/')
+  avatarStorage(storage, auth.currentUser?.uid || '', postImg, timestamp).then(
+    () => {
+      mutate(
+        {
+          accountName: accountNameRef.current?.value || '',
+          displayName: displayNameRef.current?.value || '',
+          description: descriptionRef.current?.value || '',
+          timestamp,
+          uid: auth.currentUser?.uid || '',
         },
-      }
-    )
-  })
+        {
+          onSuccess: () => {
+            navigate('/')
+          },
+        }
+      )
+    }
+  )
 }
 
 export { setPersonalInfo }

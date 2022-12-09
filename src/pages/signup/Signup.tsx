@@ -8,8 +8,8 @@ import { signupExecute } from './utils/signupExecute'
 import { InputDiv } from '../../components/outerpage/components/InputDiv'
 import { LinkTo } from '../../components/outerpage/components/LinkTo'
 import { SubmitButton } from '../../components/outerpage/components/SubmitButton'
-import { ErrorText } from '../../components/outerpage/components/ErrorText'
 import { Title } from '../../components/outerpage/components/Title'
+import { ErrorText } from '../../components/text/ErrorText'
 
 function Signup() {
   const auth = getAuth()

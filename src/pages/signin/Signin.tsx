@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import { useNavigate } from 'react-router-dom'
+import { getAuth } from 'firebase/auth'
 import { FaRegUserCircle } from 'react-icons/fa'
 import { MdLockOutline } from 'react-icons/md'
 import { OuterPage } from '../../components/outerpage/OuterPage'

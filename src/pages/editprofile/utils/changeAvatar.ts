@@ -1,6 +1,6 @@
 import { UseMutateFunction } from '@tanstack/react-query'
 import { FirebaseStorage } from 'firebase/storage'
-import { setAvatarHandle } from '../../../utils/setAvatarHandle'
+import { avatarStorage } from '../../../utils/avatarStorage'
 import { PostAvatarType } from './postAvatar'
 
 export type ChangeAvatarType = {
@@ -14,7 +14,7 @@ export type ChangeAvatarType = {
 const changeAvatar = async (args: ChangeAvatarType) => {
   const { storage, userid, postImg, mutateAvatar, setSuccessAvatar } = args
   const timestamp = (Date.now() / 1000).toString()
-  setAvatarHandle(storage, userid, postImg, timestamp).then(() => {
+  avatarStorage(storage, userid, postImg, timestamp).then(() => {
     mutateAvatar(
       {
         timestamp,

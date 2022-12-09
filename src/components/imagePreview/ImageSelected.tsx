@@ -1,11 +1,11 @@
 import { BiTrashAlt } from 'react-icons/bi'
 
-type AvatarSelectedType = {
+type ImageSelectedType = {
   func: () => void
   AvatarState: File
 }
 
-const AvatarSelected = (args: AvatarSelectedType) => {
+const ImageSelected = (args: ImageSelectedType) => {
   const { func, AvatarState } = args
   return (
     <>
@@ -28,4 +28,4 @@ const AvatarSelected = (args: AvatarSelectedType) => {
   )
 }
 
-export default AvatarSelected
+export { ImageSelected }

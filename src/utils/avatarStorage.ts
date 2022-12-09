@@ -1,6 +1,6 @@
 import { FirebaseStorage, ref, uploadBytes } from 'firebase/storage'
 
-const setAvatarHandle = async (
+const avatarStorage = async (
   storage: FirebaseStorage,
   userid: string,
   elem: File,
@@ -12,4 +12,4 @@ const setAvatarHandle = async (
   })
 }
 
-export { setAvatarHandle }
+export { avatarStorage }
