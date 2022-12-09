@@ -40,10 +40,10 @@ const signupExecute = (args: SignupExecuteType) => {
         navigate('/personalinfo')
       })
       .catch((error) => {
-        setState('Email already in use')
+        setState('Email already in use or invalid')
       })
   } else {
-    setState("Wrong user's data")
+    setState('Password is too short or are not the same')
   }
 }
 

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-type SetPersonalInfoType = {
+export type PostPersonalInfoType = {
   accountName: string
   displayName: string
   description: string
@@ -8,7 +8,7 @@ type SetPersonalInfoType = {
   uid: string
 }
 
-const setPersonalInfoHandle = async (data: SetPersonalInfoType) => {
+const postPersonalInfo = async (data: PostPersonalInfoType) => {
   const { accountName, displayName, description, timestamp, uid } = data
   await axios
     .post(`http://localhost:8383/setPersonalInfo`, {
@@ -23,4 +23,4 @@ const setPersonalInfoHandle = async (data: SetPersonalInfoType) => {
     })
 }
 
-export { setPersonalInfoHandle }
+export { postPersonalInfo }

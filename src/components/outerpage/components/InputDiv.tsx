@@ -15,7 +15,7 @@ const InputDiv = (args: InputDivType) => {
       <label className="pl-1 text-xs" htmlFor="Login">
         {title}
       </label>
-      <div className="flex items-center border-b-[1px] border-zinc-400 gap-2 pb-1">
+      <div className="flex w-full items-center border-b-[1px] border-zinc-400 gap-2 pb-1">
         {icon}
         <input
           className="flex-1 focus:outline-none"
@@ -29,4 +29,4 @@ const InputDiv = (args: InputDivType) => {
   )
 }
 
-export default InputDiv
+export { InputDiv }

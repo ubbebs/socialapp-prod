@@ -8,7 +8,7 @@ import { Main } from './pages/homepage/subpages/main/Main'
 import { AddPost } from './pages/homepage/components/addpost/AddPost'
 import { MyProfile } from './pages/homepage/subpages/myprofile/MyProfile'
 import { Explore } from './pages/homepage/subpages/explore/Explore'
-import { SetPersonalInfo } from './pages/personalinfo/SetPersonalInfo'
+import { PersonalInfo } from './pages/personalinfo/PersonalInfo'
 import { ViewPost } from './components/viewpost/ViewPost'
 import { EditProfile } from './pages/editprofile/EditProfile'
 
@@ -80,7 +80,7 @@ function App() {
             path="/personalinfo"
             element={
               <AuthRoute>
-                <SetPersonalInfo />
+                <PersonalInfo />
               </AuthRoute>
             }
           />

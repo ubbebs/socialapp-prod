@@ -1,13 +1,14 @@
 import { useRef, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { FaRegUserCircle } from 'react-icons/fa'
 import { MdLockOutline } from 'react-icons/md'
 import { getAuth } from 'firebase/auth'
 import { OuterPage } from '../../components/outerpage/OuterPage'
 import { signupExecute } from './utils/signupExecute'
-import InputDiv from '../../components/outerpage/components/InputDiv'
+import { InputDiv } from '../../components/outerpage/components/InputDiv'
 import { LinkTo } from '../../components/outerpage/components/LinkTo'
 import { SubmitButton } from '../../components/outerpage/components/SubmitButton'
+import { ErrorText } from '../../components/outerpage/components/ErrorText'
 
 function Signup() {
   const auth = getAuth()
@@ -67,10 +68,8 @@ function Signup() {
           type="password"
           name="PasswordConfirm"
         />
+        {registerError && <ErrorText text={registerError} />}
         <SubmitButton func={signupFunc} value="Register" />
-        {registerError && (
-          <p className="text-semibold text-red-500">{registerError}</p>
-        )}
         <LinkTo url="/signin" value="Login here" />
       </>
     </OuterPage>
