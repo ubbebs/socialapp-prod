@@ -5,12 +5,12 @@ import { HomePage } from './pages/homepage/HomePage'
 import { Signin } from './pages/signin/Signin'
 import { Signup } from './pages/signup/Signup'
 import { Main } from './pages/homepage/subpages/main/Main'
-import { AddPost } from './pages/homepage/components/addpost/AddPost'
 import { MyProfile } from './pages/homepage/subpages/myprofile/MyProfile'
 import { Explore } from './pages/homepage/subpages/explore/Explore'
 import { PersonalInfo } from './pages/personalinfo/PersonalInfo'
 import { ViewPost } from './components/viewpost/ViewPost'
 import { EditProfile } from './pages/editprofile/EditProfile'
+import { AddPost } from './pages/homepage/subpages/addpost/AddPost'
 
 const queryClient = new QueryClient({
   defaultOptions: {

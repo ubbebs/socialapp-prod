@@ -7,9 +7,9 @@ import { useMutation } from '@tanstack/react-query'
 import { addPostHandle } from './utils/addPostHandle'
 import { queryAddPost } from './utils/queryAddPost'
 import { stateStore } from '../../../../stateStore'
-import { divStyle } from '../sidebar/utils/divstyle'
 import { useGetPersonalInfo } from '../../utils/getPersonalInfo'
 import { useGetPosts } from '../../utils/getPosts'
+import { divStyle } from '../../../../utils/divstyle'
 
 const AddPost = () => {
   const storage = getStorage()
@@ -29,8 +29,6 @@ const AddPost = () => {
   }
 
   useEffect(() => {
-    console.log(successImage)
-    console.log(successMutation)
     if (successImage && successMutation) {
       refetchPosts()
       navigate('/myprofile')
@@ -47,7 +45,6 @@ const AddPost = () => {
     } else {
       const time = Date.now()
       if (postImg) {
-        console.log('click')
         addPostHandle({
           storage,
           userid: state.userid,

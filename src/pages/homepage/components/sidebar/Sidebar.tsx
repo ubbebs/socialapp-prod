@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
-import { divStyle } from './utils/divstyle'
 import { NavLinks } from './navlinks/NavLinks'
 import { Stats } from './stats/Stats'
 import { Description } from './description/Description'
 import { useGetPersonalInfo } from '../../utils/getPersonalInfo'
+import { divStyle } from '../../../../utils/divstyle'
 
 type SidebarType = {
   hidden: boolean
