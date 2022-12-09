@@ -1,11 +1,11 @@
 import axios from 'axios'
 
-type UpdateDisplayNameType = {
+export type PostDisplayNameType = {
   displayName: string
   uid: string
 }
 
-const updateDisplayName = async (data: UpdateDisplayNameType) => {
+const postDisplayName = async (data: PostDisplayNameType) => {
   const { displayName, uid } = data
   await axios
     .post(`http://localhost:8383/updateDisplayName`, {
@@ -17,4 +17,4 @@ const updateDisplayName = async (data: UpdateDisplayNameType) => {
     })
 }
 
-export { updateDisplayName }
+export { postDisplayName }

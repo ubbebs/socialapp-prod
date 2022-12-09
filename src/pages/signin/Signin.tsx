@@ -8,6 +8,7 @@ import { LinkTo } from '../../components/outerpage/components/LinkTo'
 import { signinExecute } from './utils/signinExecute'
 import { SubmitButton } from '../../components/outerpage/components/SubmitButton'
 import { InputDiv } from '../../components/outerpage/components/InputDiv'
+import { Title } from '../../components/outerpage/components/Title'
 
 function Signin() {
   const auth = getAuth()
@@ -28,8 +29,9 @@ function Signin() {
   }
 
   return (
-    <OuterPage title="Sign in">
+    <OuterPage>
       <>
+        <Title title="Sign In" />
         <InputDiv
           icon={
             <FaRegUserCircle

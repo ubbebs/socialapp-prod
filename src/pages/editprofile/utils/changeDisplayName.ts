@@ -1,23 +1,23 @@
 import { UseMutateFunction } from '@tanstack/react-query'
 
-type UpdateDisplayNameType = {
+export type MutateDisplayNameType = {
   displayName: string
   uid: string
 }
 
-type ChangeDisplayNameHandlerType = {
+type ChangeDisplayNameType = {
   displayName: string
   userid: string
   mutateDisplayName: UseMutateFunction<
     void,
     unknown,
-    UpdateDisplayNameType,
+    MutateDisplayNameType,
     unknown
   >
   setSuccessDisplayName: React.Dispatch<React.SetStateAction<boolean | string>>
 }
 
-const changeDisplayNameHandler = async (args: ChangeDisplayNameHandlerType) => {
+const changeDisplayName = async (args: ChangeDisplayNameType) => {
   const { userid, displayName, mutateDisplayName, setSuccessDisplayName } = args
   mutateDisplayName(
     {
@@ -32,4 +32,4 @@ const changeDisplayNameHandler = async (args: ChangeDisplayNameHandlerType) => {
   )
 }
 
-export { changeDisplayNameHandler }
+export { changeDisplayName }

@@ -2,8 +2,8 @@ import { UseMutateFunction } from '@tanstack/react-query'
 import { Auth } from 'firebase/auth'
 import { FirebaseStorage } from 'firebase/storage'
 import { NavigateFunction } from 'react-router-dom'
+import { setAvatarHandle } from '../../../utils/setAvatarHandle'
 import { PostPersonalInfoType } from './postPersonalInfo'
-import { setAvatarHandle } from './setAvatarHandle'
 
 type SetPersonalInfoType = {
   auth: Auth

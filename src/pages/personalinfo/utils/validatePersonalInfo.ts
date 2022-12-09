@@ -1,4 +1,6 @@
 import { Auth } from 'firebase/auth'
+import { validateAccountName } from '../../../utils/validateAccountName'
+import { validateDisplayName } from '../../../utils/validateDisplayName'
 
 type ValidatePersonalInfoType = {
   auth: Auth | null
@@ -11,11 +13,13 @@ const validatePersonalInfo = (args: ValidatePersonalInfoType) => {
   const { auth, postImg, accountNameRef, displayNameRef } = args
   return (
     auth?.currentUser &&
-    accountNameRef?.current &&
-    displayNameRef?.current &&
-    /^\w{4,16}$/g.test(accountNameRef.current.value) &&
-    /^(\w\s?){4,24}$/g.test(displayNameRef.current.value) &&
-    postImg
+    postImg &&
+    validateDisplayName({
+      displayNameRef,
+    }) &&
+    validateAccountName({
+      accountNameRef,
+    })
   )
 }
 

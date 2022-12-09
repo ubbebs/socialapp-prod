@@ -1,23 +1,23 @@
 import { UseMutateFunction } from '@tanstack/react-query'
 
-type UpdateDescriptionType = {
+export type MutateDescriptionType = {
   description: string | null
   uid: string
 }
 
-type ChangeDescriptionHandlerType = {
+type ChangeDescriptionType = {
   description: string | null
   userid: string
   mutateDescription: UseMutateFunction<
     void,
     unknown,
-    UpdateDescriptionType,
+    MutateDescriptionType,
     unknown
   >
   setSuccessDescription: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const changeDescriptionHandler = async (args: ChangeDescriptionHandlerType) => {
+const changeDescription = async (args: ChangeDescriptionType) => {
   const { userid, description, mutateDescription, setSuccessDescription } = args
   mutateDescription(
     {
@@ -32,4 +32,4 @@ const changeDescriptionHandler = async (args: ChangeDescriptionHandlerType) => {
   )
 }
 
-export { changeDescriptionHandler }
+export { changeDescription }

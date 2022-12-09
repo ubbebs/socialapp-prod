@@ -1,11 +1,11 @@
 import axios from 'axios'
 
-type UpdateDescriptionType = {
+export type PostDescriptionType = {
   description: string | null
   uid: string
 }
 
-const updateDescription = async (data: UpdateDescriptionType) => {
+const postDescription = async (data: PostDescriptionType) => {
   const { description, uid } = data
   await axios
     .post(`http://localhost:8383/updateDescription`, {
@@ -17,4 +17,4 @@ const updateDescription = async (data: UpdateDescriptionType) => {
     })
 }
 
-export { updateDescription }
+export { postDescription }

@@ -18,4 +18,4 @@ const TextArea = (args: TextAreaType) => {
   )
 }
 
-export default TextArea
+export { TextArea }

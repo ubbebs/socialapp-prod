@@ -1,11 +1,11 @@
 import axios from 'axios'
 
-type UpdateAvatarType = {
+export type PostAvatarType = {
   timestamp: string
   uid: string
 }
 
-const updateAvatar = async (data: UpdateAvatarType) => {
+const postAvatar = async (data: PostAvatarType) => {
   const { timestamp, uid } = data
   await axios
     .post(`http://localhost:8383/updateAvatar`, {
@@ -17,4 +17,4 @@ const updateAvatar = async (data: UpdateAvatarType) => {
     })
 }
 
-export { updateAvatar }
+export { postAvatar }

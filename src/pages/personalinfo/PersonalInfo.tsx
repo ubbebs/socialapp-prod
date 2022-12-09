@@ -16,6 +16,7 @@ import { InputDiv } from '../../components/outerpage/components/InputDiv'
 import { OuterPage } from '../../components/outerpage/OuterPage'
 import { ErrorText } from '../../components/outerpage/components/ErrorText'
 import { AvatarPersonalInfo } from '../../components/outerpage/components/AvatarPersonalInfo'
+import { Title } from '../../components/outerpage/components/Title'
 
 function PersonalInfo() {
   const auth = getAuth(app)
@@ -53,8 +54,9 @@ function PersonalInfo() {
   }, [dataPersonalInfo, isLoadingPersonalInfo, navigate])
 
   return !isLoadingPersonalInfo ? (
-    <OuterPage title="Set your profile">
+    <OuterPage>
       <>
+        <Title title="Set your profile" />
         <AvatarPersonalInfo
           AvatarState={postImg}
           setAvatarState={setPostImg}
