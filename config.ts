@@ -1,16 +1,26 @@
 import { initializeApp } from 'firebase/app'
 import { getDatabase } from 'firebase/database'
+import dotenv from 'dotenv'
+
+dotenv.config()
+
+const {
+  FIREBASE_CONFIG_APIKEY,
+  FIREBASE_CONFIG_PROJECTID,
+  FIREBASE_CONFIG_MESSAGINGSENDERID,
+  FIREBASE_CONFIG_APPID,
+  FIREBASE_CONFIG_DATABASEURL,
+} = process.env
 
 const config = {
   firebaseConfig: {
-    apiKey: 'AIzaSyC7ma7DM2wwi4Yv4Zfp0pvNNz1Jshr4zFA',
-    authDomain: 'socialapp-c3f3f.firebaseapp.com',
-    projectId: 'socialapp-c3f3f',
-    storageBucket: 'socialapp-c3f3f.appspot.com',
-    messagingSenderId: '173393245762',
-    appId: '1:173393245762:web:13cc41c8516ea2f5285fdb',
-    databaseURL:
-      'https://socialapp-c3f3f-default-rtdb.europe-west1.firebasedatabase.app/',
+    apiKey: FIREBASE_CONFIG_APIKEY,
+    authDomain: `${FIREBASE_CONFIG_PROJECTID}.firebaseapp.com`,
+    projectId: FIREBASE_CONFIG_PROJECTID,
+    storageBucket: `${FIREBASE_CONFIG_PROJECTID}.appspot.com`,
+    messagingSenderId: FIREBASE_CONFIG_MESSAGINGSENDERID,
+    appId: FIREBASE_CONFIG_APPID,
+    databaseURL: FIREBASE_CONFIG_DATABASEURL,
   },
 }
 

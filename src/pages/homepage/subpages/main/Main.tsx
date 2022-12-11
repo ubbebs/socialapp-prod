@@ -7,7 +7,7 @@ const Main = () => {
     <>
       <div className="flex w-full justify-between">
         <SearchBar />
-        <div className="hidden lg:flex">
+        <div className="flex">
           <AddPost />
         </div>
       </div>

@@ -101,7 +101,7 @@ function EditProfile() {
             text={`Done! Nick changed to ${successMutation.displayNameValue}`}
           />
         )}
-        {successMutation.errorDescription.length > 0 && (
+        {successMutation.errorDisplayName.length > 0 && (
           <ErrorText text="Name error" />
         )}
         <TextArea valueRef={descriptionRef} />

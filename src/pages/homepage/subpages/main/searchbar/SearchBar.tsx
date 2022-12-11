@@ -16,9 +16,9 @@ const SearchBar = () => {
 
   return (
     <div>
-      <div className="max-w-[300px] w-full bg-white rounded-full flex items-center gap-2 p-2 text-zinc-500">
+      <div className="max-w-[300px] w-full bg-zinc-100 lg:bg-white rounded-full flex items-center gap-2 p-2 text-zinc-500">
         <input
-          className="grow outline-none text-sm text-black"
+          className="grow outline-none bg-zinc-100 lg:bg-white text-sm text-black"
           placeholder="Search"
           ref={inputRef}
         />

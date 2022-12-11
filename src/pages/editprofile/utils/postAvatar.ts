@@ -1,4 +1,9 @@
 import axios from 'axios'
+import dotenv from 'dotenv'
+
+dotenv.config()
+
+const { SERVER_URL } = process.env
 
 export type PostAvatarType = {
   timestamp: string
@@ -8,7 +13,7 @@ export type PostAvatarType = {
 const postAvatar = async (data: PostAvatarType) => {
   const { timestamp, uid } = data
   await axios
-    .post(`http://localhost:8383/updateAvatar`, {
+    .post(`${SERVER_URL}/updateAvatar`, {
       timestamp,
       uid,
     })

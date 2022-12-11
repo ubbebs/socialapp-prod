@@ -48,9 +48,9 @@ const AddPost = () => {
   }, [navigate, refetchPosts, successMutation])
 
   return !isLoadingPersonalInfo ? (
-    <>
+    <div className="flex w-full h-full flex-col lg:flex-row items-center justify-center">
       <ImageAddPost ImageState={postImg} setImageState={setPostImg} />
-      <div className="w-[400px] flex flex-col bg-white xl:w-[300px] xl:h-[500px] p-4 rounded-3xl gap-3">
+      <div className="w-full lg:max-w-[400px] flex flex-col bg-white xl:w-[300px] xl:h-[500px] p-4 rounded-3xl gap-3">
         <UserHeader
           photoURL={dataPersonalInfo.photoURL}
           displayName={dataPersonalInfo.displayName}
@@ -61,7 +61,7 @@ const AddPost = () => {
           <ErrorText text="No image selected" />
         ) : null}
       </div>
-    </>
+    </div>
   ) : (
     <p>Loading posts...</p>
   )

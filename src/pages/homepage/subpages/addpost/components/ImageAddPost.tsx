@@ -16,7 +16,7 @@ const ImageAddPost = (args: ImageAddPostType) => {
     setImageState(null)
   }
   return (
-    <div className="w-[400px] h-[400px] relative xl:w-[500px] xl:h-[500px]">
+    <div className="w-[250px] h-[250px] relative lg:w-[500px] lg:h-[500px]">
       {ImageState ? (
         <ImageSelected func={handleDeleteImage} AvatarState={ImageState} />
       ) : (

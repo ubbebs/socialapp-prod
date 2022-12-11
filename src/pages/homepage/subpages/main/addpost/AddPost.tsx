@@ -7,7 +7,8 @@ const AddPost = () => {
         type="button"
         className="p-2 px-7 gradient-linear rounded-full text-white text-sm font-semibold"
       >
-        + Create a post
+        <span>+</span>
+        <span className="hidden lg:inline-block"> Create a post</span>
       </button>
     </Link>
   )

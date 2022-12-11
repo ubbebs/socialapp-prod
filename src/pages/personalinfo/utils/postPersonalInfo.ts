@@ -1,4 +1,9 @@
 import axios from 'axios'
+import dotenv from 'dotenv'
+
+dotenv.config()
+
+const { SERVER_URL } = process.env
 
 export type PostPersonalInfoType = {
   accountName: string
@@ -11,7 +16,7 @@ export type PostPersonalInfoType = {
 const postPersonalInfo = async (data: PostPersonalInfoType) => {
   const { accountName, displayName, description, timestamp, uid } = data
   await axios
-    .post(`http://localhost:8383/setPersonalInfo`, {
+    .post(`${SERVER_URL}/setPersonalInfo`, {
       accountName,
       displayName,
       description,

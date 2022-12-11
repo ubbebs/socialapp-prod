@@ -15,7 +15,7 @@ function Signin() {
   const emailRef = useRef<HTMLInputElement>(null)
   const passwordRef = useRef<HTMLInputElement>(null)
   const navigate = useNavigate()
-  const [loginError, setLoginError] = useState(false)
+  const [loginError, setLoginError] = useState<boolean>(false)
 
   const signinFunc = (e: React.FormEvent) => {
     signinExecute({
