@@ -1,26 +1,23 @@
 import { initializeApp } from 'firebase/app'
 import { getDatabase } from 'firebase/database'
-import dotenv from 'dotenv'
-
-dotenv.config()
 
 const {
-  FIREBASE_CONFIG_APIKEY,
-  FIREBASE_CONFIG_PROJECTID,
-  FIREBASE_CONFIG_MESSAGINGSENDERID,
-  FIREBASE_CONFIG_APPID,
-  FIREBASE_CONFIG_DATABASEURL,
-} = process.env
+  VITE_FIREBASE_CONFIG_APIKEY,
+  VITE_FIREBASE_CONFIG_PROJECTID,
+  VITE_FIREBASE_CONFIG_MESSAGINGSENDERID,
+  VITE_FIREBASE_CONFIG_APPID,
+  VITE_FIREBASE_CONFIG_DATABASEURL,
+} = import.meta.env
 
 const config = {
   firebaseConfig: {
-    apiKey: FIREBASE_CONFIG_APIKEY,
-    authDomain: `${FIREBASE_CONFIG_PROJECTID}.firebaseapp.com`,
-    projectId: FIREBASE_CONFIG_PROJECTID,
-    storageBucket: `${FIREBASE_CONFIG_PROJECTID}.appspot.com`,
-    messagingSenderId: FIREBASE_CONFIG_MESSAGINGSENDERID,
-    appId: FIREBASE_CONFIG_APPID,
-    databaseURL: FIREBASE_CONFIG_DATABASEURL,
+    apiKey: VITE_FIREBASE_CONFIG_APIKEY,
+    authDomain: `${VITE_FIREBASE_CONFIG_PROJECTID}.firebaseapp.com`,
+    projectId: VITE_FIREBASE_CONFIG_PROJECTID,
+    storageBucket: `${VITE_FIREBASE_CONFIG_PROJECTID}.appspot.com`,
+    messagingSenderId: VITE_FIREBASE_CONFIG_MESSAGINGSENDERID,
+    appId: VITE_FIREBASE_CONFIG_APPID,
+    databaseURL: VITE_FIREBASE_CONFIG_DATABASEURL,
   },
 }
 

@@ -1,9 +1,6 @@
 import axios from 'axios'
-import dotenv from 'dotenv'
 
-dotenv.config()
-
-const { SERVER_URL } = process.env
+const { VITE_SERVER_URL } = import.meta.env
 
 export type PostDisplayNameType = {
   displayName: string
@@ -13,7 +10,7 @@ export type PostDisplayNameType = {
 const postDisplayName = async (data: PostDisplayNameType) => {
   const { displayName, uid } = data
   await axios
-    .post(`${SERVER_URL}/updateDisplayName`, {
+    .post(`${VITE_SERVER_URL}/updateDisplayName`, {
       displayName,
       uid,
     })
