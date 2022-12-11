@@ -22,7 +22,7 @@ import { postDisplayName } from './utils/postDisplayName'
 import {
   defaultSuccessMutation,
   SuccessMutationType,
-} from './utils/SuccessMutationType'
+} from './utils/successEditProfileUtils'
 
 function EditProfile() {
   const auth = getAuth()

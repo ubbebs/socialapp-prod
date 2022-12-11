@@ -17,6 +17,7 @@ import { OuterPage } from '../../components/outerpage/OuterPage'
 import { AvatarPersonalInfo } from '../../components/outerpage/components/AvatarPersonalInfo'
 import { Title } from '../../components/outerpage/components/Title'
 import { ErrorText } from '../../components/text/ErrorText'
+import { defaultErrors, ErrorsType } from './utils/successPersonalInfoUtils'
 
 function PersonalInfo() {
   const auth = getAuth(app)
@@ -27,9 +28,7 @@ function PersonalInfo() {
   const descriptionRef = useRef<HTMLTextAreaElement>(null)
   const displayNameRef = useRef<HTMLInputElement>(null)
   const [postImg, setPostImg] = useState<File | null>(null)
-  const [accountNameError, setAccountNameError] = useState<boolean>(false)
-  const [displayNameError, setDisplayNameError] = useState<boolean>(false)
-  const [postImgError, setPostImgError] = useState<boolean>(false)
+  const [errors, setErrors] = useState<ErrorsType>(defaultErrors)
   const { data: dataPersonalInfo, isLoading: isLoadingPersonalInfo } =
     useGetPersonalInfo(stateStore.userid || '')
   const personalInfoFunc = (e: React.FormEvent) => {
@@ -43,9 +42,7 @@ function PersonalInfo() {
       descriptionRef,
       mutate,
       navigate,
-      setAccountNameError,
-      setDisplayNameError,
-      setPostImgError,
+      setErrors,
     })
   }
 
@@ -62,7 +59,7 @@ function PersonalInfo() {
           setAvatarState={setPostImg}
           title="Profile picture:"
         />
-        {postImgError && (
+        {errors.errorImage && (
           <ErrorText text="No files uploaded. Upload profile picture" />
         )}
         <InputDiv
@@ -77,7 +74,7 @@ function PersonalInfo() {
           type="text"
           name="DisplayName"
         />
-        {displayNameError && (
+        {errors.errorDisplayName && (
           <ErrorText text="Invalid display name (4-24 chars)" />
         )}
         <InputDiv
@@ -92,7 +89,7 @@ function PersonalInfo() {
           type="text"
           name="AccountName"
         />
-        {accountNameError && (
+        {errors.errorAccountName && (
           <ErrorText text="Invalid account name (4-16 chars, no spaces)" />
         )}
         <TextArea valueRef={descriptionRef} />

@@ -1,5 +1,5 @@
 import { UseMutateFunction } from '@tanstack/react-query'
-import { SuccessMutationType } from './SuccessMutationType'
+import { SuccessMutationType } from './successEditProfileUtils'
 
 export type MutateDisplayNameType = {
   displayName: string

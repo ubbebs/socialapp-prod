@@ -11,16 +11,18 @@ type ValidatePersonalInfoType = {
 
 const validatePersonalInfo = (args: ValidatePersonalInfoType) => {
   const { auth, postImg, accountNameRef, displayNameRef } = args
-  return (
-    auth?.currentUser &&
-    postImg &&
-    validateDisplayName({
-      displayNameRef,
-    }) &&
-    validateAccountName({
-      accountNameRef,
-    })
-  )
+  const displayName = validateDisplayName({
+    displayNameRef,
+  })
+  const accountName = validateAccountName({
+    accountNameRef,
+  })
+  return {
+    ok: auth?.currentUser && postImg && displayName && accountName,
+    errorImg: !postImg,
+    errorDisplayName: !displayName,
+    errorAccountName: !accountName,
+  }
 }
 
 export { validatePersonalInfo }

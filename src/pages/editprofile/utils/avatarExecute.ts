@@ -3,7 +3,7 @@ import { Auth } from 'firebase/auth'
 import { FirebaseStorage } from 'firebase/storage'
 import { changeAvatar } from './changeAvatar'
 import { PostAvatarType } from './postAvatar'
-import { SuccessMutationType } from './SuccessMutationType'
+import { SuccessMutationType } from './successEditProfileUtils'
 
 type AvatarExecuteType = {
   e: React.FormEvent

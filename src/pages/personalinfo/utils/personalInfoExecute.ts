@@ -5,6 +5,7 @@ import React from 'react'
 import { NavigateFunction } from 'react-router-dom'
 import { PostPersonalInfoType } from './postPersonalInfo'
 import { setPersonalInfo } from './setPersonalInfo'
+import { ErrorsType } from './successPersonalInfoUtils'
 import { validatePersonalInfo } from './validatePersonalInfo'
 
 type PersonalInfoExecuteType = {
@@ -17,9 +18,7 @@ type PersonalInfoExecuteType = {
   descriptionRef: React.RefObject<HTMLTextAreaElement>
   mutate: UseMutateFunction<void, unknown, PostPersonalInfoType, unknown>
   navigate: NavigateFunction
-  setAccountNameError: React.Dispatch<React.SetStateAction<boolean>>
-  setDisplayNameError: React.Dispatch<React.SetStateAction<boolean>>
-  setPostImgError: React.Dispatch<React.SetStateAction<boolean>>
+  setErrors: React.Dispatch<React.SetStateAction<ErrorsType>>
 }
 
 const personalInfoExecute = (args: PersonalInfoExecuteType) => {
@@ -33,10 +32,14 @@ const personalInfoExecute = (args: PersonalInfoExecuteType) => {
     descriptionRef,
     mutate,
     navigate,
-    setAccountNameError,
-    setDisplayNameError,
-    setPostImgError,
+    setErrors,
   } = args
+  const personalInfo = validatePersonalInfo({
+    auth,
+    postImg,
+    accountNameRef,
+    displayNameRef,
+  })
   e.preventDefault()
   if (
     validatePersonalInfo({
@@ -44,7 +47,7 @@ const personalInfoExecute = (args: PersonalInfoExecuteType) => {
       postImg,
       accountNameRef,
       displayNameRef,
-    }) &&
+    }).ok &&
     postImg
   ) {
     setPersonalInfo({
@@ -58,26 +61,38 @@ const personalInfoExecute = (args: PersonalInfoExecuteType) => {
       navigate,
     })
   }
-  if (
-    !accountNameRef.current ||
-    !/^\w{4,16}$/g.test(accountNameRef.current.value)
-  ) {
-    setAccountNameError(true)
+  if (personalInfo.errorAccountName) {
+    setErrors((prev) => ({
+      ...prev,
+      errorAccountName: true,
+    }))
   } else {
-    setAccountNameError(false)
+    setErrors((prev) => ({
+      ...prev,
+      errorAccountName: false,
+    }))
   }
-  if (
-    !displayNameRef.current ||
-    !/^(\w\s?){4,24}$/gs.test(displayNameRef.current.value)
-  ) {
-    setDisplayNameError(true)
+  if (personalInfo.errorDisplayName) {
+    setErrors((prev) => ({
+      ...prev,
+      errorDisplayName: true,
+    }))
   } else {
-    setDisplayNameError(false)
+    setErrors((prev) => ({
+      ...prev,
+      errorDisplayName: false,
+    }))
   }
-  if (!postImg) {
-    setPostImgError(true)
+  if (personalInfo.errorImg) {
+    setErrors((prev) => ({
+      ...prev,
+      errorImage: true,
+    }))
   } else {
-    setPostImgError(false)
+    setErrors((prev) => ({
+      ...prev,
+      errorImage: false,
+    }))
   }
 }
 

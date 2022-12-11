@@ -2,7 +2,7 @@ import { UseMutateFunction } from '@tanstack/react-query'
 import { FirebaseStorage } from 'firebase/storage'
 import { avatarStorage } from '../../../utils/avatarStorage'
 import { PostAvatarType } from './postAvatar'
-import { SuccessMutationType } from './SuccessMutationType'
+import { SuccessMutationType } from './successEditProfileUtils'
 
 export type ChangeAvatarType = {
   storage: FirebaseStorage

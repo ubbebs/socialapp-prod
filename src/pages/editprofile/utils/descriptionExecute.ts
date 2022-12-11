@@ -3,7 +3,7 @@ import { Auth } from 'firebase/auth'
 import React from 'react'
 import { changeDescription } from './changeDescritpion'
 import { PostDescriptionType } from './postDescription'
-import { SuccessMutationType } from './SuccessMutationType'
+import { SuccessMutationType } from './successEditProfileUtils'
 
 type DescriptionExecuteType = {
   e: React.FormEvent

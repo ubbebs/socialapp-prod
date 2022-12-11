@@ -3,7 +3,7 @@ import { Auth } from 'firebase/auth'
 import { changeDisplayName } from './changeDisplayName'
 import { PostDisplayNameType } from './postDisplayName'
 import { validateDisplayName } from '../../../utils/validateDisplayName'
-import { SuccessMutationType } from './SuccessMutationType'
+import { SuccessMutationType } from './successEditProfileUtils'
 
 type DisplayNameExecuteType = {
   e: React.FormEvent
