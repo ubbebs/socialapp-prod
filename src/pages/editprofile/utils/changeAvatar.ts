@@ -2,17 +2,18 @@ import { UseMutateFunction } from '@tanstack/react-query'
 import { FirebaseStorage } from 'firebase/storage'
 import { avatarStorage } from '../../../utils/avatarStorage'
 import { PostAvatarType } from './postAvatar'
+import { SuccessMutationType } from './SuccessMutationType'
 
 export type ChangeAvatarType = {
   storage: FirebaseStorage
   userid: string
   postImg: File
   mutateAvatar: UseMutateFunction<void, unknown, PostAvatarType, unknown>
-  setSuccessAvatar: React.Dispatch<React.SetStateAction<boolean>>
+  setSuccessMutation: React.Dispatch<React.SetStateAction<SuccessMutationType>>
 }
 
 const changeAvatar = async (args: ChangeAvatarType) => {
-  const { storage, userid, postImg, mutateAvatar, setSuccessAvatar } = args
+  const { storage, userid, postImg, mutateAvatar, setSuccessMutation } = args
   const timestamp = (Date.now() / 1000).toString()
   avatarStorage(storage, userid, postImg, timestamp).then(() => {
     mutateAvatar(
@@ -22,7 +23,10 @@ const changeAvatar = async (args: ChangeAvatarType) => {
       },
       {
         onSuccess: () => {
-          setSuccessAvatar(true)
+          setSuccessMutation((prev) => ({
+            ...prev,
+            okAvatar: true,
+          }))
         },
       }
     )

@@ -3,6 +3,7 @@ import { Auth } from 'firebase/auth'
 import { FirebaseStorage } from 'firebase/storage'
 import { changeAvatar } from './changeAvatar'
 import { PostAvatarType } from './postAvatar'
+import { SuccessMutationType } from './SuccessMutationType'
 
 type AvatarExecuteType = {
   e: React.FormEvent
@@ -10,32 +11,30 @@ type AvatarExecuteType = {
   storage: FirebaseStorage
   postImg: File | null
   mutateAvatar: UseMutateFunction<void, unknown, PostAvatarType, unknown>
-  setSuccessAvatar: React.Dispatch<React.SetStateAction<boolean>>
-  setAvatarError: React.Dispatch<React.SetStateAction<boolean>>
+  setSuccessMutation: React.Dispatch<React.SetStateAction<SuccessMutationType>>
 }
 
 const avatarExecute = (args: AvatarExecuteType) => {
-  const {
-    e,
-    auth,
-    storage,
-    postImg,
-    mutateAvatar,
-    setSuccessAvatar,
-    setAvatarError,
-  } = args
+  const { e, auth, storage, postImg, mutateAvatar, setSuccessMutation } = args
   e.preventDefault()
   if (postImg && auth.currentUser) {
-    setAvatarError(false)
+    setSuccessMutation((prev) => ({
+      ...prev,
+      errorAvatar: '',
+    }))
     changeAvatar({
       storage,
       userid: auth.currentUser.uid,
       postImg,
       mutateAvatar,
-      setSuccessAvatar,
+      setSuccessMutation,
     })
   } else {
-    setAvatarError(true)
+    setSuccessMutation((prev) => ({
+      ...prev,
+      okAvatar: false,
+      errorAvatar: 'No image selected',
+    }))
   }
 }
 

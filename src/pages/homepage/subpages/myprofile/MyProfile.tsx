@@ -4,11 +4,11 @@ import { ProfileDetails } from './profiledetails/ProfileDetails'
 
 const MyProfile = () => {
   return (
-    <div className="relative w-full h-full">
+    <>
       <ProfileDetails />
       <AddPost />
       <MyPosts />
-    </div>
+    </>
   )
 }
 

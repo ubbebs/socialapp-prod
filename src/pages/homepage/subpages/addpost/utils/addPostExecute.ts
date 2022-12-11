@@ -4,6 +4,11 @@ import React from 'react'
 import { addPostStorage } from './addPostStorage'
 import { PostAddPostType } from './postAddPost'
 
+export type SuccessMutationType = {
+  ok: boolean
+  error: string
+}
+
 type AddPostExecuteType = {
   e: React.FormEvent
   userid: string | null
@@ -11,8 +16,7 @@ type AddPostExecuteType = {
   storage: FirebaseStorage
   mutate: UseMutateFunction<void, unknown, PostAddPostType, unknown>
   descriptionRef: React.RefObject<HTMLTextAreaElement>
-  setErrorImg: React.Dispatch<React.SetStateAction<boolean>>
-  setSuccessMutation: React.Dispatch<React.SetStateAction<boolean>>
+  setSuccessMutation: React.Dispatch<React.SetStateAction<SuccessMutationType>>
 }
 
 const addPostExecute = (args: AddPostExecuteType) => {
@@ -23,12 +27,14 @@ const addPostExecute = (args: AddPostExecuteType) => {
     storage,
     mutate,
     descriptionRef,
-    setErrorImg,
     setSuccessMutation,
   } = args
   e.preventDefault()
   if (!postImg) {
-    setErrorImg(true)
+    setSuccessMutation({
+      ok: false,
+      error: 'No image selected',
+    })
   } else {
     const time = Date.now()
     if (postImg) {
@@ -46,7 +52,10 @@ const addPostExecute = (args: AddPostExecuteType) => {
           },
           {
             onSuccess: () => {
-              setSuccessMutation(true)
+              setSuccessMutation({
+                ok: true,
+                error: '',
+              })
             },
           }
         )

@@ -7,7 +7,7 @@ import { stateStore } from '../../../../stateStore'
 import { useGetPersonalInfo } from '../../utils/getPersonalInfo'
 import { useGetPosts } from '../../utils/getPosts'
 import { postAddPost } from './utils/postAddPost'
-import { addPostExecute } from './utils/addPostExecute'
+import { addPostExecute, SuccessMutationType } from './utils/addPostExecute'
 import { ImageAddPost } from './components/ImageAddPost'
 import { ErrorText } from '../../../../components/text/ErrorText'
 import { TextArea } from '../../../../components/text/TextArea'
@@ -16,12 +16,14 @@ import { UserHeader } from '../../../../components/userHeader/UserHeader'
 
 const AddPost = () => {
   const storage = getStorage()
+  const navigate = useNavigate()
   const { userid } = useSnapshot(stateStore)
   const [postImg, setPostImg] = useState<File | null>(null)
-  const [errorImg, setErrorImg] = useState<boolean>(false)
   const descriptionRef = useRef<HTMLTextAreaElement>(null)
-  const [successMutation, setSuccessMutation] = useState<boolean>(false)
-  const navigate = useNavigate()
+  const [successMutation, setSuccessMutation] = useState<SuccessMutationType>({
+    ok: false,
+    error: '',
+  })
   const { mutate } = useMutation(postAddPost)
   const { data: dataPersonalInfo, isLoading: isLoadingPersonalInfo } =
     useGetPersonalInfo('')
@@ -34,20 +36,19 @@ const AddPost = () => {
       storage,
       mutate,
       descriptionRef,
-      setErrorImg,
       setSuccessMutation,
     })
   }
 
   useEffect(() => {
-    if (successMutation) {
+    if (successMutation.ok) {
       refetchPosts()
       navigate('/myprofile')
     }
   }, [navigate, refetchPosts, successMutation])
 
   return !isLoadingPersonalInfo ? (
-    <div className="w-full h-full flex flex-col justify-center items-center gap-4 xl:flex-row">
+    <>
       <ImageAddPost ImageState={postImg} setImageState={setPostImg} />
       <div className="w-[400px] flex flex-col bg-white xl:w-[300px] xl:h-[500px] p-4 rounded-3xl gap-3">
         <UserHeader
@@ -56,9 +57,11 @@ const AddPost = () => {
         />
         <TextArea valueRef={descriptionRef} />
         <SubmitButton func={addPostFunc}>Add Post</SubmitButton>
-        {errorImg ? <ErrorText text="No image selected" /> : null}
+        {successMutation.error.length > 0 ? (
+          <ErrorText text="No image selected" />
+        ) : null}
       </div>
-    </div>
+    </>
   ) : (
     <p>Loading posts...</p>
   )

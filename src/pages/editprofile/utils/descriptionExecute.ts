@@ -3,6 +3,7 @@ import { Auth } from 'firebase/auth'
 import React from 'react'
 import { changeDescription } from './changeDescritpion'
 import { PostDescriptionType } from './postDescription'
+import { SuccessMutationType } from './SuccessMutationType'
 
 type DescriptionExecuteType = {
   e: React.FormEvent
@@ -14,11 +15,11 @@ type DescriptionExecuteType = {
     PostDescriptionType,
     unknown
   >
-  setSuccessDescription: React.Dispatch<React.SetStateAction<boolean>>
+  setSuccessMutation: React.Dispatch<React.SetStateAction<SuccessMutationType>>
 }
 
 const descriptionExecute = (args: DescriptionExecuteType) => {
-  const { e, auth, descriptionRef, mutateDescription, setSuccessDescription } =
+  const { e, auth, descriptionRef, mutateDescription, setSuccessMutation } =
     args
   e.preventDefault()
   if (auth.currentUser) {
@@ -26,7 +27,7 @@ const descriptionExecute = (args: DescriptionExecuteType) => {
       description: descriptionRef.current && descriptionRef.current.value,
       userid: auth.currentUser.uid,
       mutateDescription,
-      setSuccessDescription,
+      setSuccessMutation,
     })
   }
 }

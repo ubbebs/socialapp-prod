@@ -1,4 +1,5 @@
 import { UseMutateFunction } from '@tanstack/react-query'
+import { SuccessMutationType } from './SuccessMutationType'
 
 export type MutateDisplayNameType = {
   displayName: string
@@ -14,11 +15,11 @@ type ChangeDisplayNameType = {
     MutateDisplayNameType,
     unknown
   >
-  setSuccessDisplayName: React.Dispatch<React.SetStateAction<boolean | string>>
+  setSuccessMutation: React.Dispatch<React.SetStateAction<SuccessMutationType>>
 }
 
 const changeDisplayName = async (args: ChangeDisplayNameType) => {
-  const { userid, displayName, mutateDisplayName, setSuccessDisplayName } = args
+  const { userid, displayName, mutateDisplayName, setSuccessMutation } = args
   mutateDisplayName(
     {
       displayName,
@@ -26,7 +27,10 @@ const changeDisplayName = async (args: ChangeDisplayNameType) => {
     },
     {
       onSuccess: () => {
-        setSuccessDisplayName(displayName)
+        setSuccessMutation((prev) => ({
+          ...prev,
+          okDisplayName: true,
+        }))
       },
     }
   )

@@ -3,6 +3,7 @@ import { Auth } from 'firebase/auth'
 import { changeDisplayName } from './changeDisplayName'
 import { PostDisplayNameType } from './postDisplayName'
 import { validateDisplayName } from '../../../utils/validateDisplayName'
+import { SuccessMutationType } from './SuccessMutationType'
 
 type DisplayNameExecuteType = {
   e: React.FormEvent
@@ -14,19 +15,12 @@ type DisplayNameExecuteType = {
     unknown
   >
   displayNameRef: React.RefObject<HTMLInputElement>
-  setSuccessDisplayName: React.Dispatch<React.SetStateAction<string | boolean>>
-  setDisplayNameError: React.Dispatch<React.SetStateAction<boolean>>
+  setSuccessMutation: React.Dispatch<React.SetStateAction<SuccessMutationType>>
 }
 
 const displayNameExecute = (args: DisplayNameExecuteType) => {
-  const {
-    e,
-    auth,
-    mutateDisplayName,
-    displayNameRef,
-    setSuccessDisplayName,
-    setDisplayNameError,
-  } = args
+  const { e, auth, mutateDisplayName, displayNameRef, setSuccessMutation } =
+    args
   e.preventDefault()
   if (
     auth?.currentUser &&
@@ -34,16 +28,22 @@ const displayNameExecute = (args: DisplayNameExecuteType) => {
       displayNameRef,
     })
   ) {
-    setDisplayNameError(false)
+    setSuccessMutation((prev) => ({
+      ...prev,
+      errorDisplayName: '',
+    }))
     changeDisplayName({
       displayName: displayNameRef.current?.value || '',
       userid: auth.currentUser?.uid || '',
       mutateDisplayName,
-      setSuccessDisplayName,
+      setSuccessMutation,
     })
   } else {
-    setSuccessDisplayName(false)
-    setDisplayNameError(true)
+    setSuccessMutation((prev) => ({
+      ...prev,
+      okDisplayName: false,
+      errorDisplayName: 'Incorrect display name',
+    }))
   }
 }
 

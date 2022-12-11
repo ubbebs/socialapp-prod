@@ -1,4 +1,5 @@
 import { UseMutateFunction } from '@tanstack/react-query'
+import { SuccessMutationType } from './SuccessMutationType'
 
 export type MutateDescriptionType = {
   description: string | null
@@ -14,11 +15,11 @@ type ChangeDescriptionType = {
     MutateDescriptionType,
     unknown
   >
-  setSuccessDescription: React.Dispatch<React.SetStateAction<boolean>>
+  setSuccessMutation: React.Dispatch<React.SetStateAction<SuccessMutationType>>
 }
 
 const changeDescription = async (args: ChangeDescriptionType) => {
-  const { userid, description, mutateDescription, setSuccessDescription } = args
+  const { userid, description, mutateDescription, setSuccessMutation } = args
   mutateDescription(
     {
       description,
@@ -26,7 +27,11 @@ const changeDescription = async (args: ChangeDescriptionType) => {
     },
     {
       onSuccess: () => {
-        setSuccessDescription(true)
+        setSuccessMutation((prev) => ({
+          ...prev,
+          okDescription: true,
+          errorDescription: '',
+        }))
       },
     }
   )

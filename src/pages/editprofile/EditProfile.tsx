@@ -19,6 +19,10 @@ import { displayNameExecute } from './utils/displayNameExecute'
 import { postAvatar } from './utils/postAvatar'
 import { postDescription } from './utils/postDescription'
 import { postDisplayName } from './utils/postDisplayName'
+import {
+  defaultSuccessMutation,
+  SuccessMutationType,
+} from './utils/SuccessMutationType'
 
 function EditProfile() {
   const auth = getAuth()
@@ -29,13 +33,9 @@ function EditProfile() {
   const { mutate: mutateDescription } = useMutation(postDescription)
   const descriptionRef = useRef<HTMLTextAreaElement>(null)
   const displayNameRef = useRef<HTMLInputElement>(null)
-  const [avatarError, setAvatarError] = useState<boolean>(false)
-  const [successAvatar, setSuccessAvatar] = useState<boolean>(false)
-  const [displayNameError, setDisplayNameError] = useState<boolean>(false)
-  const [successDisplayName, setSuccessDisplayName] = useState<
-    boolean | string
-  >(false)
-  const [successDescription, setSuccessDescription] = useState<boolean>(false)
+  const [successMutation, setSuccessMutation] = useState<SuccessMutationType>(
+    defaultSuccessMutation
+  )
   const [postImg, setPostImg] = useState<File | null>(null)
   const avatarFunc = (e: React.FormEvent) => {
     avatarExecute({
@@ -44,8 +44,7 @@ function EditProfile() {
       storage,
       postImg,
       mutateAvatar,
-      setSuccessAvatar,
-      setAvatarError,
+      setSuccessMutation,
     })
   }
   const handleChangeDisplayName = (e: React.FormEvent) => {
@@ -54,8 +53,7 @@ function EditProfile() {
       auth,
       mutateDisplayName,
       displayNameRef,
-      setSuccessDisplayName,
-      setDisplayNameError,
+      setSuccessMutation,
     })
   }
   const descriptionFunc = (e: React.FormEvent) => {
@@ -64,7 +62,7 @@ function EditProfile() {
       auth,
       descriptionRef,
       mutateDescription,
-      setSuccessDescription,
+      setSuccessMutation,
     })
   }
 
@@ -79,8 +77,8 @@ function EditProfile() {
           title="Profile picture:"
         />
         <SubmitButton func={avatarFunc}>Change image</SubmitButton>
-        {successAvatar && <SuccessText text="Done!" />}
-        {avatarError && (
+        {successMutation.okAvatar && <SuccessText text="Done!" />}
+        {successMutation.errorAvatar.length > 0 && (
           <ErrorText text="No files uploaded. Upload profile picture" />
         )}
         <InputDiv
@@ -98,13 +96,17 @@ function EditProfile() {
         <SubmitButton func={handleChangeDisplayName}>
           Change your name
         </SubmitButton>
-        {successDisplayName && (
-          <SuccessText text={`Done! Nick changed to ${successDisplayName}`} />
+        {successMutation.okDisplayName && (
+          <SuccessText
+            text={`Done! Nick changed to ${successMutation.displayNameValue}`}
+          />
         )}
-        {displayNameError && <ErrorText text="Name error" />}
+        {successMutation.errorDescription.length > 0 && (
+          <ErrorText text="Name error" />
+        )}
         <TextArea valueRef={descriptionRef} />
         <SubmitButton func={descriptionFunc}>Change description</SubmitButton>
-        {successDescription && <SuccessText text="Done!" />}
+        {successMutation.okDescription && <SuccessText text="Done!" />}
       </>
     </OuterPage>
   )
