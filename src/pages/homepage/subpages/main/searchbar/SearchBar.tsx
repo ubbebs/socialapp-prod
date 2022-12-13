@@ -1,15 +1,12 @@
 import { useRef } from 'react'
 import { CiSearch } from 'react-icons/ci'
 import { useNavigate } from 'react-router-dom'
-import { useDebounce } from 'use-debounce'
 import { stateStore } from '../../../../../stateStore'
 
 const SearchBar = () => {
   const navigate = useNavigate()
   const inputRef = useRef<HTMLInputElement>(null)
-
   const explore = () => {
-    console.log(inputRef.current?.value)
     stateStore.searchKey = inputRef.current?.value
     navigate('/explore')
   }

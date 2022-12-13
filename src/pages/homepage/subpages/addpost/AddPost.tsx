@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { useMutation } from '@tanstack/react-query'
 import { stateStore } from '../../../../stateStore'
 import { useGetPersonalInfo } from '../../utils/getPersonalInfo'
-import { useGetPosts } from '../../utils/getPosts'
+import { useGetMyPosts } from '../../utils/getPosts'
 import { postAddPost } from './utils/postAddPost'
 import { addPostExecute, SuccessMutationType } from './utils/addPostExecute'
 import { ImageAddPost } from './components/ImageAddPost'
@@ -27,7 +27,7 @@ const AddPost = () => {
   const { mutate } = useMutation(postAddPost)
   const { data: dataPersonalInfo, isLoading: isLoadingPersonalInfo } =
     useGetPersonalInfo('')
-  const { refetch: refetchPosts } = useGetPosts(stateStore.userid || '')
+  const { refetch: refetchPosts } = useGetMyPosts(stateStore.userid || '')
   const addPostFunc = (e: React.FormEvent) => {
     addPostExecute({
       e,

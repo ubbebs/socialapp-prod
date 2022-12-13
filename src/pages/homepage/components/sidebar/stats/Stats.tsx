@@ -1,8 +1,8 @@
 import { stateStore } from '../../../../../stateStore'
-import { useGetPosts } from '../../../utils/getPosts'
+import { useGetMyPosts } from '../../../utils/getPosts'
 
 const Stats = () => {
-  const { data: dataPosts } = useGetPosts(stateStore.userid || '')
+  const { data: dataPosts } = useGetMyPosts(stateStore.userid || '')
   const postLength = Object.keys(dataPosts).length
   return (
     <div className="grid grid-cols-3 grid-rows-1 w-full max-w-[300px]">

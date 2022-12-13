@@ -1,15 +1,17 @@
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 
-const { VITE_SERVER_URL } = import.meta.env
-
-const useGetUserData = (uid: string) => {
-  const getUserData = async (userid: string) => {
-    const res = await axios.get(`${VITE_SERVER_URL}/getUserData?uid=${userid}`)
+const useGetUserData = (search: string | null) => {
+  const getUserData = async () => {
+    const res = await axios.get(
+      `http://localhost:8383/getUserData?uid=${search}`
+    )
     return res.data
   }
 
-  return useQuery(['userData'], () => getUserData(uid), { enabled: !!uid })
+  return useQuery(['userData', { search }], getUserData, {
+    enabled: !!search,
+  })
 }
 
 export { useGetUserData }

@@ -1,13 +1,12 @@
-import { stateStore } from '../../../../../stateStore'
-import { useGetMyPosts } from '../../../utils/getPosts'
+import { useParams } from 'react-router-dom'
+import { useGetUsersPosts } from '../../../utils/getPosts'
 import { PostElem } from './components/PostElem'
 
-const MyPosts = () => {
-  const {
-    refetch,
-    data: dataPosts,
-    isLoading: isLoadingPosts,
-  } = useGetMyPosts(stateStore.userid || '')
+const UsersPosts = () => {
+  const { uid } = useParams()
+  const { data: dataPosts, isLoading: isLoadingPosts } = useGetUsersPosts(
+    uid || ''
+  )
 
   return !isLoadingPosts ? (
     <ul className="overflow-auto flex gap-4 flex-col-reverse px-3 my-3">
@@ -20,13 +19,12 @@ const MyPosts = () => {
             <PostElem
               post={post}
               backgroundImage={backgroundImage}
-              refetch={refetch}
               key={index}
             />
           )
         })
       ) : (
-        <li>No posts... yet. Wanna add some post?</li>
+        <li>No posts... yet.</li>
       )}
     </ul>
   ) : (
@@ -34,4 +32,4 @@ const MyPosts = () => {
   )
 }
 
-export { MyPosts }
+export { UsersPosts }

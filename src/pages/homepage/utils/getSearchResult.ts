@@ -2,14 +2,14 @@ import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 
 const useGetSearchUser = (search: string | null) => {
-  const getSearchUser = async (serachKey: string | null) => {
+  const getSearchUser = async () => {
     const res = await axios.get(
-      `http://localhost:8383/getSearchUser?search=${serachKey}`
+      `http://localhost:8383/getSearchUser?search=${search}`
     )
     return res.data
   }
 
-  return useQuery(['searchUser'], () => getSearchUser(search), {
+  return useQuery(['searchUser', { search }], getSearchUser, {
     enabled: !!search,
   })
 }

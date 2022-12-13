@@ -1,5 +1,5 @@
-import { useGetUserData } from './utils/getUserData'
-import { useGetPosts } from './utils/getPosts'
+import { useGetMyFBData } from './utils/getMyFBData'
+import { useGetMyPosts } from './utils/getPosts'
 import { useGetPersonalInfo } from './utils/getPersonalInfo'
 import { Loader } from '../../components/loader/Loader'
 import { stateStore } from '../../stateStore'
@@ -11,13 +11,13 @@ type HomePageType = {
 
 const HomePage = (props: HomePageType) => {
   const { subpage } = props
-  const { isLoading: isLoadingUserData } = useGetUserData(
+  const { isLoading: isLoadingUserData } = useGetMyFBData(
     stateStore.userid || ''
   )
   const { isLoading: isLoadingPersonalInfo } = useGetPersonalInfo(
     stateStore.userid || ''
   )
-  const { isLoading: isLoadingPosts } = useGetPosts(stateStore.userid || '')
+  const { isLoading: isLoadingPosts } = useGetMyPosts(stateStore.userid || '')
 
   return !isLoadingPersonalInfo && !isLoadingPosts && !isLoadingUserData ? (
     <Wrapper>{subpage}</Wrapper>

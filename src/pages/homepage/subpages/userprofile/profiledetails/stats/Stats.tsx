@@ -1,7 +1,9 @@
-import { useGetMyPosts } from '../../../../utils/getPosts'
+import { useParams } from 'react-router-dom'
+import { useGetUsersPosts } from '../../../../utils/getPosts'
 
 const ProfileStats = () => {
-  const { data: dataPosts } = useGetMyPosts('')
+  const { uid } = useParams()
+  const { data: dataPosts } = useGetUsersPosts(uid || '')
   const postLength = Object.keys(dataPosts).length
   return (
     <div className="flex gap-5 w-full max-w-[500px]">

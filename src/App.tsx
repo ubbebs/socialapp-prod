@@ -11,6 +11,7 @@ import { PersonalInfo } from './pages/personalinfo/PersonalInfo'
 import { ViewPost } from './components/viewpost/ViewPost'
 import { EditProfile } from './pages/editprofile/EditProfile'
 import { AddPost } from './pages/homepage/subpages/addpost/AddPost'
+import { UsersProfile } from './pages/homepage/subpages/userprofile/UsersProfile'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -52,7 +53,7 @@ function App() {
             }
           />
           <Route
-            path="/post/:key"
+            path="/post/:authorid/:key"
             element={
               <AuthRoute>
                 <HomePage subpage={<ViewPost />} />
@@ -72,6 +73,14 @@ function App() {
             element={
               <AuthRoute>
                 <HomePage subpage={<Explore />} />
+              </AuthRoute>
+            }
+          />
+          <Route
+            path="/profile/:uid"
+            element={
+              <AuthRoute>
+                <HomePage subpage={<UsersProfile />} />
               </AuthRoute>
             }
           />

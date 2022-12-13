@@ -2,21 +2,20 @@ import moment from 'moment'
 import { useEffect } from 'react'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useGetPersonalInfo } from '../../pages/homepage/utils/getPersonalInfo'
 import { useGetPost } from '../../pages/homepage/utils/getPost'
-import { stateStore } from '../../stateStore'
+import { useGetUserData } from '../../pages/homepage/utils/getUserData'
 import { SmallLoader } from '../smallLoader/SmallLoader'
 
 const ViewPost = () => {
-  const { key } = useParams()
+  const { authorid, key } = useParams()
   const navigate = useNavigate()
   const {
     remove,
     data: dataPost,
     isLoading: isLoadingPost,
-  } = useGetPost(stateStore.userid || '', key || '')
+  } = useGetPost(authorid || '', key || '')
   const { data: dataPersonalInfo, isLoading: isLoadingPersonalInfo } =
-    useGetPersonalInfo('')
+    useGetUserData(authorid || '')
 
   useEffect(() => {
     return remove
