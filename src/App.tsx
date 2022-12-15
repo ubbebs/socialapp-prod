@@ -1,17 +1,17 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { AuthRoute } from './AuthRoute'
-import { HomePage } from './layouts/homepagewrapper/HomePageData'
+import { HomePageData } from './layouts/homepagewrapper/HomePageData'
 import { Signin } from './pages/signin/Signin'
 import { Signup } from './pages/signup/Signup'
-import { Main } from './pages/homepage/HomePage'
+import { HomePage } from './pages/homepage/HomePage'
 import { MyProfile } from './pages/myprofile/MyProfile'
 import { Explore } from './pages/explore/Explore'
 import { PersonalInfo } from './pages/setprofile/SetProfile'
 import { ViewPost } from './features/posts/viewpost/ViewPost'
 import { EditProfile } from './pages/editprofile/EditProfile'
 import { AddPost } from './pages/addpost/AddPost'
-import { UsersProfile } from './pages/userprofile/UsersProfile'
+import { UserProfile } from './pages/userprofile/UserProfile'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -32,7 +32,7 @@ function App() {
             path="/"
             element={
               <AuthRoute>
-                <HomePage subpage={<Main />} />
+                <HomePageData subpage={<HomePage />} />
               </AuthRoute>
             }
           />
@@ -40,7 +40,7 @@ function App() {
             path="/addpost"
             element={
               <AuthRoute>
-                <HomePage subpage={<AddPost />} />
+                <HomePageData subpage={<AddPost />} />
               </AuthRoute>
             }
           />
@@ -48,7 +48,7 @@ function App() {
             path="/myprofile"
             element={
               <AuthRoute>
-                <HomePage subpage={<MyProfile />} />
+                <HomePageData subpage={<MyProfile />} />
               </AuthRoute>
             }
           />
@@ -56,7 +56,7 @@ function App() {
             path="/post/:authorid/:key"
             element={
               <AuthRoute>
-                <HomePage subpage={<ViewPost />} />
+                <HomePageData subpage={<ViewPost />} />
               </AuthRoute>
             }
           />
@@ -72,7 +72,7 @@ function App() {
             path="/explore"
             element={
               <AuthRoute>
-                <HomePage subpage={<Explore />} />
+                <HomePageData subpage={<Explore />} />
               </AuthRoute>
             }
           />
@@ -80,7 +80,7 @@ function App() {
             path="/profile/:uid"
             element={
               <AuthRoute>
-                <HomePage subpage={<UsersProfile />} />
+                <HomePageData subpage={<UserProfile />} />
               </AuthRoute>
             }
           />

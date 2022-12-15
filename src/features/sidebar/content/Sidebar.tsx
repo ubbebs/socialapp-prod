@@ -17,7 +17,7 @@ const Sidebar = (props: SidebarType) => {
     <div
       className={`${
         hidden ? 'left-0 opacity-100' : 'left-[100%] opacity-0'
-      } flex flex-col min-h-screen lg:min-h-0 w-full items-center gap-10 fixed mt-[100px] lg:m-0 bg-zinc-100 z-10 duration-500 lg:duration-[0ms] lg:left-0 lg:opacity-100 lg:relative`}
+      } flex flex-col min-h-screen bg-white lg:bg-inherit lg:min-h-0 w-full items-center gap-10 fixed mt-[100px] lg:m-0 z-10 duration-500 lg:duration-[0ms] lg:left-0 lg:opacity-100 lg:relative`}
     >
       <Link
         to="/myprofile"

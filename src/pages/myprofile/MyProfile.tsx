@@ -1,13 +1,19 @@
 import { ButtonAddPost } from '../../components/buttons/ButtonAddPost'
 import { MyPosts } from '../../features/posts/myposts/MyPosts'
-import { ProfileDetails } from '../../features/profile/myprofile/ProfileDetails'
+import { ButtonEditProfile } from '../../features/profile/myprofile/components/ButtonEditProfile'
+import { MyProfileDetails } from '../../features/profile/myprofile/MyProfileDetails'
 
 const MyProfile = () => {
   return (
     <>
-      <ProfileDetails />
-      <ButtonAddPost />
-      <MyPosts />
+      <MyProfileDetails />
+      <div className="flex gap-5">
+        <ButtonAddPost />
+        <ButtonEditProfile />
+      </div>
+      <div className="w-full flex justify-center">
+        <MyPosts />
+      </div>
     </>
   )
 }

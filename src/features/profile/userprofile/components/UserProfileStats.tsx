@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom'
 import { useGetUserPosts } from '../../../../services/getUserPosts'
 
-const ProfileStats = () => {
+const UserProfileStats = () => {
   const { uid } = useParams()
   const { data: dataPosts } = useGetUserPosts(uid || '')
   const postLength = Object.keys(dataPosts).length
@@ -20,4 +20,4 @@ const ProfileStats = () => {
   )
 }
 
-export { ProfileStats }
+export { UserProfileStats }

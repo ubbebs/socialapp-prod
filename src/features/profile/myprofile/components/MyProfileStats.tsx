@@ -1,6 +1,6 @@
 import { useGetMyPosts } from '../../../../services/getMyPosts'
 
-const ProfileStats = () => {
+const MyProfileStats = () => {
   const { data: dataPosts } = useGetMyPosts('')
   const postLength = Object.keys(dataPosts).length
   return (
@@ -18,4 +18,4 @@ const ProfileStats = () => {
   )
 }
 
-export { ProfileStats }
+export { MyProfileStats }

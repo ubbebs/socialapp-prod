@@ -5,11 +5,11 @@ import { Loader } from '../../components/loaders/Loader'
 import { stateStore } from '../../stateStore'
 import { Wrapper } from './HomePageWrapper'
 
-type HomePageType = {
+type HomePageDataType = {
   subpage: JSX.Element
 }
 
-const HomePage = (props: HomePageType) => {
+const HomePageData = (props: HomePageDataType) => {
   const { subpage } = props
   const { isLoading: isLoadingAuthData } = useGetAuthData(
     stateStore.userid || ''
@@ -24,4 +24,4 @@ const HomePage = (props: HomePageType) => {
   )
 }
 
-export { HomePage }
+export { HomePageData }

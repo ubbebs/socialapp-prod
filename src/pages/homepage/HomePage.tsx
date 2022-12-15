@@ -1,6 +1,6 @@
 import { ButtonAddPost } from '../../components/buttons/ButtonAddPost'
 
-const Main = () => {
+const HomePage = () => {
   return (
     <>
       <div className="flex w-full justify-between">
@@ -59,4 +59,4 @@ const Main = () => {
   )
 }
 
-export { Main }
+export { HomePage }

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Header } from './components/header/Header'
+import { Header } from '../../features/sidebar/header/Header'
 import { Sidebar } from '../../features/sidebar/content/Sidebar'
 
 type WrapperType = {
@@ -19,7 +19,7 @@ const Wrapper = (args: WrapperType) => {
         <Sidebar hidden={toggleUserInfo} func={setToggleUserInfo} />
       </div>
       <div className="grow w-full mt-[100px] lg:mt-0 flex flex-col items-center relative bg-white rounded-l-3xl">
-        <div className="grow flex flex-col gap-4 max-w-[640px] lg:max-w-[1500px] w-full h-full rounded-l-3xl p-3 lg:p-7 lg:h-full lg:bg-white relative scrollbar">
+        <div className="grow flex flex-col gap-4 max-w-[640px] lg:max-w-[1000px] w-full h-full rounded-l-3xl p-6 lg:p-12 lg:h-full lg:bg-white relative scrollbar">
           {children}
         </div>
       </div>

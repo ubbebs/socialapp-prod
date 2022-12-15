@@ -22,13 +22,16 @@ const ButtonRemovePost = (args: ButtonRemovePostType) => {
     })
   }
   return (
-    <button
-      type="button"
-      className="p-1 rounded-md bg-red-500 text-white h-auto"
-      onClick={() => funcRemovePost()}
-    >
-      <BsFillTrashFill />
-    </button>
+    <div className="absolute bottom-0 right-0 flex justify-center items-center bg-white rounded-tl-2xl">
+      <button
+        type="button"
+        className="px-2 py-1 m-3 rounded-3xl bg-red-500 text-white flex text-xs justify-center items-center gap-1"
+        onClick={() => funcRemovePost()}
+      >
+        <p>Delete post</p>
+        <BsFillTrashFill />
+      </button>
+    </div>
   )
 }
 
