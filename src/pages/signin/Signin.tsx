@@ -3,12 +3,12 @@ import { useNavigate } from 'react-router-dom'
 import { getAuth } from 'firebase/auth'
 import { FaRegUserCircle } from 'react-icons/fa'
 import { MdLockOutline } from 'react-icons/md'
-import { OuterPage } from '../../components/outerpage/OuterPage'
-import { LinkTo } from '../../components/outerpage/components/LinkTo'
-import { signinExecute } from './utils/signinExecute'
-import { SubmitButton } from '../../components/outerpage/components/SubmitButton'
-import { InputDiv } from '../../components/outerpage/components/InputDiv'
-import { Title } from '../../components/outerpage/components/Title'
+import { OuterPage } from '../../layouts/outerpagewrapper/OuterPageWrapper'
+import { LinkText } from '../../components/text/LinkText'
+import { signinExecute } from '../../features/account/utils/signinExecute'
+import { SubmitButton } from '../../components/buttons/SubmitButton'
+import { InputDiv } from '../../components/inputs/InputDiv'
+import { HeaderText } from '../../components/text/HeaderText'
 
 function Signin() {
   const auth = getAuth()
@@ -31,7 +31,7 @@ function Signin() {
   return (
     <OuterPage>
       <>
-        <Title title="Sign In" />
+        <HeaderText text="Sign In" />
         <InputDiv
           icon={
             <FaRegUserCircle
@@ -62,7 +62,7 @@ function Signin() {
             Nieprawidłowy login lub hasło.
           </p>
         )}
-        <LinkTo url="/signup" value="Register here" />
+        <LinkText url="/signup" text="Register here" />
       </>
     </OuterPage>
   )

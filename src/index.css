@@ -25,3 +25,26 @@
 .aspect-auto11 {
     aspect-ratio: auto 1/1;
 }
+
+.scrollbar::-webkit-scrollbar {
+    width: 5px;
+  }
+
+.scrollbar::-webkit-scrollbar {
+    width: 5px;
+  }
+
+.avatar::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px; 
+    padding: 2px;
+    margin: -10px;
+    background: linear-gradient(to top right, #63D5E1 15%, #8567EA, #EA39F9 90%);
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+}

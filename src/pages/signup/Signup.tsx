@@ -3,12 +3,12 @@ import { useNavigate } from 'react-router-dom'
 import { FaRegUserCircle } from 'react-icons/fa'
 import { MdLockOutline } from 'react-icons/md'
 import { getAuth } from 'firebase/auth'
-import { OuterPage } from '../../components/outerpage/OuterPage'
-import { signupExecute } from './utils/signupExecute'
-import { InputDiv } from '../../components/outerpage/components/InputDiv'
-import { LinkTo } from '../../components/outerpage/components/LinkTo'
-import { SubmitButton } from '../../components/outerpage/components/SubmitButton'
-import { Title } from '../../components/outerpage/components/Title'
+import { OuterPage } from '../../layouts/outerpagewrapper/OuterPageWrapper'
+import { signupExecute } from '../../features/account/utils/signupExecute'
+import { InputDiv } from '../../components/inputs/InputDiv'
+import { LinkText } from '../../components/text/LinkText'
+import { SubmitButton } from '../../components/buttons/SubmitButton'
+import { HeaderText } from '../../components/text/HeaderText'
 import { ErrorText } from '../../components/text/ErrorText'
 
 function Signup() {
@@ -33,7 +33,7 @@ function Signup() {
   return (
     <OuterPage>
       <>
-        <Title title="Sign Up" />
+        <HeaderText text="Sign Up" />
         <InputDiv
           icon={
             <FaRegUserCircle
@@ -72,7 +72,7 @@ function Signup() {
         />
         {registerError && <ErrorText text={registerError} />}
         <SubmitButton func={signupFunc} value="Register" />
-        <LinkTo url="/signin" value="Login here" />
+        <LinkText url="/signin" text="Login here" />
       </>
     </OuterPage>
   )

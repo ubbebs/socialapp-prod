@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { getAuth } from 'firebase/auth'
 import { AuthCheck } from './AuthRoute.utils'
 import { stateStore } from './stateStore'
-import { Loader } from './components/loader/Loader'
+import { Loader } from './components/loaders/Loader'
 import { app } from '../config'
 
 function AuthRoute(props: { children: JSX.Element }): JSX.Element {

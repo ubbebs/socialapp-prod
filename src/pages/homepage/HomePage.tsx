@@ -1,29 +1,62 @@
-import { useGetMyFBData } from './utils/getMyFBData'
-import { useGetMyPosts } from './utils/getPosts'
-import { useGetPersonalInfo } from './utils/getPersonalInfo'
-import { Loader } from '../../components/loader/Loader'
-import { stateStore } from '../../stateStore'
-import { Wrapper } from './components/wrapper/Wrapper'
+import { ButtonAddPost } from '../../components/buttons/ButtonAddPost'
 
-type HomePageType = {
-  subpage: JSX.Element
+const Main = () => {
+  return (
+    <>
+      <div className="flex w-full justify-between">
+        <p>WITAM</p>
+        <div className="flex">
+          <ButtonAddPost />
+        </div>
+      </div>
+      <div className="bg-blue-500">
+        <p>PSST MORDO CHCESZ OBSTAWIĆ MUNDIAL?</p>
+      </div>
+      <div className="grow overflow-auto">
+        <p>content</p>
+        <p>dasda</p>
+        <p>dasda</p>
+        <p>dasda</p>
+        <p>dasda</p>
+        <p>dasda</p>
+        <p>dasda</p>
+        <p>dasda</p>
+        <p>dasda</p>
+        <p>dasda</p>
+        <p>dasda</p>
+        <p>dasda</p>
+        <p>dasda</p>
+        <p>dasda</p>
+        <p>dasda</p>
+        <p>dasda</p>
+        <p>dasda</p>
+        <p>dasda</p>
+        <p>dasda</p>
+        <p>dasda</p>
+        <p>dasda</p>
+        <p>dasda</p>
+        <p>dasda</p>
+        <p>dasda</p>
+        <p>dasda</p>
+        <p>dasda</p>
+        <p>dasda</p>
+        <p>dasda</p>
+        <p>dasda</p>
+        <p>dasda</p>
+        <p>dasda</p>
+        <p>dasda</p>
+        <p>dasda</p>
+        <p>dasda</p>
+        <p>dasda</p>
+        <p>dasda</p>
+        <p>dasda</p>
+        <p>dasda</p>
+        <p>dasda</p>
+        <p>dasda</p>
+        <p>dasda</p>
+      </div>
+    </>
+  )
 }
 
-const HomePage = (props: HomePageType) => {
-  const { subpage } = props
-  const { isLoading: isLoadingUserData } = useGetMyFBData(
-    stateStore.userid || ''
-  )
-  const { isLoading: isLoadingPersonalInfo } = useGetPersonalInfo(
-    stateStore.userid || ''
-  )
-  const { isLoading: isLoadingPosts } = useGetMyPosts(stateStore.userid || '')
-
-  return !isLoadingPersonalInfo && !isLoadingPosts && !isLoadingUserData ? (
-    <Wrapper>{subpage}</Wrapper>
-  ) : (
-    <Loader />
-  )
-}
-
-export { HomePage }
+export { Main }

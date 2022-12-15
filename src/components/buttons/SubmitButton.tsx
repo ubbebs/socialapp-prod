@@ -1,17 +1,17 @@
 type SubmitButtonType = {
   func: (e: React.FormEvent) => void
-  children: string
+  value: string
 }
 
 const SubmitButton = (args: SubmitButtonType) => {
-  const { func, children } = args
+  const { func, value } = args
   return (
     <button
-      className="rounded-full gradient-linear text-white hover:tracking-[1px] duration-300 text-sm font-bold p-2 px-5"
+      className="rounded-full gradient-linear text-white hover:tracking-[1px] w-full duration-300 text-sm font-bold p-2 uppercase mb-5"
       type="submit"
       onClick={(e) => func(e)}
     >
-      {children}
+      {value}
     </button>
   )
 }
