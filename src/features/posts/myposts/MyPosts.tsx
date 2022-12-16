@@ -1,4 +1,3 @@
-import { PreviewPost } from '../../../components/posts/PreviewPost'
 import { stateStore } from '../../../stateStore'
 import { useGetMyPosts } from '../../../services/getMyPosts'
 import { PostMapper } from '../components/PostMapper'
