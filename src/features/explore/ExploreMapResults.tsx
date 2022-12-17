@@ -26,6 +26,9 @@ const ExploreMapResult = (args: ExploreMapResultType) => {
                 style={backgroundImage}
               />
               <p className="font-semibold">{elem.displayName}</p>
+              <p className="font-semibold text-zinc-400">
+                (@{elem.accountName})
+              </p>
             </div>
           </Link>
         )

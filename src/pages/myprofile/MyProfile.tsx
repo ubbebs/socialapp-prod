@@ -5,7 +5,7 @@ import { MyProfileDetails } from '../../features/profile/myprofile/MyProfileDeta
 
 const MyProfile = () => {
   return (
-    <>
+    <div className="max-w-[600px] lg:max-w-[1200px] w-full flex flex-col gap-5 p-12">
       <MyProfileDetails />
       <div className="flex gap-5">
         <ButtonAddPost />
@@ -14,7 +14,7 @@ const MyProfile = () => {
       <div className="w-full flex justify-center">
         <MyPosts />
       </div>
-    </>
+    </div>
   )
 }
 

@@ -29,7 +29,7 @@ const AddPost = () => {
   })
   const { mutate } = useMutation(postAddPost)
   const { data: dataMyData, isLoading: isLoadingMyData } = useGetMyData('')
-  const { refetch: refetchMyPosts } = useGetMyPosts(stateStore.userid || '')
+  const { refetch: refetchMyPosts } = useGetMyPosts(userid || '')
   const addPostFunc = (e: React.FormEvent) => {
     executeAddPost({
       e,
@@ -54,8 +54,12 @@ const AddPost = () => {
       <AddPostImage ImageState={postImg} setImageState={setPostImg} />
       <div className="w-full lg:max-w-[400px] flex flex-col bg-white xl:w-[300px] xl:h-[500px] p-4 rounded-3xl gap-3">
         <AuthorHeader
-          photoURL={dataMyData.photoURL}
-          displayName={dataMyData.displayName}
+          data={{
+            photoURL: dataMyData.photoURL,
+            displayName: dataMyData.displayName,
+            authorid: userid || '',
+            timestamp: null,
+          }}
         />
         <TextArea valueRef={descriptionRef} />
         <SubmitButton func={addPostFunc} value="Add Post" />

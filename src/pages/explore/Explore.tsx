@@ -15,14 +15,15 @@ const Explore = () => {
   }, 1000)
 
   return (
-    <>
+    <div className="max-w-[600px] lg:max-w-[1200px] w-full flex flex-col gap-5 p-12">
       <ExploreSearchBar func={handleSearch} />
+      <hr className="border-0 h-[2px] gradient-linear" />
       {dataSearchUser ? (
         <ExploreMapResult data={dataSearchUser.data} />
       ) : (
         <p>LOL</p>
       )}
-    </>
+    </div>
   )
 }
 

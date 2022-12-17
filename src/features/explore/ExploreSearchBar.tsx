@@ -7,10 +7,10 @@ type ExploreSearchBarType = {
 const ExploreSearchBar = (args: ExploreSearchBarType) => {
   const { func } = args
   return (
-    <div className="max-w-[300px] w-full bg-white rounded-full flex items-center gap-2 p-2 text-zinc-500">
+    <div className="max-w-[300px] w-full bg-zinc-100 rounded-full flex items-center gap-2 p-2 text-zinc-500">
       <CiSearch />
       <input
-        className="grow outline-none text-sm text-black"
+        className="grow outline-none text-sm bg-inherit text-black"
         placeholder="Search"
         onChange={(e) => func(e.target.value)}
       />

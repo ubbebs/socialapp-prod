@@ -7,7 +7,7 @@ type AuthorHeaderType = {
     photoURL: string
     displayName: string
     authorid: string
-    timestamp: number
+    timestamp: number | null
   }
 }
 
@@ -24,9 +24,14 @@ const AuthorHeader = ({ data }: AuthorHeaderType) => {
       />
       <div>
         <p className="font-semibold text-xl">{displayName}</p>
-        <p className="text-xs">
-          Added: {moment.unix(timestamp / 1000).format('DD/MM/YYYY')}
-        </p>
+        {timestamp && (
+          <p
+            className="text-xs"
+            title={moment.unix(timestamp / 1000).format('DD MMMM YYYY HH:MM')}
+          >
+            {moment.unix(timestamp / 1000).format('DD/MM/YY')}
+          </p>
+        )}
       </div>
     </Link>
   )

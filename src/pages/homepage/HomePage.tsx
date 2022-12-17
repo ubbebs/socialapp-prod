@@ -2,7 +2,7 @@ import { ButtonAddPost } from '../../components/buttons/ButtonAddPost'
 
 const HomePage = () => {
   return (
-    <>
+    <div className="max-w-[600px] lg:max-w-[1200px] w-full flex flex-col gap-5 p-12">
       <div className="flex w-full justify-between">
         <p>WITAM</p>
         <div className="flex">
@@ -55,7 +55,7 @@ const HomePage = () => {
         <p>dasda</p>
         <p>dasda</p>
       </div>
-    </>
+    </div>
   )
 }
 
