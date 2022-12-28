@@ -1,7 +1,7 @@
 import { stateStore } from '../../../stateStore'
 import { useGetMyData } from '../../../services/getMyData'
 import { MyProfileStats } from './components/MyProfileStats'
-import ProfileLayout from '../components/ProfileLayout'
+import { ProfileLayout } from '../components/ProfileLayout'
 
 const MyProfileDetails = () => {
   const { data: dataMyData, isLoading: isLoadingMyData } = useGetMyData(

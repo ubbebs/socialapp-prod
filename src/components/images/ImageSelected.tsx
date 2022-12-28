@@ -1,4 +1,5 @@
 import { BiTrashAlt } from 'react-icons/bi'
+import { background } from '../../utils/background'
 
 type ImageSelectedType = {
   func: () => void
@@ -10,10 +11,9 @@ const ImageSelected = (args: ImageSelectedType) => {
   return (
     <>
       <div className="w-full h-full bg-white rounded-3xl flex justify-center absolute">
-        <img
-          src={URL.createObjectURL(AvatarState)}
-          alt="Upload preview"
-          className="h-auto w-auto max-w-full max-h-full rounded-3xl"
+        <div
+          style={background(URL.createObjectURL(AvatarState))}
+          className="h-full w-full max-w-full max-h-full rounded-3xl bg-center bg-contain bg-no-repeat"
         />
       </div>
       <button

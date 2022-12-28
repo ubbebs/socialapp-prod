@@ -1,6 +1,6 @@
 import moment from 'moment'
 import { Link } from 'react-router-dom'
-import { background } from '../../../../utils/background'
+import { background } from '../../../utils/background'
 
 type AuthorHeaderType = {
   data: {

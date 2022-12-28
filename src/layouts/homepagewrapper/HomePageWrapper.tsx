@@ -18,8 +18,8 @@ const Wrapper = (args: WrapperType) => {
         <Header func={handleClick} stateFunc={setToggleUserInfo} />
         <Sidebar hidden={toggleUserInfo} func={setToggleUserInfo} />
       </div>
-      <div className="grow w-full mt-[100px] lg:mt-0 flex flex-col items-center relative bg-white rounded-l-3xl">
-        <div className="grow flex flex-col gap-4 w-full h-full rounded-l-3xl items-center lg:h-full lg:bg-white relative scrollbar overflow-y-auto overflow-x-hidden">
+      <div className="grow w-full mt-[100px] lg:mt-0 flex bg-white rounded-none lg:rounded-l-3xl overflow-x-hidden">
+        <div className="flex flex-col gap-4 w-full h-full items-center rounded-none lg:rounded-l-3xl lg:h-full lg:bg-white scrollbar overflow-y-auto overflow-x-hidden">
           {children}
         </div>
       </div>

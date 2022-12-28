@@ -15,7 +15,7 @@ import { AddPostImage } from '../../features/posts/addpost/components/AddPostIma
 import { ErrorText } from '../../components/text/ErrorText'
 import { TextArea } from '../../components/text/TextArea'
 import { SubmitButton } from '../../components/buttons/SubmitButton'
-import { AuthorHeader } from '../../features/posts/viewpost/components/AuthorHeader'
+import { AuthorHeader } from '../../components/posts/components/AuthorHeader'
 
 const AddPost = () => {
   const storage = getStorage()

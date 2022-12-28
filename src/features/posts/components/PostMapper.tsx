@@ -12,13 +12,7 @@ const PostMapper = (args: PostMapperType) => {
         Object.values(data)
           .reverse()
           .map((post: any, index) => {
-            return (
-              <PreviewPost
-                post={post}
-                backgroundImage={post.imageURL}
-                key={index}
-              />
-            )
+            return <PreviewPost post={post} key={index} />
           })
       ) : (
         <p>No posts... yet.</p>

@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom'
 import { useGetUserData } from '../../../services/getUserData'
 import { useGetUserPosts } from '../../../services/getUserPosts'
-import ProfileLayout from '../components/ProfileLayout'
+import { ProfileLayout } from '../components/ProfileLayout'
 import { UserProfileStats } from './components/UserProfileStats'
 
 const UserProfileDetails = () => {

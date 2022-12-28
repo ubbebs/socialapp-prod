@@ -1,21 +1,29 @@
+/* eslint-disable prettier/prettier */
+import { useGetMyFollowers } from '../../../../services/getMyFollowers'
+import { useGetMyFollowing } from '../../../../services/getMyFollowing'
 import { useGetMyPosts } from '../../../../services/getMyPosts'
 
 const MyProfileStats = () => {
-  const { data: dataPosts } = useGetMyPosts('')
-  const postLength = Object.keys(dataPosts).length
-  return (
+  const { data: dataMyPosts, isLoading: isLoadingMyPosts } = useGetMyPosts('')
+  const { data: dataMyFollowers, isLoading: isLoadingMyFollowers } = useGetMyFollowers('')
+  const { data: dataMyFollowing, isLoading: isLoadingMyFollowing } = useGetMyFollowing('')
+  const postsLength = dataMyPosts ? Object.keys(dataMyPosts).length : 0
+  const myfollowersLength = dataMyFollowers ? Object.keys(dataMyFollowers).length : 0
+  const myfollowingLength = dataMyFollowing ? Object.keys(dataMyFollowing).length : 0
+
+  return !isLoadingMyPosts && !isLoadingMyFollowers && !isLoadingMyFollowing ? (
     <div className="flex gap-5 w-full max-w-[500px]">
       <p className="font-normal text-center text-md">
-        Posts: <b>{postLength}</b>
+        Posts: <b>{postsLength}</b>
       </p>
       <p className="font-normal text-center text-md">
-        <b>{0}</b> following
+        <b>{myfollowersLength}</b> followers
       </p>
       <p className="font-normal text-center text-md">
-        <b>{0}</b> followers
+        <b>{myfollowingLength}</b> following
       </p>
     </div>
-  )
+  ) : null
 }
 
 export { MyProfileStats }

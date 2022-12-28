@@ -28,4 +28,4 @@ const ProfileLayout = (args: ProfileLayoutType) => {
   )
 }
 
-export default ProfileLayout
+export { ProfileLayout }

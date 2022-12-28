@@ -1,5 +1,5 @@
 import { useGetUserData } from '../../services/getUserData'
-import { AuthorHeader } from '../posts/viewpost/components/AuthorHeader'
+import { AuthorHeader } from '../../components/posts/components/AuthorHeader'
 
 type PostCommentType = {
   data: {
