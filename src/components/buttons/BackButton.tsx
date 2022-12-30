@@ -5,8 +5,7 @@ type BackButtonType = {
   navigate: NavigateFunction
 }
 
-const BackButton = (args: BackButtonType) => {
-  const { navigate } = args
+export const BackButton = ({ navigate }: BackButtonType) => {
   return (
     <button
       type="button"
@@ -18,5 +17,3 @@ const BackButton = (args: BackButtonType) => {
     </button>
   )
 }
-
-export { BackButton }

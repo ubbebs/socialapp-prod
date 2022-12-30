@@ -7,12 +7,9 @@ type PostRemovePostPost = {
   time: number
 }
 
-const postRemovePost = async (data: PostRemovePostPost) => {
-  const { userid, time } = data
+export const postRemovePost = async ({ userid, time }: PostRemovePostPost) => {
   await axios.post(`${VITE_SERVER_URL}/removePost`, {
     userid,
     time,
   })
 }
-
-export { postRemovePost }

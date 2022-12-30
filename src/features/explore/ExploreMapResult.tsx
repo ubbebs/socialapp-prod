@@ -11,8 +11,9 @@ type ExploreMapResultType = {
   }
 }
 
-const ExploreMapResult = ({ data }: ExploreMapResultType) => {
-  const { accountName, displayName, photoURL, uid } = data
+export const ExploreMapResult = ({
+  data: { accountName, displayName, photoURL, uid },
+}: ExploreMapResultType) => {
   return (
     <Link to={stateStore.userid === uid ? '/myprofile' : `/profile/${uid}`}>
       <div className="w-full bg-white flex items-center gap-3 rounded-full">
@@ -26,5 +27,3 @@ const ExploreMapResult = ({ data }: ExploreMapResultType) => {
     </Link>
   )
 }
-
-export { ExploreMapResult }

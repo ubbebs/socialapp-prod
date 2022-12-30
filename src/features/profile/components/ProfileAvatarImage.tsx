@@ -8,8 +8,11 @@ type ProfileAvatarImageType = {
   title: string
 }
 
-const ProfileAvatarImage = (args: ProfileAvatarImageType) => {
-  const { AvatarState, setAvatarState, title } = args
+export const ProfileAvatarImage = ({
+  AvatarState,
+  setAvatarState,
+  title,
+}: ProfileAvatarImageType) => {
   const handleSelectFile = (e: ChangeEvent<HTMLInputElement>) => {
     return e.target.files && setAvatarState(e.target.files[0])
   }
@@ -31,5 +34,3 @@ const ProfileAvatarImage = (args: ProfileAvatarImageType) => {
     </>
   )
 }
-
-export { ProfileAvatarImage }

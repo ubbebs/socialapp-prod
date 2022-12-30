@@ -2,12 +2,12 @@ import { useState } from 'react'
 import { useDebouncedCallback } from 'use-debounce'
 import { useSnapshot } from 'valtio'
 import { stateStore } from '../../stateStore'
-import { useGetSearchUser } from '../../services/getSearchResult'
+import { useGetSearchUser } from '../../services/getSearchUser'
 import { ExploreSearchBar } from '../../features/explore/ExploreSearchBar'
 import { ExploreMapResult } from '../../features/explore/ExploreMapResult'
 import { useGetAllUsers } from '../../services/getAllUsers'
 
-const Explore = () => {
+export const Explore = () => {
   const state = useSnapshot(stateStore).searchKey
   const [search, setSearch] = useState<string | null>(state || null)
   const { data: dataSearchUser } = useGetSearchUser(search)
@@ -23,11 +23,11 @@ const Explore = () => {
       <ExploreSearchBar func={handleSearch} />
       <hr className="border-0 h-[2px] gradient-linear" />
       {dataSearchUser ? (
-        Object.values(dataSearchUser).map((elem: any, index: number) => {
+        Object.values(dataSearchUser).map((elem, index: number) => {
           return <ExploreMapResult data={elem} key={index} />
         })
-      ) : !isLoadingAllUsers ? (
-        Object.values(dataAllUsers).map((elem: any, index: number) => {
+      ) : !isLoadingAllUsers && dataAllUsers ? (
+        Object.values(dataAllUsers).map((elem, index: number) => {
           return <ExploreMapResult data={elem} key={index} />
         })
       ) : (
@@ -36,5 +36,3 @@ const Explore = () => {
     </div>
   )
 }
-
-export { Explore }

@@ -1,28 +1,21 @@
-import {
-  QueryObserverResult,
-  RefetchOptions,
-  RefetchQueryFilters,
-} from '@tanstack/react-query'
 import { NavigateFunction } from 'react-router-dom'
 import { stateStore } from '../../../../stateStore'
+import { queryClient } from '../../../../utils/queryClient'
 import { postRemovePost } from './postRemovePost'
 
 type ExecuteRemovePostType = {
   time: number
   navigate: NavigateFunction
-  refetch: <TPageData>(
-    options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined
-  ) => Promise<QueryObserverResult<any, unknown>>
 }
 
-const executeRemovePost = (args: ExecuteRemovePostType) => {
-  const { time, navigate, refetch } = args
+export const executeRemovePost = ({
+  time,
+  navigate,
+}: ExecuteRemovePostType) => {
   postRemovePost({
     userid: stateStore.userid,
     time,
   })
+  queryClient.invalidateQueries()
   navigate(-1)
-  refetch()
 }
-
-export { executeRemovePost }

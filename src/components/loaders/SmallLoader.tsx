@@ -1,6 +1,6 @@
 import { Oval } from 'react-loader-spinner'
 
-const SmallLoader = () => {
+export const SmallLoader = () => {
   return (
     <div className="absolute top-0 left-0 z-50 w-full h-full flex items-center justify-center gradient-shadow">
       <Oval
@@ -14,5 +14,3 @@ const SmallLoader = () => {
     </div>
   )
 }
-
-export { SmallLoader }

@@ -1,7 +1,6 @@
 import { UseMutateFunction } from '@tanstack/react-query'
 import { Auth } from 'firebase/auth'
 import { FirebaseStorage } from 'firebase/storage'
-import React from 'react'
 import { NavigateFunction } from 'react-router-dom'
 import { PostSetProfileType } from './postSetProfile'
 import { updateSetProfile } from './updateSetProfile'
@@ -21,19 +20,18 @@ type ExecuteSetProfileType = {
   setErrors: React.Dispatch<React.SetStateAction<ErrorsType>>
 }
 
-const executeSetProfile = (args: ExecuteSetProfileType) => {
-  const {
-    e,
-    auth,
-    storage,
-    postImg,
-    accountNameRef,
-    displayNameRef,
-    descriptionRef,
-    mutate,
-    navigate,
-    setErrors,
-  } = args
+export const executeSetProfile = ({
+  e,
+  auth,
+  storage,
+  postImg,
+  accountNameRef,
+  displayNameRef,
+  descriptionRef,
+  mutate,
+  navigate,
+  setErrors,
+}: ExecuteSetProfileType) => {
   const validation = validateSetProfile({
     auth,
     postImg,
@@ -87,5 +85,3 @@ const executeSetProfile = (args: ExecuteSetProfileType) => {
     }))
   }
 }
-
-export { executeSetProfile }

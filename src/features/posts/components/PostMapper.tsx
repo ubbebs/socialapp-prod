@@ -1,17 +1,17 @@
 import { PreviewPost } from '../../../components/posts/PreviewPost'
+import { PostType } from '../../../types/PostType'
 
 type PostMapperType = {
-  data: any
+  data: Record<number, PostType>
 }
 
-const PostMapper = (args: PostMapperType) => {
-  const { data } = args
+export const PostMapper = ({ data }: PostMapperType) => {
   return (
     <div className="overflow-y-auto grid grid-cols-3 gap-5 sm:gap-10 scrollbar w-full">
-      {data !== '' ? (
+      {data ? (
         Object.values(data)
           .reverse()
-          .map((post: any, index) => {
+          .map((post, index) => {
             return <PreviewPost post={post} key={index} />
           })
       ) : (
@@ -20,5 +20,3 @@ const PostMapper = (args: PostMapperType) => {
     </div>
   )
 }
-
-export { PostMapper }

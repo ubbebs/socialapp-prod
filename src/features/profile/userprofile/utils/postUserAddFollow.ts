@@ -7,16 +7,12 @@ export type PostUserFollowType = {
   myid: string
 }
 
-const postUserAddFollow = async (data: PostUserFollowType) => {
-  const { userid, myid } = data
-  await axios
-    .post(`${VITE_SERVER_URL}/addFollow`, {
-      userid,
-      myid,
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+export const postUserAddFollow = async ({
+  userid,
+  myid,
+}: PostUserFollowType) => {
+  await axios.post(`${VITE_SERVER_URL}/addFollow`, {
+    userid,
+    myid,
+  })
 }
-
-export { postUserAddFollow }

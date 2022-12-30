@@ -1,6 +1,6 @@
 import github from '../../assets/github.png'
 
-const Footer = () => {
+export const Footer = () => {
   return (
     <div className="flex gap-2 items-center justify-center">
       <p className="text-sm font-semibold">ubbebs</p>
@@ -8,5 +8,3 @@ const Footer = () => {
     </div>
   )
 }
-
-export { Footer }

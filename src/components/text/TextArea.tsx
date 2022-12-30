@@ -2,8 +2,7 @@ type TextAreaType = {
   valueRef: React.RefObject<HTMLTextAreaElement>
 }
 
-const TextArea = (args: TextAreaType) => {
-  const { valueRef } = args
+export const TextArea = ({ valueRef }: TextAreaType) => {
   return (
     <>
       <label className="pl-1 text-xs">Description</label>
@@ -15,5 +14,3 @@ const TextArea = (args: TextAreaType) => {
     </>
   )
 }
-
-export { TextArea }

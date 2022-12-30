@@ -1,30 +1,29 @@
-/* eslint-disable prettier/prettier */
 import { useParams } from 'react-router-dom'
 import { useGetUserFollowers } from '../../../../services/getUserFollowers'
 import { useGetUserFollowing } from '../../../../services/getUserFollowing'
 import { useGetUserPosts } from '../../../../services/getUserPosts'
 
-const UserProfileStats = () => {
+export const UserProfileStats = () => {
   const { uid } = useParams()
-  const { data: dataUserPosts, isLoading: isLoadingMyPosts } = useGetUserPosts(uid || '')
-  const { data: dataUserFollowers, isLoading: isLoadingMyFollowers } = useGetUserFollowers(uid || '')
-  const { data: dataUserFollowing, isLoading: isLoadingMyFollowing } = useGetUserFollowing(uid || '')
-  const postsLength = dataUserPosts ? Object.keys(dataUserPosts).length : 0
-  const userfollowersLength = dataUserFollowers ? Object.keys(dataUserFollowers).length : 0
-  const userfollowingLength = dataUserFollowing ? Object.keys(dataUserFollowing).length : 0
+  const { data: dataUserPosts, isLoading: isLoadingMyPosts } = useGetUserPosts(
+    uid || ''
+  )
+  const { data: dataUserFollowers, isLoading: isLoadingMyFollowers } =
+    useGetUserFollowers(uid || '')
+  const { data: dataUserFollowing, isLoading: isLoadingMyFollowing } =
+    useGetUserFollowing(uid || '')
+
   return !isLoadingMyFollowers && !isLoadingMyPosts && !isLoadingMyFollowing ? (
     <div className="flex gap-5 w-full max-w-[500px]">
       <p className="font-normal text-center text-md">
-        Posts: <b>{postsLength}</b>
+        Posts: <b>{Object.keys(dataUserPosts).length ?? 0}</b>
       </p>
       <p className="font-normal text-center text-md">
-        <b>{userfollowersLength}</b> followers
+        <b>{Object.keys(dataUserFollowers).length ?? 0}</b> followers
       </p>
       <p className="font-normal text-center text-md">
-        <b>{userfollowingLength}</b> following
+        <b>{Object.keys(dataUserFollowing).length ?? 0}</b> following
       </p>
     </div>
   ) : null
 }
-
-export { UserProfileStats }

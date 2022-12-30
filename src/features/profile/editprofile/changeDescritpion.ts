@@ -18,8 +18,12 @@ type ChangeDescriptionType = {
   setSuccessMutation: React.Dispatch<React.SetStateAction<SuccessMutationType>>
 }
 
-const changeDescription = async (args: ChangeDescriptionType) => {
-  const { userid, description, mutateDescription, setSuccessMutation } = args
+export const changeDescription = async ({
+  userid,
+  description,
+  mutateDescription,
+  setSuccessMutation,
+}: ChangeDescriptionType) => {
   mutateDescription(
     {
       description,
@@ -36,5 +40,3 @@ const changeDescription = async (args: ChangeDescriptionType) => {
     }
   )
 }
-
-export { changeDescription }

@@ -18,9 +18,13 @@ type ExecuteDescriptionType = {
   setSuccessMutation: React.Dispatch<React.SetStateAction<SuccessMutationType>>
 }
 
-const executeDescription = (args: ExecuteDescriptionType) => {
-  const { e, auth, descriptionRef, mutateDescription, setSuccessMutation } =
-    args
+export const executeDescription = ({
+  e,
+  auth,
+  descriptionRef,
+  mutateDescription,
+  setSuccessMutation,
+}: ExecuteDescriptionType) => {
   e.preventDefault()
   if (auth.currentUser) {
     changeDescription({
@@ -31,5 +35,3 @@ const executeDescription = (args: ExecuteDescriptionType) => {
     })
   }
 }
-
-export { executeDescription }

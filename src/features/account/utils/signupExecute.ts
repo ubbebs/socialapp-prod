@@ -12,17 +12,15 @@ type SignupExecuteType = {
   setState: React.Dispatch<React.SetStateAction<string | boolean>>
 }
 
-const signupExecute = (args: SignupExecuteType) => {
-  const {
-    e,
-    auth,
-    emailRef,
-    passwordRef,
-    passwordConfirmRef,
-    navigate,
-    setState,
-  } = args
-
+export const signupExecute = ({
+  e,
+  auth,
+  emailRef,
+  passwordRef,
+  passwordConfirmRef,
+  navigate,
+  setState,
+}: SignupExecuteType) => {
   e.preventDefault()
   if (
     signupValidate({
@@ -39,12 +37,10 @@ const signupExecute = (args: SignupExecuteType) => {
       .then(() => {
         navigate('/personalinfo')
       })
-      .catch((error) => {
+      .catch(() => {
         setState('Email already in use or invalid')
       })
   } else {
     setState('Password is too short or are not the same')
   }
 }
-
-export { signupExecute }

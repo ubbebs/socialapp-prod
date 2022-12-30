@@ -4,8 +4,7 @@ type ImageNotSelectedType = {
   func: (e: ChangeEvent<HTMLInputElement>) => void | null
 }
 
-const ImageNotSelected = (args: ImageNotSelectedType) => {
-  const { func } = args
+export const ImageNotSelected = ({ func }: ImageNotSelectedType) => {
   return (
     <>
       <div className="w-full h-full flex justify-center items-center flex-col border-2 border-black border-dashed rounded-3xl absolute top-0 left-0">
@@ -24,5 +23,3 @@ const ImageNotSelected = (args: ImageNotSelectedType) => {
     </>
   )
 }
-
-export { ImageNotSelected }

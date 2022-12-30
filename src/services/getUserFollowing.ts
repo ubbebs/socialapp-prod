@@ -1,17 +1,14 @@
 import { useQuery } from '@tanstack/react-query'
-import axios from 'axios'
+import { FollowerType } from '../types/FollowerType'
+import { fetcher } from '../utils/fetcher'
 
-const { VITE_SERVER_URL } = import.meta.env
-
-const useGetUserFollowing = (uid: string) => {
-  const getUserFollowing = async (userid: string) => {
-    const res = await axios.get(`${VITE_SERVER_URL}/getFollowing?uid=${userid}`)
-    return res.data
-  }
-
-  return useQuery(['userfollowing'], () => getUserFollowing(uid), {
-    enabled: !!uid,
-  })
+export const useGetUserFollowing = (uid: string) => {
+  return useQuery(
+    ['userfollowing'],
+    async () =>
+      fetcher<Record<string, FollowerType>>(`/getFollowing?uid=${uid}`),
+    {
+      enabled: !!uid,
+    }
+  )
 }
-
-export { useGetUserFollowing }

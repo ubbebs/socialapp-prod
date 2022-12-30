@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { QueryClientProvider } from '@tanstack/react-query'
 import { AuthRoute } from './AuthRoute'
 import { HomePageData } from './layouts/homepagewrapper/HomePageData'
 import { Signin } from './pages/signin/Signin'
@@ -7,21 +7,12 @@ import { Signup } from './pages/signup/Signup'
 import { HomePage } from './pages/homepage/HomePage'
 import { MyProfile } from './pages/myprofile/MyProfile'
 import { Explore } from './pages/explore/Explore'
-import { PersonalInfo } from './pages/setprofile/SetProfile'
+import { SetProfile } from './pages/setprofile/SetProfile'
 import { ViewPost } from './pages/viewpost/ViewPost'
 import { EditProfile } from './pages/editprofile/EditProfile'
 import { AddPost } from './pages/addpost/AddPost'
 import { UserProfile } from './pages/userprofile/UserProfile'
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
-      refetchOnMount: true,
-      refetchOnReconnect: true,
-    },
-  },
-})
+import { queryClient } from './utils/queryClient'
 
 function App() {
   return (
@@ -89,7 +80,7 @@ function App() {
             path="/personalinfo"
             element={
               <AuthRoute>
-                <PersonalInfo />
+                <SetProfile />
               </AuthRoute>
             }
           />

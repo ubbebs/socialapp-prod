@@ -10,13 +10,12 @@ import { SubmitButton } from '../../components/buttons/SubmitButton'
 import { InputDiv } from '../../components/inputs/InputDiv'
 import { HeaderText } from '../../components/text/HeaderText'
 
-function Signin() {
+export const Signin = () => {
   const auth = getAuth()
   const emailRef = useRef<HTMLInputElement>(null)
   const passwordRef = useRef<HTMLInputElement>(null)
   const navigate = useNavigate()
   const [loginError, setLoginError] = useState<boolean>(false)
-
   const signinFunc = (e: React.FormEvent) => {
     signinExecute({
       e,
@@ -67,5 +66,3 @@ function Signin() {
     </OuterPage>
   )
 }
-
-export { Signin }

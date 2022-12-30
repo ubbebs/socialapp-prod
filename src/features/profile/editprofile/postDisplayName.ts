@@ -7,16 +7,12 @@ export type PostDisplayNameType = {
   uid: string
 }
 
-const postDisplayName = async (data: PostDisplayNameType) => {
-  const { displayName, uid } = data
-  await axios
-    .post(`${VITE_SERVER_URL}/updateDisplayName`, {
-      displayName,
-      uid,
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+export const postDisplayName = async ({
+  displayName,
+  uid,
+}: PostDisplayNameType) => {
+  await axios.post(`${VITE_SERVER_URL}/updateDisplayName`, {
+    displayName,
+    uid,
+  })
 }
-
-export { postDisplayName }

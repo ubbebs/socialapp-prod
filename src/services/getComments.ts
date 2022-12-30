@@ -1,17 +1,14 @@
 import { useQuery } from '@tanstack/react-query'
-import axios from 'axios'
+import { CommentType } from '../types/CommentType'
+import { fetcher } from '../utils/fetcher'
 
-const { VITE_SERVER_URL } = import.meta.env
-
-const useGetComments = (uid: string, key: string | boolean) => {
-  const getComments = async () => {
-    const res = await axios.get(
-      `${VITE_SERVER_URL}/getComments?authorid=${uid}&key=${key}`
-    )
-    return res.data
-  }
-
-  return useQuery(['comments'], () => getComments(), { enabled: !!uid })
+export const useGetComments = (uid: string, key: string | boolean) => {
+  return useQuery(
+    ['comments'],
+    async () =>
+      fetcher<Record<string, CommentType>>(
+        `/getComments?authorid=${uid}&key=${key}`
+      ),
+    { enabled: !!uid }
+  )
 }
-
-export { useGetComments }

@@ -14,8 +14,14 @@ type ExecuteAvatarType = {
   setSuccessMutation: React.Dispatch<React.SetStateAction<SuccessMutationType>>
 }
 
-const executeAvatar = (args: ExecuteAvatarType) => {
-  const { e, auth, storage, postImg, mutateAvatar, setSuccessMutation } = args
+export const executeAvatar = ({
+  e,
+  auth,
+  storage,
+  postImg,
+  mutateAvatar,
+  setSuccessMutation,
+}: ExecuteAvatarType) => {
   e.preventDefault()
   if (postImg && auth.currentUser) {
     setSuccessMutation((prev) => ({
@@ -37,5 +43,3 @@ const executeAvatar = (args: ExecuteAvatarType) => {
     }))
   }
 }
-
-export { executeAvatar }

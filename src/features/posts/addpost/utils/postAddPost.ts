@@ -6,13 +6,14 @@ export type PostAddPostType = {
   time: number
 }
 
-const postAddPost = async (data: PostAddPostType) => {
-  const { description, userid, time } = data
+export const postAddPost = async ({
+  description,
+  userid,
+  time,
+}: PostAddPostType) => {
   await axios.post(`http://localhost:8383/addPost`, {
     description,
     userid,
     time,
   })
 }
-
-export { postAddPost }

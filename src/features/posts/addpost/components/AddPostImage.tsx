@@ -7,8 +7,10 @@ type AddPostImageType = {
   setImageState: React.Dispatch<React.SetStateAction<File | null>>
 }
 
-const AddPostImage = (args: AddPostImageType) => {
-  const { ImageState, setImageState } = args
+export const AddPostImage = ({
+  ImageState,
+  setImageState,
+}: AddPostImageType) => {
   const handleSelectFile = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) setImageState(e.target.files[0])
   }
@@ -25,5 +27,3 @@ const AddPostImage = (args: AddPostImageType) => {
     </div>
   )
 }
-
-export { AddPostImage }

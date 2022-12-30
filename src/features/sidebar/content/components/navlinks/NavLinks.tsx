@@ -2,24 +2,22 @@ import { AiFillHome } from 'react-icons/ai'
 import { CiSearch, CiSettings } from 'react-icons/ci'
 import { BiMoviePlay } from 'react-icons/bi'
 import { FiLogOut } from 'react-icons/fi'
-import React from 'react'
 import { logout } from '../utils/logout'
 import { useGetMyData } from '../../../../../services/getMyData'
-import NavLinksButton from './components/NavLinksButton'
+import { NavLinksButton } from './components/NavLinksButton'
 
 type NavLinksType = {
   func: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const NavLinks = (props: NavLinksType) => {
-  const { func } = props
+export const NavLinks = ({ func }: NavLinksType) => {
   const { remove } = useGetMyData('')
-
   const logoutWithClearData = (e: React.FormEvent) => {
     e.preventDefault()
     remove()
     logout()
   }
+
   return (
     <div className="flex flex-col gap-4 w-full max-w-[275px] px-3">
       <NavLinksButton
@@ -57,5 +55,3 @@ const NavLinks = (props: NavLinksType) => {
     </div>
   )
 }
-
-export { NavLinks }

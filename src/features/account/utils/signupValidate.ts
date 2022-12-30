@@ -4,8 +4,11 @@ type SignupValidateType = {
   passwordConfirm: HTMLInputElement | null
 }
 
-const signupValidate = (args: SignupValidateType) => {
-  const { email, password, passwordConfirm } = args
+export const signupValidate = ({
+  email,
+  password,
+  passwordConfirm,
+}: SignupValidateType) => {
   return (
     email &&
     password &&
@@ -14,5 +17,3 @@ const signupValidate = (args: SignupValidateType) => {
     password.value.length > 5
   )
 }
-
-export { signupValidate }

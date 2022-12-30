@@ -1,6 +1,6 @@
 import { Oval } from 'react-loader-spinner'
 
-const Loader = () => {
+export const Loader = () => {
   return (
     <div className="absolute z-50 w-screen h-screen flex items-center justify-center gradient-cross">
       <Oval
@@ -14,5 +14,3 @@ const Loader = () => {
     </div>
   )
 }
-
-export { Loader }

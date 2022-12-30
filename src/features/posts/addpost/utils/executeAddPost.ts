@@ -19,16 +19,15 @@ type ExecuteAddPostType = {
   setSuccessMutation: React.Dispatch<React.SetStateAction<SuccessMutationType>>
 }
 
-const executeAddPost = (args: ExecuteAddPostType) => {
-  const {
-    e,
-    userid,
-    postImg,
-    storage,
-    mutate,
-    descriptionRef,
-    setSuccessMutation,
-  } = args
+export const executeAddPost = ({
+  e,
+  userid,
+  postImg,
+  storage,
+  mutate,
+  descriptionRef,
+  setSuccessMutation,
+}: ExecuteAddPostType) => {
   e.preventDefault()
   if (!postImg) {
     setSuccessMutation({
@@ -63,5 +62,3 @@ const executeAddPost = (args: ExecuteAddPostType) => {
     }
   }
 }
-
-export { executeAddPost }

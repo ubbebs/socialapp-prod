@@ -5,13 +5,10 @@ type LinkTextType = {
   text: string
 }
 
-const LinkText = (args: LinkTextType) => {
-  const { url, text } = args
+export const LinkText = ({ url, text }: LinkTextType) => {
   return (
     <p className="text-sm text-center">
       <Link to={url}>{text}</Link>
     </p>
   )
 }
-
-export { LinkText }

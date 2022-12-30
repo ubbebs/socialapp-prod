@@ -1,9 +1,8 @@
 import { useParams } from 'react-router-dom'
-import { PreviewPost } from '../../../components/posts/PreviewPost'
 import { useGetUserPosts } from '../../../services/getUserPosts'
 import { PostMapper } from '../components/PostMapper'
 
-const UserPosts = () => {
+export const UserPosts = () => {
   const { uid } = useParams()
   const { data: dataUserPosts, isLoading: isLoadingUserPosts } =
     useGetUserPosts(uid || '')
@@ -14,5 +13,3 @@ const UserPosts = () => {
     <p>Loading</p>
   )
 }
-
-export { UserPosts }

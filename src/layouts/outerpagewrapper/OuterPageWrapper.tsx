@@ -4,8 +4,7 @@ type OuterPageType = {
   children: JSX.Element
 }
 
-const OuterPage = (args: OuterPageType) => {
-  const { children } = args
+export const OuterPage = ({ children }: OuterPageType) => {
   return (
     <div className="w-screen min-h-screen flex justify-center items-center gradient-cross">
       <div className="w-full md:w-[400px] h-full md:min-h-[600px] bg-white box-border p-8 flex flex-col justify-between md:rounded-xl">
@@ -15,5 +14,3 @@ const OuterPage = (args: OuterPageType) => {
     </div>
   )
 }
-
-export { OuterPage }

@@ -8,8 +8,12 @@ type NavLinksButtonType = {
   text: string
 }
 
-const NavLinksButton = (args: NavLinksButtonType) => {
-  const { redirect, func, icon, text } = args
+export const NavLinksButton = ({
+  redirect,
+  func,
+  icon,
+  text,
+}: NavLinksButtonType) => {
   return (
     <Link
       to={redirect}
@@ -28,5 +32,3 @@ const NavLinksButton = (args: NavLinksButtonType) => {
     </Link>
   )
 }
-
-export default NavLinksButton

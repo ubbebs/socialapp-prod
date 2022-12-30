@@ -8,8 +8,13 @@ type InputDivType = {
   name: string
 }
 
-const InputDiv = (args: InputDivType) => {
-  const { icon, valueRef, title, type, name } = args
+export const InputDiv = ({
+  icon,
+  valueRef,
+  title,
+  type,
+  name,
+}: InputDivType) => {
   return (
     <>
       <label className="pl-1 text-xs" htmlFor="Login">
@@ -28,5 +33,3 @@ const InputDiv = (args: InputDivType) => {
     </>
   )
 }
-
-export { InputDiv }

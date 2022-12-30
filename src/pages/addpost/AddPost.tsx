@@ -1,11 +1,10 @@
 import { getStorage } from 'firebase/storage'
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { useSnapshot } from 'valtio'
 import { useNavigate } from 'react-router-dom'
 import { useMutation } from '@tanstack/react-query'
 import { stateStore } from '../../stateStore'
 import { useGetMyData } from '../../services/getMyData'
-import { useGetMyPosts } from '../../services/getMyPosts'
 import { postAddPost } from '../../features/posts/addpost/utils/postAddPost'
 import {
   executeAddPost,
@@ -17,7 +16,7 @@ import { TextArea } from '../../components/text/TextArea'
 import { SubmitButton } from '../../components/buttons/SubmitButton'
 import { AuthorHeader } from '../../components/posts/components/AuthorHeader'
 
-const AddPost = () => {
+export const AddPost = () => {
   const storage = getStorage()
   const navigate = useNavigate()
   const { userid } = useSnapshot(stateStore)
@@ -29,7 +28,6 @@ const AddPost = () => {
   })
   const { mutate } = useMutation(postAddPost)
   const { data: dataMyData, isLoading: isLoadingMyData } = useGetMyData('')
-  const { refetch: refetchMyPosts } = useGetMyPosts(userid || '')
   const addPostFunc = (e: React.FormEvent) => {
     executeAddPost({
       e,
@@ -42,12 +40,9 @@ const AddPost = () => {
     })
   }
 
-  useEffect(() => {
-    if (successMutation.ok) {
-      refetchMyPosts()
-      navigate('/myprofile')
-    }
-  }, [navigate, refetchMyPosts, successMutation])
+  if (successMutation.ok) {
+    navigate('/myprofile')
+  }
 
   return !isLoadingMyData ? (
     <div className="flex w-full h-full flex-col lg:flex-row items-center justify-center">
@@ -72,5 +67,3 @@ const AddPost = () => {
     <p>Loading posts...</p>
   )
 }
-
-export { AddPost }

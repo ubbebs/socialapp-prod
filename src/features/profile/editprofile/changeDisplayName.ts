@@ -18,8 +18,12 @@ type ChangeDisplayNameType = {
   setSuccessMutation: React.Dispatch<React.SetStateAction<SuccessMutationType>>
 }
 
-const changeDisplayName = async (args: ChangeDisplayNameType) => {
-  const { userid, displayName, mutateDisplayName, setSuccessMutation } = args
+export const changeDisplayName = async ({
+  userid,
+  displayName,
+  mutateDisplayName,
+  setSuccessMutation,
+}: ChangeDisplayNameType) => {
   mutateDisplayName(
     {
       displayName,
@@ -35,5 +39,3 @@ const changeDisplayName = async (args: ChangeDisplayNameType) => {
     }
   )
 }
-
-export { changeDisplayName }

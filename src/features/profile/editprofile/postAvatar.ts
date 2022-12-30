@@ -7,16 +7,9 @@ export type PostAvatarType = {
   uid: string
 }
 
-const postAvatar = async (data: PostAvatarType) => {
-  const { timestamp, uid } = data
-  await axios
-    .post(`${VITE_SERVER_URL}/updateAvatar`, {
-      timestamp,
-      uid,
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+export const postAvatar = async ({ timestamp, uid }: PostAvatarType) => {
+  await axios.post(`${VITE_SERVER_URL}/updateAvatar`, {
+    timestamp,
+    uid,
+  })
 }
-
-export { postAvatar }

@@ -9,8 +9,12 @@ type ValidateSetProfile = {
   displayNameRef: React.RefObject<HTMLInputElement> | null
 }
 
-const validateSetProfile = (args: ValidateSetProfile) => {
-  const { auth, postImg, accountNameRef, displayNameRef } = args
+export const validateSetProfile = ({
+  auth,
+  postImg,
+  accountNameRef,
+  displayNameRef,
+}: ValidateSetProfile) => {
   const displayName = validateDisplayName({
     displayNameRef,
   })
@@ -24,5 +28,3 @@ const validateSetProfile = (args: ValidateSetProfile) => {
     errorAccountName: !accountName,
   }
 }
-
-export { validateSetProfile }

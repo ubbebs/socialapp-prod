@@ -24,7 +24,7 @@ import {
   SuccessMutationType,
 } from './EditProfile.utils'
 
-function EditProfile() {
+export const EditProfile = () => {
   const auth = getAuth()
   const storage = getStorage()
   const navigate = useNavigate()
@@ -109,5 +109,3 @@ function EditProfile() {
     </OuterPage>
   )
 }
-
-export { EditProfile }

@@ -8,8 +8,13 @@ export type PostAddCommentType = {
   time: number
 }
 
-const postAddComment = async (data: PostAddCommentType) => {
-  const { authorid, postid, comment, userid, time } = data
+export const postAddComment = async ({
+  authorid,
+  postid,
+  comment,
+  userid,
+  time,
+}: PostAddCommentType) => {
   await axios.post(`http://localhost:8383/addComment`, {
     authorid,
     postid,
@@ -18,5 +23,3 @@ const postAddComment = async (data: PostAddCommentType) => {
     time,
   })
 }
-
-export { postAddComment }

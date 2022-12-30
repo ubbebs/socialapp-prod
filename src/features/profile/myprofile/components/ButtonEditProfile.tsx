@@ -1,7 +1,7 @@
 import { CiSettings } from 'react-icons/ci'
 import { Link } from 'react-router-dom'
 
-const ButtonEditProfile = () => {
+export const ButtonEditProfile = () => {
   return (
     <Link to="/editprofile">
       <button
@@ -14,5 +14,3 @@ const ButtonEditProfile = () => {
     </Link>
   )
 }
-
-export { ButtonEditProfile }

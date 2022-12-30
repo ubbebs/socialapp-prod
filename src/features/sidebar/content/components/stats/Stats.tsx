@@ -4,7 +4,7 @@ import { useGetMyFollowing } from '../../../../../services/getMyFollowing'
 import { useGetMyPosts } from '../../../../../services/getMyPosts'
 import { stateStore } from '../../../../../stateStore'
 
-const Stats = () => {
+export const Stats = () => {
   const { data: dataMyPosts, isLoading: isLoadingMyPosts } = useGetMyPosts(stateStore.userid || '')
   const { data: dataMyFollowers, isLoading: isLoadingMyFollowers } = useGetMyFollowers(stateStore.userid || '')
   const { data: dataMyFollowing, isLoading: isLoadingMyFollowing } = useGetMyFollowing(stateStore.userid || '')
@@ -23,5 +23,3 @@ const Stats = () => {
     </div>
   ) : null
 }
-
-export { Stats }

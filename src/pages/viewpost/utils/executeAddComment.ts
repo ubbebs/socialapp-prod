@@ -1,10 +1,6 @@
-import {
-  QueryObserverResult,
-  RefetchOptions,
-  RefetchQueryFilters,
-  UseMutateFunction,
-} from '@tanstack/react-query'
+import { UseMutateFunction } from '@tanstack/react-query'
 import { PostAddCommentType } from '../../../features/posts/viewpost/utils/postAddComment'
+import { queryClient } from '../../../utils/queryClient'
 
 type ExecuteAddCommentType = {
   e: React.FormEvent
@@ -15,14 +11,16 @@ type ExecuteAddCommentType = {
     postid: string
     userid: string
   }
-  refetchComments: <TPageData>(
-    options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined
-  ) => Promise<QueryObserverResult<any, unknown>>
   setError: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const executeAddComment = (args: ExecuteAddCommentType) => {
-  const { e, mutate, comment, data, refetchComments, setError } = args
+export const executeAddComment = ({
+  e,
+  mutate,
+  comment,
+  data,
+  setError,
+}: ExecuteAddCommentType) => {
   e.preventDefault()
   const time = Date.now()
   if (comment.current && comment.current.value.length > 0) {
@@ -36,15 +34,14 @@ const executeAddComment = (args: ExecuteAddCommentType) => {
       },
       {
         onSuccess: () => {
-          refetchComments()
+          queryClient.invalidateQueries()
         },
       }
     )
+    // eslint-disable-next-line no-param-reassign
     comment.current.value = ''
     setError(false)
   } else {
     setError(true)
   }
 }
-
-export { executeAddComment }

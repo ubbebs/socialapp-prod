@@ -1,17 +1,11 @@
 import { useQuery } from '@tanstack/react-query'
-import axios from 'axios'
+import { PostType } from '../types/PostType'
+import { fetcher } from '../utils/fetcher'
 
-const { VITE_SERVER_URL } = import.meta.env
-
-const useGetPost = (uid: string, key: string | boolean) => {
-  const getPosts = async () => {
-    const res = await axios.get(
-      `${VITE_SERVER_URL}/getPost?authorid=${uid}&key=${key}`
-    )
-    return res.data
-  }
-
-  return useQuery(['post'], () => getPosts(), { enabled: !!uid })
+export const useGetPost = (uid: string, key: string | boolean) => {
+  return useQuery(
+    ['post'],
+    async () => fetcher<PostType>(`/getPost?authorid=${uid}&key=${key}`),
+    { enabled: !!uid }
+  )
 }
-
-export { useGetPost }

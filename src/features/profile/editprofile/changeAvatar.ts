@@ -12,8 +12,13 @@ export type ChangeAvatarType = {
   setSuccessMutation: React.Dispatch<React.SetStateAction<SuccessMutationType>>
 }
 
-const changeAvatar = async (args: ChangeAvatarType) => {
-  const { storage, userid, postImg, mutateAvatar, setSuccessMutation } = args
+export const changeAvatar = async ({
+  storage,
+  userid,
+  postImg,
+  mutateAvatar,
+  setSuccessMutation,
+}: ChangeAvatarType) => {
   const timestamp = (Date.now() / 1000).toString()
   storageAvatar({ storage, userid, elem: postImg, timestamp }).then(() => {
     mutateAvatar(
@@ -32,5 +37,3 @@ const changeAvatar = async (args: ChangeAvatarType) => {
     )
   })
 }
-
-export { changeAvatar }

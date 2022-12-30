@@ -10,8 +10,7 @@ type HomePageDataType = {
   subpage: JSX.Element
 }
 
-const HomePageData = (props: HomePageDataType) => {
-  const { subpage } = props
+export const HomePageData = ({ subpage }: HomePageDataType) => {
   const { isLoading: isLoadingAuthData } = useGetAuthData(
     stateStore.userid || ''
   )
@@ -21,14 +20,13 @@ const HomePageData = (props: HomePageDataType) => {
     stateStore.userid || ''
   )
 
-  return !isLoadingAuthData &&
-    !isLoadingMyPosts &&
-    !isLoadingMyData &&
-    !isLoadingMyFollowingPosts ? (
-    <Wrapper>{subpage}</Wrapper>
-  ) : (
-    <Loader />
+  if (
+    isLoadingAuthData &&
+    isLoadingMyPosts &&
+    isLoadingMyData &&
+    isLoadingMyFollowingPosts
   )
-}
+    return <Loader />
 
-export { HomePageData }
+  return <Wrapper>{subpage}</Wrapper>
+}

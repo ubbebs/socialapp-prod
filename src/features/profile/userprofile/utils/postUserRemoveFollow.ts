@@ -7,12 +7,12 @@ type PostUserRemoveFollowType = {
   myid: string
 }
 
-const postUserRemoveFollow = async (data: PostUserRemoveFollowType) => {
-  const { userid, myid } = data
+export const postUserRemoveFollow = async ({
+  userid,
+  myid,
+}: PostUserRemoveFollowType) => {
   await axios.post(`${VITE_SERVER_URL}/removeFollow`, {
     userid,
     myid,
   })
 }
-
-export { postUserRemoveFollow }

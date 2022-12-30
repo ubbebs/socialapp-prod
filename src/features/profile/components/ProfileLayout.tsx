@@ -10,22 +10,22 @@ type ProfileLayoutType = {
   stats: JSX.Element
 }
 
-const ProfileLayout = (args: ProfileLayoutType) => {
-  const { data, stats } = args
+export const ProfileLayout = ({
+  data: { photoURL, displayName, accountName, description },
+  stats,
+}: ProfileLayoutType) => {
   return (
     <div className="w-full flex flex-col items-center gap-5 sm:flex-row sm:items-start my-3">
       <div
         className="w-[150px] h-[150px] flex-shrink rounded-full bg-no-repeat bg-center bg-cover"
-        style={background(data.photoURL)}
+        style={background(photoURL)}
       />
       <div className="grow flex h-full flex-col gap-3 items-center sm:items-start">
-        <p className="font-semibold text-xl">{data.displayName}</p>
-        <p className="font-normal text-sm">@{data.accountName}</p>
-        <p>{data.description}</p>
+        <p className="font-semibold text-xl">{displayName}</p>
+        <p className="font-normal text-sm">@{accountName}</p>
+        <p>{description}</p>
         {stats}
       </div>
     </div>
   )
 }
-
-export { ProfileLayout }

@@ -7,16 +7,12 @@ export type PostDescriptionType = {
   uid: string
 }
 
-const postDescription = async (data: PostDescriptionType) => {
-  const { description, uid } = data
-  await axios
-    .post(`${VITE_SERVER_URL}/updateDescription`, {
-      description,
-      uid,
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+export const postDescription = async ({
+  description,
+  uid,
+}: PostDescriptionType) => {
+  await axios.post(`${VITE_SERVER_URL}/updateDescription`, {
+    description,
+    uid,
+  })
 }
-
-export { postDescription }

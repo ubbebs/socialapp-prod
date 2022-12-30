@@ -11,11 +11,14 @@ type FollowingPostDivType = {
   }
 }
 
-const FollowingPostDiv = ({ data }: FollowingPostDivType) => {
-  const { authorid, description, timestamp } = data
+export const FollowingPostDiv = ({
+  data: { authorid, description, timestamp },
+  data,
+}: FollowingPostDivType) => {
   const { data: dataUserData, isLoading: isLoadingUserData } = useGetUserData(
     authorid || ''
   )
+
   return !isLoadingUserData ? (
     <>
       <div className="border rounded-xl p-3 flex flex-col gap-3">
@@ -33,5 +36,3 @@ const FollowingPostDiv = ({ data }: FollowingPostDivType) => {
     </>
   ) : null
 }
-
-export { FollowingPostDiv }

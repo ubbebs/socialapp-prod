@@ -4,7 +4,7 @@ import { useGetUserPosts } from '../../../services/getUserPosts'
 import { ProfileLayout } from '../components/ProfileLayout'
 import { UserProfileStats } from './components/UserProfileStats'
 
-const UserProfileDetails = () => {
+export const UserProfileDetails = () => {
   const { uid } = useParams()
   const { data: dataUserData, isLoading: isLoadingUserData } = useGetUserData(
     uid || ''
@@ -23,5 +23,3 @@ const UserProfileDetails = () => {
     />
   ) : null
 }
-
-export { UserProfileDetails }

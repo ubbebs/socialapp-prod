@@ -19,7 +19,7 @@ import { HeaderText } from '../../components/text/HeaderText'
 import { ErrorText } from '../../components/text/ErrorText'
 import { defaultErrors, ErrorsType } from './SetProfile.utils'
 
-function PersonalInfo() {
+export const SetProfile = () => {
   const auth = getAuth(app)
   const navigate = useNavigate()
   const storage = getStorage()
@@ -101,5 +101,3 @@ function PersonalInfo() {
     <Loader />
   )
 }
-
-export { PersonalInfo }

@@ -10,19 +10,18 @@ export type PostSetProfileType = {
   uid: string
 }
 
-const postSetProfile = async (data: PostSetProfileType) => {
-  const { accountName, displayName, description, timestamp, uid } = data
-  await axios
-    .post(`${VITE_SERVER_URL}/setPersonalInfo`, {
-      accountName,
-      displayName,
-      description,
-      timestamp,
-      uid,
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+export const postSetProfile = async ({
+  accountName,
+  displayName,
+  description,
+  timestamp,
+  uid,
+}: PostSetProfileType) => {
+  await axios.post(`${VITE_SERVER_URL}/setPersonalInfo`, {
+    accountName,
+    displayName,
+    description,
+    timestamp,
+    uid,
+  })
 }
-
-export { postSetProfile }

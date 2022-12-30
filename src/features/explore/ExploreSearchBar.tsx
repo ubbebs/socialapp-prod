@@ -4,8 +4,7 @@ type ExploreSearchBarType = {
   func: (value: string) => void
 }
 
-const ExploreSearchBar = (args: ExploreSearchBarType) => {
-  const { func } = args
+export const ExploreSearchBar = ({ func }: ExploreSearchBarType) => {
   return (
     <div className="max-w-[300px] w-full bg-zinc-100 rounded-full flex items-center gap-2 p-2 text-zinc-500">
       <CiSearch />
@@ -17,5 +16,3 @@ const ExploreSearchBar = (args: ExploreSearchBarType) => {
     </div>
   )
 }
-
-export { ExploreSearchBar }

@@ -16,17 +16,16 @@ type UpdateSetProfileType = {
   navigate: NavigateFunction
 }
 
-const updateSetProfile = (args: UpdateSetProfileType) => {
-  const {
-    auth,
-    storage,
-    postImg,
-    mutate,
-    accountNameRef,
-    displayNameRef,
-    descriptionRef,
-    navigate,
-  } = args
+export const updateSetProfile = ({
+  auth,
+  storage,
+  postImg,
+  mutate,
+  accountNameRef,
+  displayNameRef,
+  descriptionRef,
+  navigate,
+}: UpdateSetProfileType) => {
   const timestamp = (Date.now() / 1000).toString()
   storageAvatar({
     storage,
@@ -50,5 +49,3 @@ const updateSetProfile = (args: UpdateSetProfileType) => {
     )
   })
 }
-
-export { updateSetProfile }

@@ -3,7 +3,7 @@ import { useGetMyData } from '../../../services/getMyData'
 import { MyProfileStats } from './components/MyProfileStats'
 import { ProfileLayout } from '../components/ProfileLayout'
 
-const MyProfileDetails = () => {
+export const MyProfileDetails = () => {
   const { data: dataMyData, isLoading: isLoadingMyData } = useGetMyData(
     stateStore.userid || ''
   )
@@ -20,5 +20,3 @@ const MyProfileDetails = () => {
     />
   ) : null
 }
-
-export { MyProfileDetails }

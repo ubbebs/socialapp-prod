@@ -9,8 +9,7 @@ type SidebarType = {
   func: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const Sidebar = (props: SidebarType) => {
-  const { hidden, func } = props
+export const Sidebar = ({ hidden, func }: SidebarType) => {
   const { data: dataMyData } = useGetMyData('')
 
   return (
@@ -36,5 +35,3 @@ const Sidebar = (props: SidebarType) => {
     </div>
   )
 }
-
-export { Sidebar }

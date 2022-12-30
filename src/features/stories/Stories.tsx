@@ -2,16 +2,18 @@ import { useGetMyFollowing } from '../../services/getMyFollowing'
 import { stateStore } from '../../stateStore'
 import { StoryAvatar } from './components/StoryAvatar'
 
-const Stories = () => {
+export const Stories = () => {
   const { data: dataMyFollowing, isLoading: isLoadingMyFollowing } =
     useGetMyFollowing(stateStore.userid || '')
 
-  return !isLoadingMyFollowing && dataMyFollowing ? (
+  if (isLoadingMyFollowing) return null
+
+  return dataMyFollowing ? (
     <div className="overflow-x-hidden">
       <div className="w-full bg-zinc-50 rounded-xl p-4">
         <div className="overflow-x-auto flex gap-2 shrink-0 scrollbar pb-3">
-          {Object.values(dataMyFollowing).map((elem: any, index: number) => (
-            <StoryAvatar id={elem.following_id} key={index} />
+          {Object.keys(dataMyFollowing).map((elem: string, index: number) => (
+            <StoryAvatar id={elem} key={index} />
           ))}
         </div>
       </div>
@@ -22,5 +24,3 @@ const Stories = () => {
     </p>
   )
 }
-
-export { Stories }

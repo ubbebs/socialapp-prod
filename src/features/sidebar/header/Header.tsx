@@ -6,8 +6,7 @@ type HeaderType = {
   stateFunc: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const Header = (props: HeaderType) => {
-  const { func, stateFunc } = props
+export const Header = ({ func, stateFunc }: HeaderType) => {
   return (
     <div className="fixed lg:relative z-10 flex w-full bg-white lg:bg-inherit h-[100px] lg:pl-[30px] justify-center lg:justify-start items-center">
       <Link to="/" onClick={() => stateFunc(false)}>
@@ -23,5 +22,3 @@ const Header = (props: HeaderType) => {
     </div>
   )
 }
-
-export { Header }

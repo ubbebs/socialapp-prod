@@ -10,8 +10,14 @@ type SigninExecuteType = {
   setState: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const signinExecute = (args: SigninExecuteType) => {
-  const { e, auth, emailRef, passwordRef, navigate, setState } = args
+export const signinExecute = ({
+  e,
+  auth,
+  emailRef,
+  passwordRef,
+  navigate,
+  setState,
+}: SigninExecuteType) => {
   e.preventDefault()
   if (emailRef.current?.value && passwordRef.current?.value) {
     signInWithEmailAndPassword(
@@ -22,11 +28,8 @@ const signinExecute = (args: SigninExecuteType) => {
       .then(() => {
         navigate('/')
       })
-      .catch((error) => {
-        console.log(error)
+      .catch(() => {
         setState(true)
       })
   }
 }
-
-export { signinExecute }

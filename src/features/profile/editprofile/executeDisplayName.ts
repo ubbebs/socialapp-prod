@@ -18,9 +18,13 @@ type ExecuteDisplayNameType = {
   setSuccessMutation: React.Dispatch<React.SetStateAction<SuccessMutationType>>
 }
 
-const executeDisplayName = (args: ExecuteDisplayNameType) => {
-  const { e, auth, mutateDisplayName, displayNameRef, setSuccessMutation } =
-    args
+export const executeDisplayName = ({
+  e,
+  auth,
+  mutateDisplayName,
+  displayNameRef,
+  setSuccessMutation,
+}: ExecuteDisplayNameType) => {
   e.preventDefault()
   if (
     auth?.currentUser &&
@@ -46,5 +50,3 @@ const executeDisplayName = (args: ExecuteDisplayNameType) => {
     }))
   }
 }
-
-export { executeDisplayName }

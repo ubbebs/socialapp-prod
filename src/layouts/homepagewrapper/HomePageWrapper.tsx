@@ -6,8 +6,7 @@ type WrapperType = {
   children: JSX.Element
 }
 
-const Wrapper = (args: WrapperType) => {
-  const { children } = args
+export const Wrapper = ({ children }: WrapperType) => {
   const [toggleUserInfo, setToggleUserInfo] = useState<boolean>(false)
   const handleClick = () => {
     setToggleUserInfo((prev) => !prev)
@@ -26,5 +25,3 @@ const Wrapper = (args: WrapperType) => {
     </div>
   )
 }
-
-export { Wrapper }

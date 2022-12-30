@@ -3,7 +3,7 @@ import { UserProfileDetails } from '../../features/profile/userprofile/UserProfi
 import { UserPosts } from '../../features/posts/userposts/UserPost'
 import { ButtonFollowUser } from '../../features/profile/userprofile/components/ButtonFollowUser'
 
-const UserProfile = () => {
+export const UserProfile = () => {
   const { uid } = useParams()
 
   return (
@@ -14,5 +14,3 @@ const UserProfile = () => {
     </div>
   )
 }
-
-export { UserProfile }

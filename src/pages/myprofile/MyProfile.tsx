@@ -3,7 +3,7 @@ import { MyPosts } from '../../features/posts/myposts/MyPosts'
 import { ButtonEditProfile } from '../../features/profile/myprofile/components/ButtonEditProfile'
 import { MyProfileDetails } from '../../features/profile/myprofile/MyProfileDetails'
 
-const MyProfile = () => {
+export const MyProfile = () => {
   return (
     <div className="max-w-[600px] lg:max-w-[1200px] w-full flex flex-col gap-5 p-12">
       <MyProfileDetails />
@@ -17,5 +17,3 @@ const MyProfile = () => {
     </div>
   )
 }
-
-export { MyProfile }

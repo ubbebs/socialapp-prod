@@ -1,19 +1,13 @@
 import { useQuery } from '@tanstack/react-query'
-import axios from 'axios'
+import { MyFollowingPost } from '../types/FollowingPostType'
+import { fetcher } from '../utils/fetcher'
 
-const { VITE_SERVER_URL } = import.meta.env
-
-const useGetMyFollowingPosts = (uid: string) => {
-  const getMyFollowingPosts = async (userid: string) => {
-    const res = await axios.get(
-      `${VITE_SERVER_URL}/getFollowingPosts?uid=${userid}`
-    )
-    return res.data
-  }
-
-  return useQuery(['myfollowingposts'], () => getMyFollowingPosts(uid), {
-    enabled: !!uid,
-  })
+export const useGetMyFollowingPosts = (uid: string) => {
+  return useQuery(
+    ['myfollowingposts'],
+    async () => fetcher<MyFollowingPost[]>(`/getFollowingPosts?uid=${uid}`),
+    {
+      enabled: !!uid,
+    }
+  )
 }
-
-export { useGetMyFollowingPosts }

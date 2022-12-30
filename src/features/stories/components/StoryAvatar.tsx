@@ -6,7 +6,7 @@ type StoryAvatarType = {
   id: string
 }
 
-const StoryAvatar = ({ id }: StoryAvatarType) => {
+export const StoryAvatar = ({ id }: StoryAvatarType) => {
   const { data: dataUserData, isLoading: isLoadingUserData } = useGetUserData(
     id || ''
   )
@@ -24,5 +24,3 @@ const StoryAvatar = ({ id }: StoryAvatarType) => {
     </Link>
   ) : null
 }
-
-export { StoryAvatar }

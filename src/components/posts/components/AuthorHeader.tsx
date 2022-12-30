@@ -11,8 +11,9 @@ type AuthorHeaderType = {
   }
 }
 
-const AuthorHeader = ({ data }: AuthorHeaderType) => {
-  const { photoURL, displayName, authorid, timestamp } = data
+export const AuthorHeader = ({
+  data: { photoURL, displayName, authorid, timestamp },
+}: AuthorHeaderType) => {
   return (
     <Link
       to={`/profile/${authorid}`}
@@ -36,5 +37,3 @@ const AuthorHeader = ({ data }: AuthorHeaderType) => {
     </Link>
   )
 }
-
-export { AuthorHeader }

@@ -7,12 +7,12 @@ type StorageAvatarType = {
   timestamp: string
 }
 
-const storageAvatar = async (args: StorageAvatarType) => {
-  const { storage, userid, elem, timestamp } = args
+export const storageAvatar = async ({
+  storage,
+  userid,
+  elem,
+  timestamp,
+}: StorageAvatarType) => {
   const avatarImageRef = ref(storage, `avatar/${userid}_${timestamp}`)
-  await uploadBytes(avatarImageRef, elem).catch((error) => {
-    console.log(error)
-  })
+  await uploadBytes(avatarImageRef, elem)
 }
-
-export { storageAvatar }

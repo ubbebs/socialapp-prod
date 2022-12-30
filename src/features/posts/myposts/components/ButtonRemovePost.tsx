@@ -1,8 +1,3 @@
-import {
-  QueryObserverResult,
-  RefetchOptions,
-  RefetchQueryFilters,
-} from '@tanstack/react-query'
 import { BsFillTrashFill } from 'react-icons/bs'
 import { NavigateFunction } from 'react-router-dom'
 import { executeRemovePost } from '../utils/executeRemovePost'
@@ -10,18 +5,16 @@ import { executeRemovePost } from '../utils/executeRemovePost'
 type ButtonRemovePostType = {
   timestamp: number
   navigate: NavigateFunction
-  refetch: <TPageData>(
-    options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined
-  ) => Promise<QueryObserverResult<any, unknown>>
 }
 
-const ButtonRemovePost = (args: ButtonRemovePostType) => {
-  const { timestamp, navigate, refetch } = args
+export const ButtonRemovePost = ({
+  timestamp,
+  navigate,
+}: ButtonRemovePostType) => {
   const funcRemovePost = () => {
     executeRemovePost({
       time: timestamp,
       navigate,
-      refetch,
     })
   }
   return (
@@ -34,5 +27,3 @@ const ButtonRemovePost = (args: ButtonRemovePostType) => {
     </button>
   )
 }
-
-export { ButtonRemovePost }

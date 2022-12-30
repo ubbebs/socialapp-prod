@@ -1,27 +1,22 @@
 import { Link } from 'react-router-dom'
+import { PostType } from '../../types/PostType'
 import { background } from '../../utils/background'
 
-type MapPostType = {
-  description: string | null
-  imageURL: string
-  timestamp: number
-  authorid: string
-}
-
 type PreviewPostType = {
-  post: MapPostType
+  post: PostType
 }
 
-const PreviewPost = (args: PreviewPostType) => {
-  const { post } = args
+const PreviewPost = ({
+  post: { imageURL, timestamp, authorid },
+}: PreviewPostType) => {
   return (
     <Link
-      to={`/post/${post.authorid}/${post.timestamp}`}
+      to={`/post/${authorid}/${timestamp}`}
       className="w-full aspect-square flex border rounded-lg"
     >
       <div
         className="w-full h-full rounded-lg bg-no-repeat bg-center bg-cover"
-        style={background(post.imageURL)}
+        style={background(imageURL)}
       />
     </Link>
   )

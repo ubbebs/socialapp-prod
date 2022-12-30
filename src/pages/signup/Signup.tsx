@@ -11,7 +11,7 @@ import { SubmitButton } from '../../components/buttons/SubmitButton'
 import { HeaderText } from '../../components/text/HeaderText'
 import { ErrorText } from '../../components/text/ErrorText'
 
-function Signup() {
+export const Signup = () => {
   const auth = getAuth()
   const emailRef = useRef<HTMLInputElement>(null)
   const passwordRef = useRef<HTMLInputElement>(null)
@@ -77,5 +77,3 @@ function Signup() {
     </OuterPage>
   )
 }
-
-export { Signup }

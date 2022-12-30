@@ -6,8 +6,7 @@ type ImageSelectedType = {
   AvatarState: File
 }
 
-const ImageSelected = (args: ImageSelectedType) => {
-  const { func, AvatarState } = args
+export const ImageSelected = ({ func, AvatarState }: ImageSelectedType) => {
   return (
     <>
       <div className="w-full h-full bg-white rounded-3xl flex justify-center absolute">
@@ -27,5 +26,3 @@ const ImageSelected = (args: ImageSelectedType) => {
     </>
   )
 }
-
-export { ImageSelected }

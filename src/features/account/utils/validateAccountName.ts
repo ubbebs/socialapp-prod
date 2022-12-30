@@ -2,11 +2,10 @@ type ValidateAccountName = {
   accountNameRef: React.RefObject<HTMLInputElement> | null
 }
 
-const validateAccountName = (args: ValidateAccountName) => {
-  const { accountNameRef } = args
+export const validateAccountName = ({
+  accountNameRef,
+}: ValidateAccountName) => {
   return (
     accountNameRef?.current && /^\w{4,16}$/g.test(accountNameRef.current.value)
   )
 }
-
-export { validateAccountName }
