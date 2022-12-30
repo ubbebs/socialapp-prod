@@ -10,7 +10,7 @@ export const StoryAvatar = ({ id }: StoryAvatarType) => {
   const { data: dataUserData, isLoading: isLoadingUserData } = useGetUserData(
     id || ''
   )
-  return !isLoadingUserData ? (
+  return !isLoadingUserData && dataUserData ? (
     <Link to={`/profile/${dataUserData.uid}`}>
       <div className="w-[120px] flex flex-col items-center gap-1">
         <div

@@ -7,7 +7,7 @@ export const UserPosts = () => {
   const { data: dataUserPosts, isLoading: isLoadingUserPosts } =
     useGetUserPosts(uid || '')
 
-  return !isLoadingUserPosts ? (
+  return !isLoadingUserPosts && dataUserPosts ? (
     <PostMapper data={dataUserPosts} />
   ) : (
     <p>Loading</p>

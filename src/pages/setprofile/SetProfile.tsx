@@ -48,7 +48,7 @@ export const SetProfile = () => {
   }
 
   useEffect(() => {
-    if (!isLoadingMyData && dataMyData.accountName) navigate('/')
+    if (!isLoadingMyData && dataMyData && dataMyData.accountName) navigate('/')
   }, [dataMyData, isLoadingMyData, navigate])
 
   return !isLoadingMyData ? (

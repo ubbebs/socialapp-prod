@@ -44,7 +44,7 @@ export const AddPost = () => {
     navigate('/myprofile')
   }
 
-  return !isLoadingMyData ? (
+  return !isLoadingMyData && dataMyData ? (
     <div className="flex w-full h-full flex-col lg:flex-row items-center justify-center">
       <AddPostImage ImageState={postImg} setImageState={setPostImg} />
       <div className="w-full lg:max-w-[400px] flex flex-col bg-white xl:w-[300px] xl:h-[500px] p-4 rounded-3xl gap-3">

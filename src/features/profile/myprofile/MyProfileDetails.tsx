@@ -8,7 +8,7 @@ export const MyProfileDetails = () => {
     stateStore.userid || ''
   )
 
-  return !isLoadingMyData ? (
+  return !isLoadingMyData && dataMyData ? (
     <ProfileLayout
       data={{
         photoURL: dataMyData.photoURL,

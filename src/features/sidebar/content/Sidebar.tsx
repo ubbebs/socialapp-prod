@@ -12,7 +12,7 @@ type SidebarType = {
 export const Sidebar = ({ hidden, func }: SidebarType) => {
   const { data: dataMyData } = useGetMyData('')
 
-  return (
+  return dataMyData ? (
     <div
       className={`${
         hidden ? 'left-0 opacity-100' : 'left-[100%] opacity-0'
@@ -33,5 +33,5 @@ export const Sidebar = ({ hidden, func }: SidebarType) => {
       <Stats />
       <NavLinks func={func} />
     </div>
-  )
+  ) : null
 }

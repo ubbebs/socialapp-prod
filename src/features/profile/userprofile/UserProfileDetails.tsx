@@ -11,7 +11,7 @@ export const UserProfileDetails = () => {
   )
   const { isLoading: isLoadingUsersPosts } = useGetUserPosts(uid || '')
 
-  return !isLoadingUserData && !isLoadingUsersPosts ? (
+  return !isLoadingUserData && !isLoadingUsersPosts && dataUserData ? (
     <ProfileLayout
       data={{
         photoURL: dataUserData.photoURL,

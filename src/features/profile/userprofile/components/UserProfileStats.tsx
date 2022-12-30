@@ -13,7 +13,12 @@ export const UserProfileStats = () => {
   const { data: dataUserFollowing, isLoading: isLoadingMyFollowing } =
     useGetUserFollowing(uid || '')
 
-  return !isLoadingMyFollowers && !isLoadingMyPosts && !isLoadingMyFollowing ? (
+  return !isLoadingMyFollowers &&
+    !isLoadingMyPosts &&
+    !isLoadingMyFollowing &&
+    dataUserPosts &&
+    dataUserFollowing &&
+    dataUserFollowers ? (
     <div className="flex gap-5 w-full max-w-[500px]">
       <p className="font-normal text-center text-md">
         Posts: <b>{Object.keys(dataUserPosts).length ?? 0}</b>

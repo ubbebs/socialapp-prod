@@ -30,7 +30,7 @@ export const ButtonFollowUser = ({ uid }: ButtonFollowUserType) => {
 
   if (isLoadingMyFollowing) return <p>Loading...</p>
 
-  return Object.keys(dataMyFollowing).includes(uid) ? (
+  return dataMyFollowing && Object.keys(dataMyFollowing).includes(uid) ? (
     <button
       type="button"
       className="flex p-2 px-7 bg-zinc-400 rounded-full text-white text-sm font-semibold justify-center items-center gap-1"

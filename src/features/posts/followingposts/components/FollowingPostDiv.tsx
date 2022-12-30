@@ -19,7 +19,7 @@ export const FollowingPostDiv = ({
     authorid || ''
   )
 
-  return !isLoadingUserData ? (
+  return !isLoadingUserData && dataUserData ? (
     <>
       <div className="border rounded-xl p-3 flex flex-col gap-3">
         <AuthorHeader
