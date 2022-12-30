@@ -7,12 +7,11 @@ export const MyPosts = () => {
     stateStore.userid || ''
   )
 
-  return !isLoadingMyPosts && dataMyPosts ? (
-    <>
-      {console.log(dataMyPosts)}
-      <PostMapper data={dataMyPosts} />
-    </>
+  if (isLoadingMyPosts) return null
+
+  return dataMyPosts ? (
+    <PostMapper data={dataMyPosts} />
   ) : (
-    <p>Loading</p>
+    <p>There is no posts... yet.</p>
   )
 }
