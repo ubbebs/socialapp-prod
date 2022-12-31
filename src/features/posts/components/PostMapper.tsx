@@ -7,7 +7,7 @@ type PostMapperType = {
 
 export const PostMapper = ({ data }: PostMapperType) => {
   return (
-    <div className="overflow-y-auto grid grid-cols-3 gap-5 sm:gap-10 scrollbar w-full">
+    <div className="overflow-y-auto grid grid-cols-3 gap-3 lg:gap-5 scrollbar w-full">
       {data ? (
         Object.values(data)
           .reverse()

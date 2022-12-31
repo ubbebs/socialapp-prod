@@ -1,4 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
+import { FollowButton } from '../../../../components/buttons/FollowButton'
+import { FollowButtonLoader } from '../../../../components/loaders/FollowButtonLoader'
 import { useGetMyFollowing } from '../../../../services/getMyFollowing'
 import { stateStore } from '../../../../stateStore'
 import { executeUserAddFollow } from '../utils/executeUserAddFollow'
@@ -28,23 +30,11 @@ export const ButtonFollowUser = ({ uid }: ButtonFollowUserType) => {
     })
   }
 
-  if (isLoadingMyFollowing) return <p>Loading...</p>
+  if (isLoadingMyFollowing) return <FollowButtonLoader />
 
   return dataMyFollowing && Object.keys(dataMyFollowing).includes(uid) ? (
-    <button
-      type="button"
-      className="flex p-2 px-7 bg-zinc-400 rounded-full text-white text-sm font-semibold justify-center items-center gap-1"
-      onClick={removeFollow}
-    >
-      Unfollow
-    </button>
+    <FollowButton func={removeFollow} text="Unfollow" />
   ) : (
-    <button
-      type="button"
-      className="flex p-2 px-7 bg-zinc-400 rounded-full text-white text-sm font-semibold justify-center items-center gap-1"
-      onClick={addFollow}
-    >
-      Follow
-    </button>
+    <FollowButton func={addFollow} text="Follow" />
   )
 }

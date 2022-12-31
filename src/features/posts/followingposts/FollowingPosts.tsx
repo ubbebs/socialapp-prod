@@ -1,6 +1,7 @@
 import { useGetMyFollowingPosts } from '../../../services/getMyFollowingPosts'
 import { stateStore } from '../../../stateStore'
 import { FollowingPostDiv } from './components/FollowingPostDiv'
+import { FollowingPostsLoader } from '../../../components/loaders/FollowingPostsLoader'
 
 type FollowingPostsElem = {
   authorid: string
@@ -13,12 +14,13 @@ export const FollowingPosts = () => {
   const { data: dataMyFollowingPosts, isLoading: isLoadingMyFollowingPosts } =
     useGetMyFollowingPosts(stateStore.userid || '')
 
-  return !isLoadingMyFollowingPosts ? (
-    <div className="grow overflow-y-auto grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-10 scrollbar w-full">
-      {dataMyFollowingPosts &&
-        dataMyFollowingPosts.map((elem: FollowingPostsElem, index: number) => {
-          return <FollowingPostDiv data={elem} key={index} />
-        })}
+  if (isLoadingMyFollowingPosts) return <FollowingPostsLoader />
+
+  return dataMyFollowingPosts ? (
+    <div className="grow overflow-y-auto grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-10 w-full">
+      {dataMyFollowingPosts.map((elem: FollowingPostsElem, index: number) => {
+        return <FollowingPostDiv data={elem} key={index} />
+      })}
     </div>
   ) : null
 }

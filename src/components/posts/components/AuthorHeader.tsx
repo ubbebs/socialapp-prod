@@ -20,11 +20,11 @@ export const AuthorHeader = ({
       className="w-full flex items-center gap-4"
     >
       <div
-        className="w-[50px] lg:w-[50px] h-[50px] lg:h-[50px] bg-no-repeat bg-center bg-cover rounded-full"
+        className="w-[50px] lg:w-[50px] h-[50px] lg:h-[50px] bg-no-repeat bg-center bg-cover rounded-full flex shrink-0"
         style={background(photoURL)}
       />
       <div>
-        <p className="font-semibold text-xl">{displayName}</p>
+        <p className="font-semibold text-basic">{displayName}</p>
         {timestamp && (
           <p
             className="text-xs"

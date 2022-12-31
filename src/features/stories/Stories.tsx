@@ -1,3 +1,4 @@
+import { StoriesLoader } from '../../components/loaders/StoriesLoader'
 import { useGetMyFollowing } from '../../services/getMyFollowing'
 import { stateStore } from '../../stateStore'
 import { StoryAvatar } from './components/StoryAvatar'
@@ -6,7 +7,7 @@ export const Stories = () => {
   const { data: dataMyFollowing, isLoading: isLoadingMyFollowing } =
     useGetMyFollowing(stateStore.userid || '')
 
-  if (isLoadingMyFollowing) return null
+  if (isLoadingMyFollowing) return <StoriesLoader />
 
   return dataMyFollowing ? (
     <div className="overflow-x-hidden">

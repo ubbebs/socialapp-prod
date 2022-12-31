@@ -5,9 +5,9 @@ import { MyProfileDetails } from '../../features/profile/myprofile/MyProfileDeta
 
 export const MyProfile = () => {
   return (
-    <div className="max-w-[600px] lg:max-w-[1200px] w-full flex flex-col gap-5 p-12">
+    <div className="max-w-[600px] lg:max-w-[1200px] w-full flex flex-col gap-5 px-12 pb-12 lg:p-12">
       <MyProfileDetails />
-      <div className="flex gap-5">
+      <div className="flex gap-2 sm:gap-5 flex-col sm:flex-row justify-start">
         <ButtonAddPost />
         <ButtonEditProfile />
       </div>

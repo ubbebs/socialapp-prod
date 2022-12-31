@@ -14,7 +14,11 @@ export const Wrapper = ({ children }: WrapperType) => {
   return (
     <div className="w-full min-h-screen flex flex-col lg:h-screen lg:flex-row bg-zinc-100">
       <div className="w-full flex flex-col lg:w-[325px] lg:gap-5 lg:shrink-0 font-medium">
-        <Header func={handleClick} stateFunc={setToggleUserInfo} />
+        <Header
+          func={handleClick}
+          stateFunc={setToggleUserInfo}
+          hidden={toggleUserInfo}
+        />
         <Sidebar hidden={toggleUserInfo} func={setToggleUserInfo} />
       </div>
       <div className="grow w-full mt-[100px] lg:mt-0 flex bg-white rounded-none lg:rounded-l-3xl overflow-x-hidden">

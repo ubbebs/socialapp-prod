@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom'
+import { ProfileLayoutLoader } from '../../../components/loaders/ProfileLayoutLoader'
 import { useGetUserData } from '../../../services/getUserData'
 import { useGetUserPosts } from '../../../services/getUserPosts'
 import { ProfileLayout } from '../components/ProfileLayout'
@@ -10,6 +11,8 @@ export const UserProfileDetails = () => {
     uid || ''
   )
   const { isLoading: isLoadingUsersPosts } = useGetUserPosts(uid || '')
+
+  if (isLoadingUserData || isLoadingUsersPosts) return <ProfileLayoutLoader />
 
   return !isLoadingUserData && !isLoadingUsersPosts && dataUserData ? (
     <ProfileLayout

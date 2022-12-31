@@ -7,7 +7,7 @@ export const UserProfile = () => {
   const { uid } = useParams()
 
   return (
-    <div className="max-w-[600px] lg:max-w-[1200px] w-full flex flex-col gap-5 p-12">
+    <div className="max-w-[600px] lg:max-w-[1200px] w-full flex flex-col gap-5 px-12 pb-12 lg:p-12">
       <UserProfileDetails />
       <ButtonFollowUser uid={uid || ''} />
       <UserPosts />
