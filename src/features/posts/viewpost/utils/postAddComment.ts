@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+const { VITE_SERVER_URL } = import.meta.env
+
 export type PostAddCommentType = {
   authorid: string
   postid: string
@@ -15,7 +17,7 @@ export const postAddComment = async ({
   userid,
   time,
 }: PostAddCommentType) => {
-  await axios.post(`http://localhost:8383/addComment`, {
+  await axios.post(`${VITE_SERVER_URL}/addComment`, {
     authorid,
     postid,
     comment,
