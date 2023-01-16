@@ -69,7 +69,7 @@ export const EditProfile = () => {
   return (
     <OuterPage>
       <>
-        <BackButton navigate={navigate} />
+        <BackButton />
         <HeaderText text="Edit Profile" />
         <ProfileAvatarImage
           AvatarState={postImg}

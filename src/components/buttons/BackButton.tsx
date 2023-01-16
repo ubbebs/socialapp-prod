@@ -1,11 +1,8 @@
 import { AiOutlineArrowLeft } from 'react-icons/ai'
-import { NavigateFunction } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
-type BackButtonType = {
-  navigate: NavigateFunction
-}
-
-export const BackButton = ({ navigate }: BackButtonType) => {
+export const BackButton = () => {
+  const navigate = useNavigate()
   return (
     <button
       type="button"

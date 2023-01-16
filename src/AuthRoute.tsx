@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getAuth } from 'firebase/auth'
@@ -6,7 +7,7 @@ import { stateStore } from './stateStore'
 import { Loader } from './components/loaders/Loader'
 import { app } from '../config'
 
-function AuthRoute(props: { children: JSX.Element }): JSX.Element {
+export function AuthRoute(props: { children: JSX.Element }): JSX.Element {
   const { children } = props
   const auth = getAuth(app)
   const navigate = useNavigate()
@@ -14,7 +15,7 @@ function AuthRoute(props: { children: JSX.Element }): JSX.Element {
 
   useEffect(() => {
     AuthCheck(setUserid, navigate, auth)
-  }, [auth, navigate])
+  }, [])
 
   stateStore.userid = userid
 
@@ -22,5 +23,3 @@ function AuthRoute(props: { children: JSX.Element }): JSX.Element {
 
   return children
 }
-
-export { AuthRoute }

@@ -14,7 +14,7 @@ import { AddPost } from './pages/addpost/AddPost'
 import { UserProfile } from './pages/userprofile/UserProfile'
 import { queryClient } from './utils/queryClient'
 
-function App() {
+export function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
@@ -90,5 +90,3 @@ function App() {
     </QueryClientProvider>
   )
 }
-
-export { App }
