@@ -43,12 +43,12 @@ export const ViewPost = () => {
     <div className="max-w-[600px] lg:max-w-[1200px] w-full flex flex-col gap-5 px-12 pb-12 lg:p-12">
       <div className="w-full flex flex-col xl:flex-row items-center xl:items-start rounded-lg">
         <div
-          className="w-[300px] h-[300px] mt-5 xl:mt-0 flex-shrink bg-no-repeat bg-center bg-contain xl:w-[500px] xl:h-[500px] rounded-3xl border"
+          className="w-[300px] h-[300px] mt-5 xl:mt-0 flex-shrink-0 bg-no-repeat bg-center bg-contain xl:w-[500px] xl:h-[500px] rounded-3xl border"
           style={{
             backgroundImage: `url('${dataPost.imageURL}')`,
           }}
         />
-        <div className="flex flex-col grow py-5 lg:p-5 gap-3 w-full">
+        <div className="flex flex-col py-5 lg:p-5 gap-3 grow">
           <div className="flex flex-row gap-3">
             <AuthorHeader
               data={{
@@ -65,7 +65,7 @@ export const ViewPost = () => {
               />
             )}
           </div>
-          <p>{dataPost.description}</p>
+          <p className="break-all">{dataPost.description}</p>
         </div>
       </div>
       <ViewPostComment />

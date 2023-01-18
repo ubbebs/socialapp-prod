@@ -32,7 +32,7 @@ export const PostComment = ({
         />
       </div>
       <hr className="border-0 h-[2px] gradient-linear" />
-      <p className="ml-[66px] py-2">{comment}</p>
+      <p className="ml-[66px] py-2 pr-4 break-all">{comment}</p>
     </div>
   ) : null
 }
