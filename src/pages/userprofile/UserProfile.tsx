@@ -3,10 +3,13 @@ import { UserProfileDetails } from '../../features/profile/userprofile/UserProfi
 import { UserPosts } from '../../features/posts/userposts/UserPost'
 import { ButtonFollowUser } from '../../features/profile/userprofile/components/ButtonFollowUser'
 import { useGetUserData } from '../../services/getUserData'
+import { SmallLoader } from '../../components/loaders/SmallLoader'
 
 export const UserProfile = () => {
   const { uid } = useParams()
-  const { data } = useGetUserData(uid || '')
+  const { data, isLoading } = useGetUserData(uid || '')
+
+  if (isLoading) return <SmallLoader />
 
   return (
     <div className="max-w-[600px] lg:max-w-[1200px] w-full flex flex-col gap-5 px-12 pb-12 lg:p-12">
