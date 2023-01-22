@@ -31,7 +31,7 @@ export const FollowingPostDiv = ({
           }}
         />
         <PreviewPost post={data} />
-        <p>{description}</p>
+        <p className="break-all">{description}</p>
       </div>
     </>
   ) : null
