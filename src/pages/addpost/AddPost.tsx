@@ -47,7 +47,7 @@ export const AddPost = () => {
   if (isLoadingMyData) return <p>Loading posts...</p>
 
   return dataMyData ? (
-    <div className="flex w-full h-full flex-col lg:flex-row items-center justify-center">
+    <div className="flex w-full h-full flex-col gap-10 xl:gap-0 xl:flex-row items-center justify-center">
       <AddPostImage ImageState={postImg} setImageState={setPostImg} />
       <div className="w-full lg:max-w-[400px] flex flex-col bg-white xl:w-[300px] xl:h-[500px] p-4 rounded-3xl gap-3">
         <AuthorHeader

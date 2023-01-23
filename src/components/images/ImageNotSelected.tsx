@@ -17,7 +17,7 @@ export const ImageNotSelected = ({ func }: ImageNotSelectedType) => {
         type="file"
         name="file"
         id="File"
-        accept="image/jpeg"
+        accept="image/*"
         data-testid="inputField"
         onChange={func}
       />
