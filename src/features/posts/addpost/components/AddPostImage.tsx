@@ -37,7 +37,7 @@ export const AddPostImage = ({
         <>
           <ImageNotSelected func={handleSelectFile} />
           {errorMsg && (
-            <p className="absolute w-full text-center -bottom-8 text-red-500 font-semibold">
+            <p className="absolute w-full text-center -bottom-12 lg:-bottom-8 text-red-500 font-semibold">
               File too large or invalid file format (upload JPG/JPEG/PNG)
             </p>
           )}

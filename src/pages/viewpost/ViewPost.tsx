@@ -48,7 +48,7 @@ export const ViewPost = () => {
             backgroundImage: `url('${dataPost.imageURL}')`,
           }}
         />
-        <div className="flex flex-col py-5 lg:p-5 gap-3 grow">
+        <div className="flex flex-col py-5 lg:p-5 gap-3 grow w-full xl:w-auto">
           <div className="flex flex-row gap-3">
             <AuthorHeader
               data={{
